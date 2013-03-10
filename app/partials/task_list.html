@@ -1,1 +1,8 @@
-<h1>Task List</h1>
+<div data-ng-controller="TaskListController">
+    <ul id="taskList">
+        <li data-ng-repeat="task in tasks"> 
+            <h3 data-ng-bind="task.title"></h3>
+            <span data-ng-bind="task.duration"></span>
+        </li>
+    </ul>
+</div>
