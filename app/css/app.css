@@ -11,7 +11,7 @@ h2 {
     margin: 0;
 }
 
-#tasks p {
+#tasks li p {
     margin: 0;
 }
 
@@ -33,6 +33,10 @@ h2 {
 
 .task-title {
     color: white;
+    text-overflow: ellipsis;
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .task-duration {
