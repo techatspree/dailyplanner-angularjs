@@ -1,3 +1,7 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Basics
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 body {
     background: #ECF0F1;
 }
@@ -7,8 +11,13 @@ h2 {
 }
 
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Tasks
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #tasks {
     margin: 0;
+    padding: 0;
     color: white;
 }
 
@@ -17,12 +26,10 @@ h2 {
 }
 
 #tasks li {
-    position: relative;
     list-style: none;
     background: #34495E;
-    padding: 10px 20px;
+    padding: 0 20px;
     border-bottom: 2px solid #2C3E50;
-    height: 48px;
     display: box;
     display: -webkit-box;
     display: -moz-box;
@@ -40,53 +47,12 @@ h2 {
     transition: 0.15s;
 }
 
-.edit-task-form {
-    margin: 0;
-    width: 75%;
-}
-
-.edit-task-form input {
-    width: 100%;
-    font-size: 16px;
-    background: none;
-    border: none;
-    color: white;
-    text-indent: 0;
-    margin: 0;
-    padding: 0;
-}
-
-#tasks li input:hover,
-#tasks li input:focus {
-    color: #1ABC9C;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
-}
-
 li#add-task-container {
     background: #1ABC9C;
 }
+
 li#add-task-container:hover {
-    background: #1ABC9C;
-}
-
-#add-task-form {
-    margin: 0;
-    width: 100%;
-}
-
-#add-task-form input {
-    width: 100%;
-    font-size: 16px;
-    background: none;
-    border: none;
-    color: white;
-    text-indent: 0;
-    margin: 0;
-    padding: 0;
-    color: white !important;
+    background: #16A085;
 }
 
 .task-title {
@@ -105,9 +71,13 @@ li#add-task-container:hover {
 .remove-task {
     width: 10%;
     text-align: right;
+}
+
+.remove-task span {
     cursor: pointer;
 }
-.remove-task:hover {
+
+.remove-task span:hover {
     color: #1ABC9C;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
@@ -125,8 +95,45 @@ li#add-task-container:hover {
     background: #BDC3C7;
 }
 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Task forms
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#tasks form {
+    margin: 0;
+    padding: 0;
+}
+
+#tasks input {
+    padding: 10px 0;
+    height: 38px;
+    margin: 0;
+    text-indent: 0;
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+}
+
+#add-task-form {
+    width: 100%;
+}
+
+.edit-task-form {
+    width: 75%;
+}
+
+.edit-task-form input:hover,
+.edit-task-form input:focus {
+    color: #1ABC9C !important;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
 ::-webkit-input-placeholder { /* WebKit browsers */
-    /*color: #34495E !important;*/
     color: rgba(236, 240, 241, 0.6) !important;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
