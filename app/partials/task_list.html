@@ -11,7 +11,9 @@
         <div>
             <ul id="tasks">
                 <li data-ng-repeat="task in tasks">
-                    <p class="task-title" data-ng-bind="task.title"></p>
+                    <form>
+                        <input type="text" data-ng-model="task.title">
+                    </form>
 
                     <p class="task-duration">
                         <span class="fui-time-24">&nbsp;</span>

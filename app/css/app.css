@@ -39,6 +39,31 @@ h2 {
     transition: 0.15s;
 }
 
+#tasks form {
+    margin: 0;
+    width: 80%;
+}
+
+#tasks li input {
+    width: 100%;
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: white;
+    text-indent: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#tasks li input:hover,
+#tasks li input:focus {
+    color: #1ABC9C;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
 #task-form {
     padding: 20px;
     background: #1ABC9C;
