@@ -1,16 +1,18 @@
 function TaskListController($scope) {
-    $scope.tasks = [
-        {
-            title: "Task 1",
-            duration: 30,
-        },
-        {
-            title: "Task 2",
-            duration: 20,
-        },
-        {
-            title: "Task 3",
-            duration: 15,
-        }
-    ];
+    var tasks = $scope.tasks = [];
+
+    $scope.addTask = function(newTask) {
+        var title;
+
+        if (!newTask) { return; }
+
+        title = newTask;
+        
+        tasks.push({
+            "title": title,
+            "duration": 0
+        });
+
+        $scope.newTask = null;
+    };
 }
