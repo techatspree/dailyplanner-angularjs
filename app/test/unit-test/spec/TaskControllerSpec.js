@@ -30,4 +30,20 @@ describe("TaskListController", function() {
         expect(scope.tasks.indexOf(task)).toEqual(-1);
     });
 
+    it("should set task done", function() {
+        var task;
+
+        task = {
+            title: "New task",
+            done: false
+        };
+        scope.addTask(task);
+        expect(scope.tasks.length).toEqual(1);
+        
+        task = scope.tasks[0];
+        scope.toggleTaskStatus(task);
+        
+        expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(true);
+    });
+
 });

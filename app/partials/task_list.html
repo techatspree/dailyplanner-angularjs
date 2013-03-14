@@ -10,7 +10,7 @@
                     </form>
                 </li>
 
-                <li data-ng-repeat="task in tasks">
+                <li class="task" data-ng-class="class" data-ng-repeat="task in tasks">
                     <form class="edit-task-form">
                         <input class="task-title" type="text" data-ng-model="task.title">
                     </form>
@@ -22,7 +22,11 @@
                         <span data-ng-bind-template="{{ task.duration }}m" data-ng-show="task.duration"></span>
                     </p>
 
-                    <p class="remove-task">
+                    <p class="task-done-container clearfix">
+                        <span data-ng-class="class" class="pull-right" data-ng-click="toggleTaskStatus(task)"></span>
+                    </p>
+
+                    <p class="remove-task-container">
                         <span class="fui-cross-24" data-ng-click="removeTask(task)"></span>
                     </p>
                 </li>

@@ -11,7 +11,8 @@ function TaskListController($scope) {
         
         tasks.push({
             title: title,
-            duration: duration
+            duration: duration,
+            done: false
         });
 
         $scope.newTask = null;
@@ -19,6 +20,11 @@ function TaskListController($scope) {
 
     $scope.removeTask = function(task) {
         tasks.splice(tasks.indexOf(task), 1);
+    };
+
+    $scope.toggleTaskStatus = function(task) {
+        task.done = !task.done;
+        $scope.class =  (task.done) ? "task-done" : "";
     };
 
 }

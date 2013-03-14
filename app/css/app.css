@@ -27,7 +27,7 @@ h2 {
 
 #tasks li {
     list-style: none;
-    background: #34495E;
+    background-color: #34495e;
     padding: 0 20px;
     border-bottom: 2px solid #2C3E50;
     display: box;
@@ -40,7 +40,7 @@ h2 {
 }
 
 #tasks li:hover {
-    background: #2C3E50;
+    background-color: #2C3E50;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
     -o-transition: 0.15s;
@@ -53,6 +53,26 @@ li#add-task-container {
 
 li#add-task-container:hover {
     background: #16A085;
+}
+
+.task-done-container {
+    width: 10%;
+}
+.task-done-container span {
+    background: url("../img/todo/todo.png") 0 0 no-repeat;
+    background-size: 15px 15px;
+    height: 16px;
+    width: 15px;
+    cursor: pointer;
+}
+.task-done-container span:hover,
+.task-done-container span.task-done {
+    background: url("../img/todo/done.png") 0 0 no-repeat;
+    background-size: 15px 15px;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
 }
 
 .task-title {
@@ -68,16 +88,16 @@ li#add-task-container:hover {
     width: 10%;
 }
 
-.remove-task {
+.remove-task-container {
     width: 10%;
     text-align: right;
 }
 
-.remove-task span {
+.remove-task-container span {
     cursor: pointer;
 }
 
-.remove-task span:hover {
+.remove-task-container span:hover {
     color: #1ABC9C;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
@@ -121,7 +141,7 @@ li#add-task-container:hover {
 }
 
 .edit-task-form {
-    width: 75%;
+    width: 65%;
 }
 
 .edit-task-form input:hover,
