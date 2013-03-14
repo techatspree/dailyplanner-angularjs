@@ -9,6 +9,7 @@ h2 {
 
 #tasks {
     margin: 0;
+    color: white;
 }
 
 #tasks li p {
@@ -39,12 +40,12 @@ h2 {
     transition: 0.15s;
 }
 
-#tasks form {
+.edit-task-form {
     margin: 0;
-    width: 80%;
+    width: 75%;
 }
 
-#tasks li input {
+.edit-task-form input {
     width: 100%;
     font-size: 16px;
     background: none;
@@ -64,22 +65,19 @@ h2 {
     transition: 0.15s;
 }
 
-#task-form {
-    padding: 20px;
+li#add-task-container {
     background: #1ABC9C;
-    border-bottom: 2px solid #2C3E50;
-    margin: 0;
-    height: 28px;
-    display: box;
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    box-align: center;
+}
+li#add-task-container:hover {
+    background: #1ABC9C;
 }
 
-#task-form input {
+#add-task-form {
+    margin: 0;
+    width: 100%;
+}
+
+#add-task-form input {
     width: 100%;
     font-size: 16px;
     background: none;
@@ -88,12 +86,11 @@ h2 {
     text-indent: 0;
     margin: 0;
     padding: 0;
+    color: white !important;
 }
 
 .task-title {
-    color: white;
     text-overflow: ellipsis;
-    width: 80%;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -102,6 +99,24 @@ h2 {
     color: #BDC3C7;
     height: 20px;
     font-size: 12px;
+    width: 10%;
+}
+
+.remove-task {
+    width: 10%;
+    text-align: right;
+    cursor: pointer;
+}
+.remove-task:hover {
+    color: #1ABC9C;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
+.spacer {
+    width: 5%;
 }
 
 #bottom {

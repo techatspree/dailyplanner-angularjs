@@ -17,4 +17,8 @@ function TaskListController($scope) {
         $scope.newTask = null;
     };
 
+    $scope.removeTask = function(task) {
+        tasks.splice(tasks.indexOf(task), 1);
+    };
+
 }

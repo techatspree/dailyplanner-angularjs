@@ -3,21 +3,27 @@
         <h2>Tagesplan</h2>
 
         <div>
-            <form id="task-form" data-ng-submit="addTask(newTask)">
-                <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTask">
-            </form>
-        </div>
-
-        <div>
             <ul id="tasks">
+                <li id="add-task-container">
+                    <form id="add-task-form" data-ng-submit="addTask(newTask)">
+                        <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTask">
+                    </form>
+                </li>
+
                 <li data-ng-repeat="task in tasks">
-                    <form>
-                        <input type="text" data-ng-model="task.title">
+                    <form class="edit-task-form">
+                        <input class="task-title" type="text" data-ng-model="task.title">
                     </form>
 
+                    <p class="spacer">&nbsp;</p>
+                                        
                     <p class="task-duration">
                         <span class="fui-time-24">&nbsp;</span>
                         <span data-ng-bind-template="{{ task.duration }}m" data-ng-show="task.duration"></span>
+                    </p>
+
+                    <p class="remove-task" data-ng-click="removeTask(task)">
+                        <span class="fui-cross-24"></span>
                     </p>
                 </li>
             </ul>
