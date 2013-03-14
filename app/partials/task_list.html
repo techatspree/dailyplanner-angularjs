@@ -1,8 +1,22 @@
-<div data-ng-controller="TaskListController">
-    <ul id="taskList">
-        <li data-ng-repeat="task in tasks"> 
-            <h3 data-ng-bind="task.title"></h3>
-            <span data-ng-bind="task.duration"></span>
-        </li>
-    </ul>
+<div class="row" data-ng-controller="TaskListController">
+    <div class="span6 offset3">
+        <h2>Tagesplan</h2>
+
+        <ul id="tasks">
+            <li data-ng-repeat="task in tasks">
+                <p class="task-title" data-ng-bind="task.title"></p>
+
+                <p class="task-duration">
+                    <span class="fui-time-24">&nbsp;</span>
+                    <span data-ng-bind-template="{{ task.duration }}m" data-ng-show="task.duration"></span>
+                </p>
+            </li>
+        </ul>
+
+        <div id="bottom" class="clearfix">
+            <div class="pull-left">
+                <span class="fui-calendar-24"></span> <span data-ng-bind="tasks.length"></span>
+            </div>
+        <div>
+    </div>
 </div>

@@ -1,0 +1,48 @@
+body {
+    background: #ECF0F1;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+#tasks {
+    margin: 0;
+}
+
+#tasks p {
+    margin: 0;
+}
+
+#tasks li {
+    position: relative;
+    list-style: none;
+    background: #34495E;
+    padding: 10px 20px;
+    border-bottom: 2px solid #2C3E50;
+}
+
+#tasks li:hover {
+    background: #2C3E50;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
+.task-title {
+    color: white;
+}
+
+.task-duration {
+    color: #BDC3C7;
+    height: 20px;
+    font-size: 12px;
+}
+
+#bottom {
+    padding: 5px 20px;
+    font-size: 14px;
+    background: #BDC3C7;
+}
