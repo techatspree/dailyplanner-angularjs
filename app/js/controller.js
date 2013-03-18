@@ -12,6 +12,7 @@ function TaskListController($scope) {
         tasks.push({
             title: title,
             duration: duration,
+            class: "",
             done: false
         });
 
@@ -24,7 +25,7 @@ function TaskListController($scope) {
 
     $scope.toggleTaskStatus = function(task) {
         task.done = !task.done;
-        $scope.class =  (task.done) ? "task-done" : "";
+        task.class =  (task.done) ? "task-done" : "";
     };
 
 }

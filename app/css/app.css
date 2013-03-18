@@ -62,7 +62,7 @@ li#add-task-container:hover {
     background: url("../img/todo/todo.png") 0 0 no-repeat;
     background-size: 15px 15px;
     height: 16px;
-    width: 15px;
+    width: 16px;
     cursor: pointer;
 }
 .task-done-container span:hover,
