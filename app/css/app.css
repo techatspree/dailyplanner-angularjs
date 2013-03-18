@@ -135,6 +135,10 @@ li#add-task-container:hover {
     font-size: 16px;
     color: white;
 }
+#tasks li.task-done,
+#tasks li.task-done input {
+    color: #BDC3C7;
+}
 
 #add-task-form {
     width: 100%;
