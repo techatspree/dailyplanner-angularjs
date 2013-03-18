@@ -22,10 +22,10 @@ describe("TaskListController", function() {
         var task;
 
         task = { title: "New task" };
-        scope.addTask(task);
+
+        scope.tasks.push(task);
         expect(scope.tasks.length).toEqual(1);
-        
-        task = scope.tasks[0];
+
         scope.removeTask(task);
         expect(scope.tasks.indexOf(task)).toEqual(-1);
     });
@@ -37,10 +37,11 @@ describe("TaskListController", function() {
             title: "New task",
             done: false
         };
-        scope.addTask(task);
-        expect(scope.tasks.length).toEqual(1);
         
-        task = scope.tasks[0];
+        scope.tasks.push(task);
+        expect(scope.tasks.length).toEqual(1);
+        expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(false);
+                
         scope.toggleTaskStatus(task);
         
         expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(true);
