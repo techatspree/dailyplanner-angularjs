@@ -1,17 +1,19 @@
-<div class="row" data-ng-controller="TaskListController">
-    <div class="span6 offset3">
+<div data-ng-controller="TaskListController">
+    <div>
         <h2>Tagesplan</h2>
 
-        <ul id="tasks">
-            <li data-ng-repeat="task in tasks">
-                <p class="task-title" data-ng-bind="task.title"></p>
+        <div>
+            <ul id="tasks">
+                <li data-ng-repeat="task in tasks">
+                    <p class="task-title" data-ng-bind="task.title"></p>
 
-                <p class="task-duration">
-                    <span class="fui-time-24">&nbsp;</span>
-                    <span data-ng-bind-template="{{ task.duration }}m" data-ng-show="task.duration"></span>
-                </p>
-            </li>
-        </ul>
+                    <p class="task-duration">
+                        <span class="fui-time-24">&nbsp;</span>
+                        <span data-ng-bind-template="{{ task.duration }}m" data-ng-show="task.duration"></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
 
         <div id="bottom" class="clearfix">
             <div class="pull-left">

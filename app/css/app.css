@@ -51,6 +51,32 @@ h2 {
     background: #BDC3C7;
 }
 
-@media only screen and (max-device-width: 480px) {
-    
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Responsive
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.container {
+    width: 550px !important;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    .container {
+        width: 700px !important;
+    }
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .container {
+        width: 700px !important;
+    }
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    .container {
+        width: 400px !important;
+    }
 }
