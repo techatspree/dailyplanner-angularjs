@@ -117,6 +117,62 @@ li#add-task-container:hover {
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+<<<<<<< HEAD
+    Task forms
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#tasks form {
+    margin: 0;
+    padding: 0;
+}
+
+#tasks input {
+    padding: 10px 0;
+    height: 38px;
+    margin: 0;
+    text-indent: 0;
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+}
+#tasks li.task-done,
+#tasks li.task-done input {
+    color: #BDC3C7;
+}
+
+#add-task-form {
+    width: 100%;
+}
+
+.edit-task-form {
+    width: 65%;
+}
+
+.edit-task-form input:hover,
+.edit-task-form input:focus {
+    color: #1ABC9C !important;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Responsive
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
