@@ -55,20 +55,17 @@ li#add-task-container:hover {
     background: #16A085;
 }
 
-.task-done-container {
-    width: 10%;
-}
 .task-done-container span {
     background: url("../img/todo/todo.png") 0 0 no-repeat;
-    background-size: 15px 15px;
-    height: 16px;
-    width: 16px;
+    background-size: 16px 16px !important;
     cursor: pointer;
+    width: 17px !important;
+    height: 17px !important;
 }
 .task-done-container span:hover,
 .task-done-container span.task-done {
     background: url("../img/todo/done.png") 0 0 no-repeat;
-    background-size: 15px 15px;
+    background-size: 16px 16px;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
     -o-transition: 0.15s;
@@ -81,15 +78,11 @@ li#add-task-container:hover {
     white-space: nowrap;
 }
 
-.task-duration {
-    color: #BDC3C7;
-    height: 20px;
+.task-duration-container {
     font-size: 12px;
-    width: 10%;
 }
 
 .remove-task-container {
-    width: 10%;
     text-align: right;
 }
 
@@ -105,10 +98,6 @@ li#add-task-container:hover {
     transition: 0.15s;
 }
 
-.spacer {
-    width: 5%;
-}
-
 #bottom {
     padding: 5px 20px;
     font-size: 14px;
@@ -117,7 +106,6 @@ li#add-task-container:hover {
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-<<<<<<< HEAD
     Task forms
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #tasks form {
@@ -139,14 +127,6 @@ li#add-task-container:hover {
 #tasks li.task-done,
 #tasks li.task-done input {
     color: #BDC3C7;
-}
-
-#add-task-form {
-    width: 100%;
-}
-
-.edit-task-form {
-    width: 65%;
 }
 
 .edit-task-form input:hover,
@@ -180,10 +160,39 @@ li#add-task-container:hover {
     width: 550px !important;
 }
 
+#add-task-form {
+    width: 100%;
+}
+
+.edit-task-form {
+    width: 290px;
+}
+
+.task-duration-container {
+    width: 70px;
+}
+
+.task-done-container {
+    width: 50px;
+}
+
+.remove-task-container {
+    width: 50px;
+    text-align: right;
+}
+
+.spacer {
+    width: 50px;
+}
+
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
     .container {
         width: 700px !important;
+    }
+
+    .edit-task-form {
+        width: 440px;
     }
 }
  
@@ -192,11 +201,18 @@ li#add-task-container:hover {
     .container {
         width: 700px !important;
     }
+    .edit-task-form {
+        width: 440px;
+    }
 }
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
     .container {
         width: 400px !important;
+    }
+
+    .edit-task-form {
+        width: 140px;
     }
 }
