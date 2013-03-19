@@ -1,7 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Basics
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 body {
     background: #ECF0F1;
 }
@@ -10,25 +9,28 @@ h2 {
     text-align: center;
 }
 
+.container {
+    width: 550px !important;
+}
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Tasks
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-#tasks {
+#tasks,
+ul, li, p {
     margin: 0;
-    padding: 0;
-    color: white;
 }
 
-#tasks li p {
-    margin: 0;
+#tasks {
+    color: white;
+    font-size: 16px;
 }
 
 #tasks li {
     list-style: none;
-    background-color: #34495e;
-    padding: 0 20px;
+    background: #34495E;
+    padding: 10px 20px;
     border-bottom: 2px solid #2C3E50;
     display: box;
     display: -webkit-box;
@@ -39,180 +41,19 @@ h2 {
     box-align: center;
 }
 
-#tasks li:hover {
-    background-color: #2C3E50;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
-}
-
-li#add-task-container {
-    background: #1ABC9C;
-}
-
-li#add-task-container:hover {
-    background: #16A085;
-}
-
-.task-done-container span {
-    background: url("../img/todo/todo.png") 0 0 no-repeat;
-    background-size: 16px 16px !important;
-    cursor: pointer;
-    width: 17px !important;
-    height: 17px !important;
-}
-.task-done-container span:hover,
-.task-done-container span.task-done {
-    background: url("../img/todo/done.png") 0 0 no-repeat;
-    background-size: 16px 16px;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
-}
-
 .task-title {
     text-overflow: ellipsis;
+    width: 80%;
     overflow: hidden;
     white-space: nowrap;
 }
 
-.task-duration-container {
-    font-size: 12px;
-}
-
-.remove-task-container {
-    text-align: right;
-}
-
-.remove-task-container span {
-    cursor: pointer;
-}
-
-.remove-task-container span:hover {
-    color: #1ABC9C;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
+.task-duration {
+    font-size: 13px;
 }
 
 #bottom {
     padding: 5px 20px;
     font-size: 14px;
     background: #BDC3C7;
-}
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    Task forms
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-#tasks form {
-    margin: 0;
-    padding: 0;
-}
-
-#tasks input {
-    padding: 10px 0;
-    height: 38px;
-    margin: 0;
-    text-indent: 0;
-    background: none;
-    border: none;
-    width: 100%;
-    font-size: 16px;
-    color: white;
-}
-#tasks li.task-done,
-#tasks li.task-done input {
-    color: #BDC3C7;
-}
-
-.edit-task-form input:hover,
-.edit-task-form input:focus {
-    color: #1ABC9C !important;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
-}
-
-::-webkit-input-placeholder { /* WebKit browsers */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    Responsive
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-.container {
-    width: 550px !important;
-}
-
-#add-task-form {
-    width: 100%;
-}
-
-.edit-task-form {
-    width: 290px;
-}
-
-.task-duration-container {
-    width: 70px;
-}
-
-.task-done-container {
-    width: 50px;
-}
-
-.remove-task-container {
-    width: 50px;
-    text-align: right;
-}
-
-.spacer {
-    width: 50px;
-}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) { 
-    .container {
-        width: 700px !important;
-    }
-
-    .edit-task-form {
-        width: 440px;
-    }
-}
- 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-    .container {
-        width: 700px !important;
-    }
-    .edit-task-form {
-        width: 440px;
-    }
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-    .container {
-        width: 400px !important;
-    }
-
-    .edit-task-form {
-        width: 140px;
-    }
 }
