@@ -50,3 +50,7 @@ h2 {
     font-size: 14px;
     background: #BDC3C7;
 }
+
+@media only screen and (max-device-width: 480px) {
+    
+}
