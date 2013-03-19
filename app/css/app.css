@@ -1,3 +1,6 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Basics
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 body {
     background: #ECF0F1;
 }
@@ -6,33 +9,39 @@ h2 {
     text-align: center;
 }
 
+.container {
+    width: 550px !important;
+}
 
-#tasks {
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Tasks
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#tasks,
+ul, li, p {
     margin: 0;
 }
 
-#tasks li p {
-    margin: 0;
+#tasks {
+    color: white;
+    font-size: 16px;
 }
 
 #tasks li {
-    position: relative;
     list-style: none;
     background: #34495E;
     padding: 10px 20px;
     border-bottom: 2px solid #2C3E50;
-}
-
-#tasks li:hover {
-    background: #2C3E50;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
 }
 
 .task-title {
-    color: white;
     text-overflow: ellipsis;
     width: 80%;
     overflow: hidden;
@@ -40,43 +49,11 @@ h2 {
 }
 
 .task-duration {
-    color: #BDC3C7;
-    height: 20px;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 #bottom {
     padding: 5px 20px;
     font-size: 14px;
     background: #BDC3C7;
-}
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    Responsive
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-.container {
-    width: 550px !important;
-}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) { 
-    .container {
-        width: 700px !important;
-    }
-}
- 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-    .container {
-        width: 700px !important;
-    }
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-    .container {
-        width: 400px !important;
-    }
 }
