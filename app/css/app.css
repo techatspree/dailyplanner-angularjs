@@ -1,6 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Basics
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 body {
     background: #ECF0F1;
 }
@@ -17,6 +18,7 @@ h2 {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Tasks
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #tasks,
 ul, li, p {
     margin: 0;
@@ -30,7 +32,7 @@ ul, li, p {
 #tasks li {
     list-style: none;
     background: #34495E;
-    padding: 10px 20px;
+    padding: 0 20px;
     border-bottom: 2px solid #2C3E50;
     display: box;
     display: -webkit-box;
@@ -41,6 +43,10 @@ ul, li, p {
     box-align: center;
 }
 
+li#add-task-container {
+    background: #1ABC9C;
+}
+
 .task-title {
     text-overflow: ellipsis;
     width: 80%;
@@ -48,12 +54,92 @@ ul, li, p {
     white-space: nowrap;
 }
 
-.task-duration {
+.task-duration-container {
     font-size: 13px;
+    width: 70px;
+    margin-left: 30px;
+}
+
+.task-done-container {
+    margin-left: 56px;
+    cursor: pointer;
+}
+ 
+.task-remove-container {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.task-done-container:hover,
+.task-remove-container:hover {
+    color: #1ABC9C;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
 }
 
 #bottom {
     padding: 5px 20px;
     font-size: 14px;
     background: #BDC3C7;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Task forms
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#tasks form {
+    margin: 0;
+    padding: 0;
+}
+
+#tasks input {
+    padding: 10px 0;
+    height: 38px;
+    margin: 0;
+    text-indent: 0;
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+#tasks .edit-task-form input:hover {
+    color: #1ABC9C;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
+#add-task-form {
+    width: 100%;
+}
+ 
+.edit-task-form {
+    width: 300px;
+}
+
+#tasks li.task-done,
+#tasks li.task-done input {
+    color: #7F8C8D;
+    background: #2C3E50;
+}
+
+ 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: rgba(236, 240, 241, 0.6) !important;
 }

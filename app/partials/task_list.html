@@ -13,19 +13,17 @@
                 <form class="edit-task-form">
                     <input class="task-title" type="text" data-ng-model="task.title">
                 </form>
-
-                <p class="spacer">&nbsp;</p>
                                     
                 <p class="task-duration-container">
                     <span class="fui-time-24">&nbsp;</span>
-                    <span data-ng-bind-template="{{ task.duration }}m" data-ng-show="task.duration"></span>
+                    <span data-ng-bind-template="{{ task.duration }}" data-ng-show="task.duration"></span>
                 </p>
 
-                <p class="task-done-container clearfix">
-                    <span data-ng-class="task.class" class="pull-right" data-ng-click="toggleTaskStatus(task)"></span>
+                <p class="task-done-container">
+                    <span class="fui-checkround-24" data-ng-click="toggleTaskStatus(task)"></span>
                 </p>
 
-                <p class="remove-task-container">
+                <p class="task-remove-container">
                     <span class="fui-cross-24" data-ng-click="removeTask(task)"></span>
                 </p>
             </li>
