@@ -36,6 +36,14 @@ TaskListController.prototype.matchPattern = function (str) {
     return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
 };
 
-TaskListController.prototype.getTitle = function(str) {
-    
+TaskListController.prototype.getTitle = function(matcher, str) {
+    var matchedInput, title;
+
+    matchedInput = matcher(str);
+
+    title = (matchedInput[0])
+        ? matchedInput.input.replace(matchedInput[0], "")
+        : matchedInput.input;
+        
+    return title;
 };
