@@ -20,7 +20,7 @@ describe("TaskListController", function() {
         expect(scope.tasks.length).toEqual(1);
     });
 
-    it("should remove task", function() {
+    it("should remove a task", function() {
         var task;
 
         task = { title: "New task" };
@@ -32,7 +32,7 @@ describe("TaskListController", function() {
         expect(scope.tasks.indexOf(task)).toEqual(-1);
     });
 
-    it("should set task done", function() {
+    it("should set a task done", function() {
         var task;
 
         task = {
@@ -60,7 +60,7 @@ describe("TaskListController", function() {
         expect(matchedInput[2]).toEqual(" 25m");
     });
 
-    it("should get new task title 'New task'", function() {
+    it("should get task title 'New task'", function() {
         var task, title;
 
         task = "New task 1h 25m";
@@ -71,7 +71,7 @@ describe("TaskListController", function() {
         expect(title).toEqual("New task");
     });
 
-    it("should get new task duration in minutes '85'", function() {
+    it("should get task duration in minutes '85'", function() {
         var task, duration;
 
         task = "New task 1h 25m";
