@@ -35,3 +35,7 @@ var TaskListController = function ($scope) {
 TaskListController.prototype.matchPattern = function (str) {
     return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
 };
+
+TaskListController.prototype.getTitle = function(str) {
+    
+};

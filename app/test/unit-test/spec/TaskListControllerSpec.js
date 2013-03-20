@@ -58,4 +58,13 @@ describe("TaskListController", function() {
         expect(matchedInput[2]).toEqual(" 25m");
     });
 
+    it("should get new task title 'New task'", function() {
+        var task, title;
+
+        task = "New task 1h 25m";
+        title = controller.getTitle(controller.matchPattern, task);
+
+        expect(title).toEqual("New task");
+    });
+
 });
