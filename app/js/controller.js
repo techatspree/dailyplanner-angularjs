@@ -1,4 +1,6 @@
-function TaskListController($scope) {
+"use strict";
+
+var TaskListController = function ($scope) {
     var tasks = $scope.tasks = [];
 
     $scope.addTask = function(newTask) {
@@ -29,3 +31,7 @@ function TaskListController($scope) {
     };
 
 }
+
+TaskListController.prototype.matchPattern = function (str) {
+    return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
+};
