@@ -1,15 +1,16 @@
 "use strict";
 
 var TaskListController = function ($scope) {
-    var tasks = $scope.tasks = [];
+    var self = this,
+        tasks = $scope.tasks = [];
 
     $scope.addTask = function(newTask) {
         var title, duration;
 
         if (!newTask) { return; }
 
-        title = newTask;
-        duration = newTask.duration || 0;
+        title = self.getTitle(self.matchPattern, newTask.toString());
+        duration = self.getDuration(self.matchPattern, newTask.toString());
         
         tasks.push({
             title: title,
