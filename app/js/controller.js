@@ -47,3 +47,23 @@ TaskListController.prototype.getTitle = function(matcher, str) {
         
     return title;
 };
+
+TaskListController.prototype.getDuration = function(matcher, str) {
+    var matchedInput, duration;
+
+    matchedInput = matcher(str);
+    
+    duration = 0;
+
+    if (matchedInput[1]) {
+        var h = parseInt(matchedInput[1].replace(/\s|h/, ""));
+        duration = h * 60;
+    }
+
+    if (matchedInput[2]) {
+        var m = parseInt(matchedInput[2].replace(/\s|m/, ""));
+        duration += m;
+    }
+
+    return duration;
+};
