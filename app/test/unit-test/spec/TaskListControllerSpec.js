@@ -1,3 +1,5 @@
+"use strict";
+
 describe("TaskListController", function() {
 
     var scope, controller;
@@ -78,6 +80,44 @@ describe("TaskListController", function() {
         }, task);
 
         expect(duration).toEqual(85);
+    });
+
+    it("should remove task with empty title after editing", function() {
+        var task;
+
+        task = {
+            title: "Task",
+            duration: 15
+        };
+
+        scope.tasks.push(task);
+
+        expect(scope.tasks.indexOf(task)).toEqual(0);
+
+        task.title = "";
+
+        scope.editTask(task);
+
+        expect(scope.tasks.length).toEqual(0);
+    });
+
+    it("should change task duration from 15m to 30m", function() {
+        var task;
+
+        task = {
+            title: "Task",
+            duration: 15
+        }
+
+        scope.tasks.push(task);
+
+        expect(scope.tasks.indexOf(task)).toEqual(0);
+
+        task.title = "Task 30m";
+
+        scope.editTask(task);
+
+        expect(task.duration).toEqual(30);
     });
 
 });

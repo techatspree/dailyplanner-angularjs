@@ -22,6 +22,21 @@ var TaskListController = function ($scope) {
         $scope.newTask = null;
     };
 
+    $scope.editTask = function(task) {
+        var title, duration;
+
+        if (!task.title) {
+            $scope.removeTask(task);
+            return;
+        }
+
+        title = self.getTitle(self.matchPattern, task.title);
+        duration = self.getDuration(self.matchPattern, task.title);
+
+        task.title = title;
+        task.duration = duration;
+    };
+
     $scope.removeTask = function(task) {
         tasks.splice(tasks.indexOf(task), 1);
     };

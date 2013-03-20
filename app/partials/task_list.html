@@ -10,7 +10,7 @@
             </li>
 
             <li class="task" data-ng-class="task.class" data-ng-repeat="task in tasks">
-                <form class="edit-task-form">
+                <form class="edit-task-form" data-ng-submit="editTask(task)">
                     <input class="task-title" type="text" data-ng-model="task.title">
                 </form>
                                     
