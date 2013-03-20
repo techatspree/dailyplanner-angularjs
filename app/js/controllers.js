@@ -1,6 +1,6 @@
 "use strict";
 
-var TaskListController = function ($scope) {
+function TaskListController($scope) {
     var self = this,
         tasks = $scope.tasks = [];
 
@@ -46,40 +46,42 @@ var TaskListController = function ($scope) {
         task.class =  (task.done) ? "task-done" : "";
     };
 
-}
+    // Prototype functions
 
-TaskListController.prototype.matchPattern = function (str) {
-    return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
-};
+    TaskListController.prototype.matchPattern = function (str) {
+        return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
+    };
 
-TaskListController.prototype.getTitle = function(matcher, str) {
-    var matchedInput, title;
+    TaskListController.prototype.getTitle = function(matcher, str) {
+        var matchedInput, title;
 
-    matchedInput = matcher(str);
+        matchedInput = matcher(str);
 
-    title = (matchedInput[0])
-        ? matchedInput.input.replace(matchedInput[0], "")
-        : matchedInput.input;
+        title = (matchedInput[0])
+            ? matchedInput.input.replace(matchedInput[0], "")
+            : matchedInput.input;
+            
+        return title;
+    };
+
+    TaskListController.prototype.getDuration = function(matcher, str) {
+        var matchedInput, duration;
+
+        matchedInput = matcher(str);
         
-    return title;
-};
+        duration = 0;
 
-TaskListController.prototype.getDuration = function(matcher, str) {
-    var matchedInput, duration;
+        if (matchedInput[1]) {
+            var h = parseInt(matchedInput[1].replace(/\s|h/, ""));
+            duration = h * 60;
+        }
 
-    matchedInput = matcher(str);
-    
-    duration = 0;
+        if (matchedInput[2]) {
+            var m = parseInt(matchedInput[2].replace(/\s|m/, ""));
+            duration += m;
+        }
 
-    if (matchedInput[1]) {
-        var h = parseInt(matchedInput[1].replace(/\s|h/, ""));
-        duration = h * 60;
-    }
+        return duration;
+    };
 
-    if (matchedInput[2]) {
-        var m = parseInt(matchedInput[2].replace(/\s|m/, ""));
-        duration += m;
-    }
-
-    return duration;
-};
+}
