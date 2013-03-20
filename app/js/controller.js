@@ -1,7 +1,5 @@
 function TaskListController($scope) {
-    var tasks = $scope.tasks = [
-        { title: "Task", duration: "1h2m" }
-    ];
+    var tasks = $scope.tasks = [];
 
     $scope.addTask = function(newTask) {
         var title, duration;

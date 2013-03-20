@@ -47,4 +47,15 @@ describe("TaskListController", function() {
         expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(true);
     });
 
+    it("should match duration shortcut pattern '1h 25m'", function() {
+        var task, matchedInput;
+        task = "New task 1h 25m";
+
+        matchedInput = controller.matchPattern(task);
+
+        expect(matchedInput[0]).toEqual(" 1h 25m");
+        expect(matchedInput[1]).toEqual(" 1h");
+        expect(matchedInput[2]).toEqual(" 25m");
+    });
+
 });
