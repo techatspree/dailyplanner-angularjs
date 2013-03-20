@@ -62,7 +62,9 @@ describe("TaskListController", function() {
         var task, title;
 
         task = "New task 1h 25m";
-        title = controller.getTitle(controller.matchPattern, task);
+        title = controller.getTitle(function(str) {
+            return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
+        }, task);
 
         expect(title).toEqual("New task");
     });
@@ -71,7 +73,9 @@ describe("TaskListController", function() {
         var task, duration;
 
         task = "New task 1h 25m";
-        duration = controller.getDuration(controller.matchPattern, task);
+        duration = controller.getDuration(function(str) {
+            return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
+        }, task);
 
         expect(duration).toEqual(85);
     });
