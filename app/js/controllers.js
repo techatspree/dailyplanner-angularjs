@@ -25,8 +25,14 @@ function TaskListController($scope) {
     $scope.editTask = function(task) {
         var title, duration;
 
+        // delete task with empty title
         if (!task.title) {
             $scope.removeTask(task);
+            return;
+        }
+
+        // return if duration hasn't changed
+        if (!self.matchPattern(task.title)[0]) {
             return;
         }
 
