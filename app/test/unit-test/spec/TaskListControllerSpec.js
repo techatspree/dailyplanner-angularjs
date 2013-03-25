@@ -10,6 +10,8 @@
     describe("TaskListController", function() {
         var scope, controller;
 
+        beforeEach(module("Controllers"));
+
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             controller = $controller("TaskListController", {$scope: scope});

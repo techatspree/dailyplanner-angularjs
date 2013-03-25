@@ -24,46 +24,28 @@
                 done: false
             });
 
-<<<<<<< HEAD
             $scope.newTask = null;
         };
-=======
-    $scope.editTask = function(task) {
-        var newTitle;
->>>>>>> refs/heads/steps/step-02
 
         $scope.editTask = function(task) {
-            var title, duration;
+            var newTitle;
 
-<<<<<<< HEAD
             // delete task with empty title
             if (!task.title) {
                 $scope.removeTask(task);
                 return;
             }
 
-            // return if duration hasn't changed
-            if (!self.matchPattern(task.title)[0]) {
-                return;
+            newTitle = task.title;
+
+            // set new title
+            task.title = self.getTitle(self.matchPattern, newTitle);
+
+            // if duration has changed, set new duration
+            if (self.matchPattern(newTitle)[0]) {
+                task.duration = self.getDuration(self.matchPattern, newTitle);
             }
 
-            title = self.getTitle(self.matchPattern, task.title);
-            duration = self.getDuration(self.matchPattern, task.title);
-=======
-        newTitle = task.title;
-
-        // set new title
-        task.title = self.getTitle(self.matchPattern, newTitle);
-
-        // set duration
-        if (self.matchPattern(newTitle)[0]) {
-            task.duration = self.getDuration(self.matchPattern, newTitle);
-        }
-    };
->>>>>>> refs/heads/steps/step-02
-
-            task.title = title;
-            task.duration = duration;
         };
 
         $scope.removeTask = function(task) {
