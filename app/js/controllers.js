@@ -5,12 +5,7 @@
 (function() {
     "use strict";
 
-    angular.module("Controllers", []).
-
-        controller("TaskListController", TaskListController);
-
-
-    // TaskListController    
+    // TaskListController
     function TaskListController($scope) {
         var self = this,
             tasks = $scope.tasks = [];
@@ -101,5 +96,9 @@
 
         return duration;
     };
+
+
+    angular.module("Controllers", []).
+        controller("TaskListController", TaskListController);
 
 }());
