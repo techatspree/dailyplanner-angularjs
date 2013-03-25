@@ -5,6 +5,10 @@
 (function(angular) {
     "use strict";
 
-    angular.module("App", []);
+    angular.module("App", [
+        "Services",
+        "Filters",
+        "Controllers"
+    ]);
 
 }(angular));
