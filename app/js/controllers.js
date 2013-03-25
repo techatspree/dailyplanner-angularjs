@@ -22,7 +22,7 @@ function TaskListController($scope) {
     };
 
     $scope.editTask = function(task) {
-        var title, duration;
+        var newTitle;
 
         // delete task with empty title
         if (!task.title) {
@@ -30,16 +30,15 @@ function TaskListController($scope) {
             return;
         }
 
-        // return if duration hasn't changed
-        if (!self.matchPattern(task.title)[0]) {
-            return;
+        newTitle = task.title;
+
+        // set new title
+        task.title = self.getTitle(self.matchPattern, newTitle);
+
+        // set duration
+        if (self.matchPattern(newTitle)[0]) {
+            task.duration = self.getDuration(self.matchPattern, newTitle);
         }
-
-        title = self.getTitle(self.matchPattern, task.title);
-        duration = self.getDuration(self.matchPattern, task.title);
-
-        task.title = title;
-        task.duration = duration;
     };
 
     $scope.removeTask = function(task) {
