@@ -6,9 +6,9 @@
     "use strict";
 
     // TaskListController
-    function TaskListController($scope) {
+    function TaskListController($scope, storage) {
         var self = this,
-            tasks = $scope.tasks = [];
+            tasks = $scope.tasks = storage.get();
 
         $scope.addTask = function(newTask) {
             var title, duration;
@@ -25,6 +25,8 @@
             });
 
             $scope.newTask = null;
+
+            storage.set(tasks);
         };
 
         $scope.editTask = function(task) {
@@ -46,18 +48,21 @@
                 task.duration = self.getDuration(self.matchPattern, newTitle);
             }
 
+            storage.set(tasks);
         };
 
         $scope.removeTask = function(task) {
             tasks.splice(tasks.indexOf(task), 1);
+            storage.set(tasks);
         };
 
         $scope.toggleTaskStatus = function(task) {
             task.done = !task.done;
+            storage.set(tasks);
         };
     }
 
-    TaskListController.$inject = ["$scope"];
+    TaskListController.$inject = ["$scope", "LocalStorage"];
 
 
     // Prototype functions
