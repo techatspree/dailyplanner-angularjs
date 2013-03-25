@@ -9,7 +9,7 @@
                 </form>
             </li>
 
-            <li class="task" data-ng-class="task.class" data-ng-repeat="task in tasks">
+            <li class="task" data-ng-class="{'task-done': task.done}" data-ng-repeat="task in tasks">
                 <form class="edit-task-form" data-ng-submit="editTask(task)">
                     <input class="task-title" type="text" data-ng-model="task.title">
                 </form>
