@@ -2,7 +2,7 @@
     angular
 */
 
-(function() {
+(function(angular) {
     "use strict";
 
     // TaskListController
@@ -101,4 +101,4 @@
     angular.module("Controllers", []).
         controller("TaskListController", TaskListController);
 
-}());
+}(angular));
