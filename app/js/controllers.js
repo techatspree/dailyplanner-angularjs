@@ -16,3 +16,5 @@ function TaskListController($scope) {
         }
     ];
 }
+
+TaskListController.$inject = ["$scope"];
