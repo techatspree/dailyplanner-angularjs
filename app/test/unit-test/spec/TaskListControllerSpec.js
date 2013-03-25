@@ -8,13 +8,36 @@
     "use strict";
 
     describe("TaskListController", function() {
-        var scope, controller;
+        var scope, controller, localStorageMock;
 
         beforeEach(module("Controllers"));
 
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            controller = $controller("TaskListController", {$scope: scope});
+
+            localStorageMock = (function() {
+                var tasks;
+
+                return {
+                    get: function() {
+                        if (typeof tasks == "undefined") {
+                            tasks = [];
+                        }
+                        return tasks ;
+                    },
+                    set: function(data) {
+                        tasks = data;
+                    }
+                };
+            }());
+
+            controller = $controller(
+                "TaskListController",
+                {
+                    $scope: scope,
+                    LocalStorage: localStorageMock
+                }
+            );
         }));
 
 
