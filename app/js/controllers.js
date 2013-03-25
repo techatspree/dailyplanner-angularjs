@@ -24,12 +24,18 @@
                 done: false
             });
 
+<<<<<<< HEAD
             $scope.newTask = null;
         };
+=======
+    $scope.editTask = function(task) {
+        var newTitle;
+>>>>>>> refs/heads/steps/step-02
 
         $scope.editTask = function(task) {
             var title, duration;
 
+<<<<<<< HEAD
             // delete task with empty title
             if (!task.title) {
                 $scope.removeTask(task);
@@ -43,6 +49,18 @@
 
             title = self.getTitle(self.matchPattern, task.title);
             duration = self.getDuration(self.matchPattern, task.title);
+=======
+        newTitle = task.title;
+
+        // set new title
+        task.title = self.getTitle(self.matchPattern, newTitle);
+
+        // set duration
+        if (self.matchPattern(newTitle)[0]) {
+            task.duration = self.getDuration(self.matchPattern, newTitle);
+        }
+    };
+>>>>>>> refs/heads/steps/step-02
 
             task.title = title;
             task.duration = duration;
