@@ -16,17 +16,21 @@
             scope = $rootScope.$new();
 
             localStorageMock = (function() {
-                var tasks;
+                var tasks = [];
 
                 return {
                     get: function() {
-                        if (tasks === "undefined") {
-                            tasks = [];
-                        }
                         return tasks;
                     },
-                    set: function(data) {
-                        tasks = data;
+                    post: function(task) {
+                        tasks.push(task);
+                    },
+                    put: function(task) {
+                        var index = tasks.indexOf(task);
+                        tasks[index] = task;
+                    },
+                    delete: function(task) {
+                        tasks.splice(tasks.indexOf(task), 1);
                     }
                 };
             }());
