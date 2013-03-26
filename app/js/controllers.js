@@ -18,14 +18,15 @@
             title = self.getTitle(self.matchPattern, task.toString());
             duration = self.getDuration(self.matchPattern, task.toString());
 
-            tasks.push({
+            $scope.newTask = null;
+
+            storage.post({
                 title: title,
                 duration: duration,
                 done: false
-            };
-
-            $scope.newTask = null;
+            });
         };
+
 
         $scope.editTask = function(task) {
             var title, duration;
@@ -46,6 +47,8 @@
 
             task.title = title;
             task.duration = (duration) ? duration : task.duration;
+
+            storage.put(task);
         };
 
         $scope.removeTask = function(task) {
