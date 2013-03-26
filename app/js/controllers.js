@@ -10,13 +10,13 @@
         var self = this,
             tasks = $scope.tasks = [];
 
-        $scope.addTask = function(newTask) {
+        $scope.addTask = function(task) {
             var title, duration;
 
-            if (!newTask) { return; }
+            if (!task) { return; }
 
-            title = self.getTitle(self.matchPattern, newTask.toString());
-            duration = self.getDuration(self.matchPattern, newTask.toString());
+            title = self.getTitle(self.matchPattern, task.toString());
+            duration = self.getDuration(self.matchPattern, task.toString());
 
             tasks.push({
                 title: title,
@@ -28,7 +28,7 @@
         };
 
         $scope.editTask = function(task) {
-            var newTitle;
+            var title, duration;
 
             // delete task with empty title
             if (!task.title) {
@@ -36,16 +36,16 @@
                 return;
             }
 
-            newTitle = task.title;
-
             // set new title
-            task.title = self.getTitle(self.matchPattern, newTitle);
+            title = self.getTitle(self.matchPattern, task.title);
 
-            // if duration has changed, set new duration
-            if (self.matchPattern(newTitle)[0]) {
-                task.duration = self.getDuration(self.matchPattern, newTitle);
+            // set duration
+            if (self.matchPattern(task.title)[0]) {
+                duration = self.getDuration(self.matchPattern, task.title);
             }
 
+            task.title = title;
+            task.duration = (duration) ? duration : task.duration;
         };
 
         $scope.removeTask = function(task) {
