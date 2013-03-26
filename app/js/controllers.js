@@ -7,8 +7,8 @@
 
     // TaskListController
     function TaskListController($scope, storage) {
-        var self = this,
-            tasks = $scope.tasks = storage.get();
+        var self = this;
+        $scope.tasks = storage.get();
 
         $scope.addTask = function(newTask) {
             var title, duration;
@@ -18,15 +18,15 @@
             title = self.getTitle(self.matchPattern, newTask.toString());
             duration = self.getDuration(self.matchPattern, newTask.toString());
 
-            tasks.push({
+            newTask = {
                 title: title,
                 duration: duration,
                 done: false
-            });
+            };
+
+            storage.post(newTask);
 
             $scope.newTask = null;
-
-            storage.set(tasks);
         };
 
         $scope.editTask = function(task) {
@@ -48,20 +48,20 @@
                 task.duration = self.getDuration(self.matchPattern, newTitle);
             }
 
-            storage.set(tasks);
+            storage.put(task);
         };
 
         $scope.removeTask = function(task) {
-            tasks.splice(tasks.indexOf(task), 1);
-            storage.set(tasks);
+            storage.delete(task);
         };
 
         $scope.toggleTaskStatus = function(task) {
             task.done = !task.done;
-            storage.set(tasks);
+            storage.put(task);
         };
     }
 
+    // inject needed services
     TaskListController.$inject = ["$scope", "LocalStorage"];
 
 
