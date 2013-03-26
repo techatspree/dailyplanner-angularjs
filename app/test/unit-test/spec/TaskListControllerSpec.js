@@ -20,10 +20,10 @@
 
                 return {
                     get: function() {
-                        if (typeof tasks == "undefined") {
+                        if (tasks === "undefined") {
                             tasks = [];
                         }
-                        return tasks ;
+                        return tasks;
                     },
                     set: function(data) {
                         tasks = data;
