@@ -45,7 +45,7 @@
             }
 
             task.title = title;
-            task.duration = (duration) ? duration : task.duration;
+            task.duration = duration || task.duration;
         };
 
         $scope.removeTask = function(task) {
