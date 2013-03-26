@@ -13,16 +13,25 @@
         $scope.addTask = function(task) {
             var title, duration;
 
+<<<<<<< HEAD
+            if (!newTask) { return; }
+
+            title = self.getTitle(self.matchPattern, newTask.toString());
+            duration = self.getDuration(self.matchPattern, newTask.toString());
+=======
             if (!task) { return; }
 
             title = self.getTitle(self.matchPattern, task.toString());
             duration = self.getDuration(self.matchPattern, task.toString());
+>>>>>>> refs/heads/steps/step-04
 
-            tasks.push({
+            newTask = {
                 title: title,
                 duration: duration,
                 done: false
             };
+
+            storage.post(newTask);
 
             $scope.newTask = null;
         };
@@ -37,15 +46,23 @@
             }
 
             // set new title
+<<<<<<< HEAD
+            task.title = self.getTitle(self.matchPattern, newTitle);
+=======
             title = self.getTitle(self.matchPattern, task.title);
+>>>>>>> refs/heads/steps/step-04
 
             // set duration
             if (self.matchPattern(task.title)[0]) {
                 duration = self.getDuration(self.matchPattern, task.title);
             }
 
+<<<<<<< HEAD
+            storage.put(task);
+=======
             task.title = title;
             task.duration = (duration) ? duration : task.duration;
+>>>>>>> refs/heads/steps/step-04
         };
 
         $scope.removeTask = function(task) {
