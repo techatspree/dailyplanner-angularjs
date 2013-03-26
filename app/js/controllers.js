@@ -46,7 +46,7 @@
             }
 
             task.title = title;
-            task.duration = (duration) ? duration : task.duration;
+            task.duration = duration || task.duration;
 
             storage.put(task);
         };
