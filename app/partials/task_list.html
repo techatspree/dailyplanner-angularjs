@@ -3,8 +3,16 @@
 
     <div>
         <ul id="tasks">
+            <li class="task-add">
+                <div>
+                    <form id="task-add-form" data-ng-submit="addTask(newTask)">
+                        <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTask">
+                    </form>
+                </div>
+            </li>
+
             <li class="task clearfix" data-ng-class="{'task-done': task.done}" data-ng-repeat="task in tasks">
-                <div class="task-left">
+                <div class="task-left" data-ng-click="toggleTaskStatus(task)">
                     <p class="task-done-btn">
                         <span class="fui-checkround-24"></span>
                     </p>
@@ -20,7 +28,7 @@
                         <span data-ng-bind="task.duration" data-ng-show="task.duration"></span>
                     </p>
                     <p class="task-remove-btn">
-                        <span class="fui-cross-24"></span>
+                        <span class="fui-cross-24" data-ng-click="removeTask(task)"></span>
                     </p>
                 </div>
             </li>

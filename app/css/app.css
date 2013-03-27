@@ -51,6 +51,14 @@ ul, li, p {
     background: #2C3E50;
 }
 
+#tasks li.task-add {
+    background: #1ABC9C;
+}
+
+#tasks li.task-add:hover {
+    background: #16A085;
+}
+
 #tasks li.task.task-done {
     color: #7F8C8D;
     background: #2C3E50;
@@ -131,4 +139,46 @@ ul, li, p {
     padding: 5px 20px;
     font-size: 14px;
     background: #BDC3C7;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Task forms
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#tasks form {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#tasks input {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    height: 25px;
+}
+
+#tasks #task-add-form input {
+    text-indent: 3px;
+}
+
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: rgba(236, 240, 241, 0.6) !important;
 }

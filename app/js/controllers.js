@@ -21,27 +21,6 @@ function TaskListController($scope) {
         $scope.newTask = null;
     };
 
-    $scope.editTask = function(task) {
-        var title, duration;
-
-        // delete task with empty title
-        if (!task.title) {
-            $scope.removeTask(task);
-            return;
-        }
-
-        // set new title
-        title = self.getTitle(self.matchPattern, task.title);
-
-        // set duration
-        if (self.matchPattern(task.title)[0]) {
-            duration = self.getDuration(self.matchPattern, task.title);
-        }
-
-        task.title = title;
-        task.duration = duration || task.duration;
-    };
-
     $scope.removeTask = function(task) {
         tasks.splice(tasks.indexOf(task), 1);
     };
@@ -51,10 +30,11 @@ function TaskListController($scope) {
     };
 }
 
+// inject needed services
 TaskListController.$inject = ["$scope"];
 
 
-// Prototype functions
+// prototype functions
 TaskListController.prototype.matchPattern = function (str) {
     return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
 };
