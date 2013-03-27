@@ -3,35 +3,40 @@
 
     <div>
         <ul id="tasks">
-            <li id="add-task-container">
-                <form id="add-task-form" data-ng-submit="addTask(newTask)">
-                    <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTask">
-                </form>
+            <li class="task-add">
+                <div>
+                    <form id="task-add-form" data-ng-submit="addTask(newTask)">
+                        <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTask">
+                    </form>
+                </div>
             </li>
 
-            <li class="task" data-ng-class="{'task-done': task.done}" data-ng-repeat="task in tasks">
-                <form class="edit-task-form" data-ng-submit="editTask(task)">
-                    <input class="task-title" type="text" data-ng-model="task.title">
-                </form>
-                                    
-                <p class="task-duration-container">
-                    <span class="fui-time-24"></span>
-                    <span data-ng-bind-template="{{ task.duration }}" data-ng-show="task.duration"></span>
-                </p>
+            <li class="task clearfix" data-ng-class="{'task-done': task.done}" data-ng-repeat="task in tasks">
+                <div class="task-left" data-ng-click="toggleTaskStatus(task)">
+                    <p class="task-done-btn">
+                        <span class="fui-checkround-24"></span>
+                    </p>
+                </div>
 
-                <p class="task-done-container">
-                    <span class="fui-checkround-24" data-ng-click="toggleTaskStatus(task)"></span>
-                </p>
-
-                <p class="task-remove-container">
-                    <span class="fui-cross-24" data-ng-click="removeTask(task)"></span>
-                </p>
+                <div class="task-right">
+                    <p class="task-info">
+                        <span class="task-title" data-ng-bind="task.title"></span>
+                        <span class="task-description" data-ng-bind="task.description"></span>
+                    </p>
+                    <p class="task-duration">
+                        <span class="fui-time-24"></span>
+                        <span data-ng-bind="task.duration" data-ng-show="task.duration"></span>
+                    </p>
+                    <p class="task-remove-btn">
+                        <span class="fui-cross-24" data-ng-click="removeTask(task)"></span>
+                    </p>
+                </div>
             </li>
         </ul>
     </div>
 
-    <div id="bottom" class="clearfix">
-        <div class="pull-left">
+    <div id="bottom">
+        <div>
             <span class="fui-calendar-24"></span> <span data-ng-bind="tasks.length"></span>
         </div>
     <div>
