@@ -12,13 +12,13 @@
             </li>
 
             <li class="task clearfix" data-ng-class="{'task-done': task.done}" data-ng-repeat="task in tasks">
-                <div class="task-left" data-ng-click="toggleTaskStatus(task)">
+                <div class="task-done-column" data-ng-click="toggleTaskStatus(task)">
                     <p class="task-done-btn">
                         <span class="fui-checkround-24"></span>
                     </p>
                 </div>
 
-                <div class="task-right">
+                <div class="task-info-column">
                     <p class="task-info">
                         <span class="task-title" data-ng-bind="task.title"></span>
                         <span class="task-description" data-ng-bind="task.description"></span>
