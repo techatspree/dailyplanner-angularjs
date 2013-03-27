@@ -8,13 +8,40 @@
     "use strict";
 
     describe("TaskListController", function() {
-        var scope, controller, task;
+        var scope, controller, task, localStorageMock;
 
         beforeEach(module("Controllers"));
 
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            controller = $controller("TaskListController", { $scope: scope });
+
+            localStorageMock = (function() {
+                var tasks = [];
+
+                return {
+                    get: function() {
+                        return tasks;
+                    },
+                    post: function(task) {
+                        tasks.push(task);
+                    },
+                    put: function(task) {
+                        var index = tasks.indexOf(task);
+                        tasks[index] = task;
+                    },
+                    delete: function(task) {
+                        tasks.splice(tasks.indexOf(task), 1);
+                    }
+                };
+            }());
+
+            controller = $controller(
+                "TaskListController",
+                {
+                    $scope: scope,
+                    LocalStorage: localStorageMock
+                }
+            );
 
             task = {
                 title: "New task",

@@ -20,9 +20,9 @@
 
             $scope.newTask = null;
 
-            tasks.push({
+            storage.post({
                 title: title,
-                description: "Beschreibung des tasks....",
+                description: "...",
                 duration: duration,
                 done: false
             });
@@ -39,7 +39,7 @@
     }
 
     // inject needed services
-    TaskListController.$inject = ["$scope"];
+    TaskListController.$inject = ["$scope", "LocalStorage"];
 
 
     // prototype functions
