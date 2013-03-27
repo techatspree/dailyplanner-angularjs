@@ -22,7 +22,7 @@
 
             tasks.push({
                 title: title,
-                description: "Beschreibung des tasks....",
+                description: "...",
                 duration: duration,
                 done: false
             });
