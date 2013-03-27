@@ -25,7 +25,7 @@
                     </p>
                     <p class="task-duration">
                         <span class="fui-time-24"></span>
-                        <span data-ng-bind="task.duration" data-ng-show="task.duration"></span>
+                        <span data-ng-bind-template="{{ task.duration | DurationFormat }}" data-ng-show="task.duration"></span>
                     </p>
                     <p class="task-remove-btn">
                         <span class="fui-cross-24" data-ng-click="removeTask(task)"></span>
