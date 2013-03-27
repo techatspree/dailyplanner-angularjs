@@ -89,7 +89,7 @@
             duration = controller.getDuration(function(str) {
                 return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
             }, input);
-            
+
             expect(duration).toEqual(85);
         });
 
