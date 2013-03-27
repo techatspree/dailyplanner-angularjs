@@ -64,8 +64,8 @@ ul, li, p {
     background: #2C3E50;
 }
 
-#tasks .task-left,
-#tasks .task-right {
+#tasks .task-done-column,
+#tasks .task-info-column {
     display: box;
     display: -webkit-box;
     display: -moz-box;
@@ -80,7 +80,7 @@ ul, li, p {
     margin-right: 20px;
 }
 
-#tasks .task .task-left:hover .task-done-btn {
+#tasks .task .task-done-column:hover .task-done-btn {
     color: #1ABC9C;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
