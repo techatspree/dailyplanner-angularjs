@@ -8,6 +8,7 @@
     angular.module("App", [
         "Services",
         "Filters",
+        "Directives",
         "Controllers"
     ]);
 
