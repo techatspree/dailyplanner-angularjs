@@ -18,34 +18,14 @@
             title = self.getTitle(self.matchPattern, task.toString());
             duration = self.getDuration(self.matchPattern, task.toString());
 
+            $scope.newTask = null;
+
             tasks.push({
                 title: title,
+                description: "Beschreibung des tasks....",
                 duration: duration,
                 done: false
             });
-
-            $scope.newTask = null;
-        };
-
-        $scope.editTask = function(task) {
-            var title, duration;
-
-            // delete task with empty title
-            if (!task.title) {
-                $scope.removeTask(task);
-                return;
-            }
-
-            // set new title
-            title = self.getTitle(self.matchPattern, task.title);
-
-            // set duration
-            if (self.matchPattern(task.title)[0]) {
-                duration = self.getDuration(self.matchPattern, task.title);
-            }
-
-            task.title = title;
-            task.duration = duration || task.duration;
         };
 
         $scope.removeTask = function(task) {
@@ -57,10 +37,11 @@
         };
     }
 
+    // inject needed services
     TaskListController.$inject = ["$scope"];
 
 
-    // Prototype functions
+    // prototype functions
     TaskListController.prototype.matchPattern = function (str) {
         return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
     };
@@ -97,7 +78,7 @@
         return duration;
     };
 
-
+    // add controller to controllers module
     angular.module("Controllers", []).
         controller("TaskListController", TaskListController);
 

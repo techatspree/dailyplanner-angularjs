@@ -15,68 +15,124 @@ h2 {
 }
 
 
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Tasks
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#tasks {
+    color: white;
+}
 
 #tasks,
 ul, li, p {
     margin: 0;
 }
 
-#tasks {
-    color: white;
-    font-size: 16px;
-}
-
 #tasks li {
     list-style: none;
-    background: #34495E;
-    padding: 0 20px;
-    border-bottom: 2px solid #2C3E50;
+    cursor: pointer;
+    height: 70px;
     display: box;
     display: -webkit-box;
     display: -moz-box;
-    display: box;
     -webkit-box-align: center;
     -moz-box-align: center;
     box-align: center;
+    border-bottom: 2px solid #2C3E50;
+    padding: 0 20px;
 }
 
-li#add-task-container {
+#tasks li.task {
+    background: #34495E;
+}
+
+#tasks li.task:hover {
+    background: #2C3E50;
+}
+
+#tasks li.task-add {
     background: #1ABC9C;
 }
 
-.task-title {
-    text-overflow: ellipsis;
-    width: 80%;
-    overflow: hidden;
-    white-space: nowrap;
+#tasks li.task-add:hover {
+    background: #16A085;
 }
 
-.task-duration-container {
-    font-size: 13px;
-    width: 70px;
-    margin-left: 30px;
+#tasks li.task.task-done {
+    color: #7F8C8D;
+    background: #2C3E50;
 }
 
-.task-done-container {
-    margin-left: 56px;
-    cursor: pointer;
-}
- 
-.task-remove-container {
-    margin-left: 20px;
-    cursor: pointer;
+#tasks .task-left,
+#tasks .task-right {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    height: 100%;
 }
 
-.task-done-container:hover,
-.task-remove-container:hover {
+#tasks .task .task-done-btn {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+#tasks .task .task-left:hover .task-done-btn {
     color: #1ABC9C;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
     -o-transition: 0.15s;
     transition: 0.15s;
+}
+
+#tasks .task .task-info {
+    width: 300px;
+    margin-right: 20px;
+}
+
+#tasks .task .task-info span {
+    display: block;
+}
+
+#tasks .task .task-title,
+#tasks .task .task-description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#tasks .task .task-title {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+#tasks .task .task-description {
+    font-size: 12px;
+}
+
+#tasks .task .task-duration {
+    font-size: 14px;
+    width: 130px;
+}
+
+#tasks .task .task-remove-btn {
+    display: none;
+    font-size: 20px;
+}
+
+#tasks .task .task-remove-btn:hover {
+    color: #1ABC9C;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
+#tasks .task:hover .task-remove-btn {
+    display: block;
 }
 
 #bottom {
@@ -86,6 +142,7 @@ li#add-task-container {
 }
 
 
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     Task forms
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -93,44 +150,26 @@ li#add-task-container {
 #tasks form {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 #tasks input {
-    padding: 10px 0;
-    height: 38px;
+    padding: 0;
     margin: 0;
-    text-indent: 0;
     background: none;
     border: none;
-    width: 100%;
-    font-size: 16px;
     color: white;
     cursor: pointer;
-}
-
-#tasks .edit-task-form input:hover {
-    color: #1ABC9C;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
-}
-
-#add-task-form {
+    font-size: 18px;
     width: 100%;
-}
- 
-.edit-task-form {
-    width: 300px;
+    height: 25px;
 }
 
-#tasks li.task-done,
-#tasks li.task-done input {
-    color: #7F8C8D;
-    background: #2C3E50;
+#tasks #task-add-form input {
+    text-indent: 3px;
 }
 
- 
+
 ::-webkit-input-placeholder { /* WebKit browsers */
     color: rgba(236, 240, 241, 0.6) !important;
 }
