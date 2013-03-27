@@ -8,48 +8,24 @@
     "use strict";
 
     describe("TaskListController", function() {
-        var scope, controller, localStorageMock;
+        var scope, controller, task;
 
         beforeEach(module("Controllers"));
 
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
+            controller = $controller("TaskListController", { $scope: scope });
 
-            localStorageMock = (function() {
-                var tasks = [];
-
-                return {
-                    get: function() {
-                        return tasks;
-                    },
-                    post: function(task) {
-                        tasks.push(task);
-                    },
-                    put: function(task) {
-                        var index = tasks.indexOf(task);
-                        tasks[index] = task;
-                    },
-                    delete: function(task) {
-                        tasks.splice(tasks.indexOf(task), 1);
-                    }
-                };
-            }());
-
-            controller = $controller(
-                "TaskListController",
-                {
-                    $scope: scope,
-                    LocalStorage: localStorageMock
-                }
-            );
+            task = {
+                title: "New task",
+                description: "...",
+                duration: "15",
+                done: false
+            };
         }));
 
 
         it("should add a new task", function() {
-            var task;
-
-            task = { title: "New task" };
-
             expect(scope.tasks.length).toEqual(0);
 
             scope.addTask(task);
@@ -57,10 +33,6 @@
         });
 
         it("should remove a task", function() {
-            var task;
-
-            task = { title: "New task" };
-
             scope.tasks.push(task);
             expect(scope.tasks.indexOf(task)).toEqual(0);
 
@@ -69,13 +41,6 @@
         });
 
         it("should set a task done", function() {
-            var task;
-
-            task = {
-                title: "New task",
-                done: false
-            };
-
             scope.tasks.push(task);
             expect(scope.tasks.length).toEqual(1);
             expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(false);
@@ -86,10 +51,14 @@
         });
 
         it("should match duration shortcut pattern '1h 25m'", function() {
-            var task, matchedInput;
-            task = "New task 1h 25m";
+            var input, matchedInput;
 
-            matchedInput = controller.matchPattern(task);
+            input = "New task 1h 25m";
+            matchedInput = "";
+
+            expect(matchedInput).toEqual("");
+
+            matchedInput = controller.matchPattern(input);
 
             expect(matchedInput[0]).toEqual(" 1h 25m");
             expect(matchedInput[1]).toEqual(" 1h");
@@ -97,63 +66,33 @@
         });
 
         it("should get task title 'New task'", function() {
-            var task, title;
+            var input, title;
 
-            task = "New task 1h 25m";
+            input = "New task 1h 25m";
+            title = "";
+
+            expect(title).toEqual("");
+
             title = controller.getTitle(function(str) {
                 return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
-            }, task);
+            }, input);
 
             expect(title).toEqual("New task");
         });
 
         it("should get task duration in minutes '85'", function() {
-            var task, duration;
+            var input, duration;
 
-            task = "New task 1h 25m";
+            input = "New task 1h 25m";
+            duration = 0;
+
+            expect(duration).toEqual(0);
+
             duration = controller.getDuration(function(str) {
                 return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
-            }, task);
+            }, input);
 
             expect(duration).toEqual(85);
-        });
-
-        it("should remove task with empty title after editing", function() {
-            var task;
-
-            task = {
-                title: "Task",
-                duration: 15
-            };
-
-            scope.tasks.push(task);
-
-            expect(scope.tasks.indexOf(task)).toEqual(0);
-
-            task.title = "";
-
-            scope.editTask(task);
-
-            expect(scope.tasks.length).toEqual(0);
-        });
-
-        it("should change task duration from 15m to 30m", function() {
-            var task;
-
-            task = {
-                title: "Task",
-                duration: 15
-            };
-
-            scope.tasks.push(task);
-
-            expect(scope.tasks.indexOf(task)).toEqual(0);
-
-            task.title = "Task 30m";
-
-            scope.editTask(task);
-
-            expect(task.duration).toEqual(30);
         });
 
     });

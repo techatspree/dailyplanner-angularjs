@@ -20,12 +20,43 @@
 
             $scope.newTask = null;
 
+<<<<<<< HEAD
+            storage.post({
+=======
             tasks.push({
+>>>>>>> refs/heads/steps/step-04
                 title: title,
                 description: "Beschreibung des tasks....",
                 duration: duration,
                 done: false
             });
+<<<<<<< HEAD
+        };
+
+
+        $scope.editTask = function(task) {
+            var title, duration;
+
+            // delete task with empty title
+            if (!task.title) {
+                $scope.removeTask(task);
+                return;
+            }
+
+            // set new title
+            title = self.getTitle(self.matchPattern, task.title);
+
+            // set duration
+            if (self.matchPattern(task.title)[0]) {
+                duration = self.getDuration(self.matchPattern, task.title);
+            }
+
+            task.title = title;
+            task.duration = duration || task.duration;
+
+            storage.put(task);
+=======
+>>>>>>> refs/heads/steps/step-04
         };
 
         $scope.removeTask = function(task) {
@@ -39,7 +70,11 @@
     }
 
     // inject needed services
+<<<<<<< HEAD
+    TaskListController.$inject = ["$scope", "LocalStorage"];
+=======
     TaskListController.$inject = ["$scope"];
+>>>>>>> refs/heads/steps/step-04
 
 
     // prototype functions
