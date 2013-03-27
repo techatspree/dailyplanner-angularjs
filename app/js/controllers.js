@@ -15,22 +15,18 @@
 
             if (!task) { return; }
 
-        tasks.push({
-            title: title,
-            description: "...",
-            duration: duration,
-            done: false
-        });
+            title = self.getTitle(self.matchPattern, task.toString());
+            duration = self.getDuration(self.matchPattern, task.toString());
+
+            $scope.newTask = null;
 
             tasks.push({
                 title: title,
+                description: "Beschreibung des tasks....",
                 duration: duration,
                 done: false
             });
-
-    $scope.removeTask = function(task) {
-        tasks.splice(tasks.indexOf(task), 1);
-    };
+        };
 
         $scope.removeTask = function(task) {
             tasks.splice(tasks.indexOf(task), 1);
@@ -41,23 +37,23 @@
         };
     }
 
+    // inject needed services
     TaskListController.$inject = ["$scope"];
 
 
-    // Prototype functions
+    // prototype functions
     TaskListController.prototype.matchPattern = function (str) {
         return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
     };
 
-// inject needed services
-TaskListController.$inject = ["$scope"];
+    TaskListController.prototype.getTitle = function(matcher, str) {
+        var matchedInput, title;
 
         matchedInput = matcher(str);
 
-// prototype functions
-TaskListController.prototype.matchPattern = function (str) {
-    return str.match(/(\s*[0-9]+h)?(\s*[0-9]+m)?$/);
-};
+        title = (matchedInput[0])
+            ? matchedInput.input.replace(matchedInput[0], "")
+            : matchedInput.input;
 
         return title;
     };
@@ -82,7 +78,7 @@ TaskListController.prototype.matchPattern = function (str) {
         return duration;
     };
 
-
+    // add controller to controllers module
     angular.module("Controllers", []).
         controller("TaskListController", TaskListController);
 
