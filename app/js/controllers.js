@@ -14,6 +14,7 @@ function TaskListController($scope) {
 
         tasks.push({
             title: title,
+            description: "...",
             duration: duration,
             done: false
         });
