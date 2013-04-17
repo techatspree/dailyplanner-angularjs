@@ -7,62 +7,20 @@
 
     // TaskListController
     function TaskListController($scope, storage, filter) {
-        var self = this;
-        var tasks = $scope.tasks = storage.get();
+        var self = this,
+            tasks = $scope.tasks = storage.get();
 
-
-        $scope.state = { 
-            selectedItem: null ,
+        $scope.state = {
+            selectedItem: null,
             editMode: null,
             removeDialog: null
         };
-
-        // $scope.selectItem = function(index) {
-        //     $scope.state.selected = index;
-        // };
-
-        // this.selectItem = function(index) {
-        //     $scope.selected = index;
-        // };
-
-        // $scope.toggle = function() {
-        //     $scope.mode = !$scope.mode;
-        // };
-
-
 
         $scope.$watch("tasks", function() {
             $scope.remainingTasks = filter(tasks, {done: false}).length || 0;
             $scope.completedTasks = filter(tasks, {done: true}).length || 0;
         }, true);
 
-
-
-
-        $scope.editTask = function(task) {
-
-
-            // event.preventDefault();
-            var title, duration;
-
-
-            // set new title
-            title = self.getTitle(self.matchPattern, task.title);
-
-            // set duration
-            if (self.matchPattern(task.title)[0]) {
-                
-
-                    duration = self.getDuration(self.matchPattern, task.title);
-
-            }
-
-            task.title = title;
-            task.duration = duration || task.duration;
-
-            storage.put(task);
-
-        };
 
         $scope.addTask = function(task) {
             var title, duration;
@@ -80,11 +38,26 @@
                 duration: duration,
                 done: false
             });
+        };
 
+        $scope.editTask = function(task) {
+            var title, duration;
+
+            // set new title
+            title = self.getTitle(self.matchPattern, task.title);
+
+            // set duration
+            if (self.matchPattern(task.title)[0]) {
+                duration = self.getDuration(self.matchPattern, task.title);
+            }
+
+            task.title = title;
+            task.duration = duration || task.duration;
+
+            storage.put(task);
         };
 
         $scope.removeTask = function(task) {
-            console.log("remove task");
             storage.delete(task);
         };
 

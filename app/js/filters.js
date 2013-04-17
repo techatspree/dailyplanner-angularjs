@@ -24,15 +24,12 @@
                             minutes = input % 60;
                         }
 
-                        
                         output = (hours < 10) ? "0" + hours : hours;
                         output += "h";
                         output += " ";
                         output += (minutes < 10) ? "0" + minutes : minutes;
                         output += "m";
                     }
-                    
-
 
                     return output;
                 };

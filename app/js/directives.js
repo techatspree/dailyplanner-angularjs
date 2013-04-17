@@ -2,6 +2,8 @@
     angular
 */
 
+/*jslint unparam: true*/
+
 (function(angular) {
     "use strict";
 
@@ -27,7 +29,7 @@
 
                         scope.showTaskRemoveDialog = function(index) {
                             scope.state.selectedItem = index;
-                            scope.state.editMode = (scope.state.editMode == index) ? scope.state.editMode : null;
+                            scope.state.editMode = (scope.state.editMode === index) ? scope.state.editMode : null;
                             scope.state.removeDialog = index;
                         };
                     }
@@ -73,7 +75,6 @@
 
                         // element.css({"height": "80px"}).animate({"height": "236px"}, 200);
                         // element.find("div").css({"height": "80px"}).animate({"height": "236px"}, 200);
-                   
                     }
                 };
             }
@@ -100,7 +101,7 @@
                         };
 
                         slideIn(null);
-                        
+
                         scope.cancel = function() {
                             slideOut(function() {
                                 scope.$apply(function() {
@@ -120,8 +121,5 @@
                 };
             }
         ]);
-       
-
-
 
 }(angular));

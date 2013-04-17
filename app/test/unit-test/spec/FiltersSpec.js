@@ -13,7 +13,7 @@
 
             beforeEach(module("Filters"));
 
-            it("should format 150 minutes to '2h 30m'", inject(function($filter) {
+            it("should format 150 minutes to '02h 30m'", inject(function($filter) {
                 var input, formattedInput;
 
                 input = 150;
@@ -23,7 +23,7 @@
 
                 formattedInput = $filter("DurationFormat")(input);
 
-                expect(formattedInput).toEqual("2h 30m");
+                expect(formattedInput).toEqual("02h 30m");
             }));
 
         });
