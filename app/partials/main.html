@@ -1,0 +1,28 @@
+<div data-ng-controller="TaskListController">
+    <h1>Tagesplaner</h1>
+
+    <div id="task-add">
+        <form id="task-add-form" class="clearfix" data-ng-submit="addTask(newTask)">
+            <p class="grid grid-7 pull-left">
+                <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTask">
+            </p>
+
+            <p class="grid grid-1 pull-left">
+                <button type="submit"><i class="icon-plus"></i></span></button>
+            </p>
+        </form>
+    </div>
+
+    <div id="tasks">
+        <ul id="task-list">
+            <li data-ng-repeat="task in tasks">
+                <div data-task></div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="bottom">
+        <i class="icon-circle"></i> <span data-ng-bind="remainingTasks"></span>
+        <i class="icon-ok-sign"></i> <span data-ng-bind="completedTasks"></span>
+    <div>
+</div>

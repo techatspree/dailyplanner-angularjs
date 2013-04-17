@@ -1,0 +1,40 @@
+<div class="clearfix" data-ng-class="{'task-done': task.done}">
+
+    <div class="grid grid-1 pull-left" data-ng-click="toggleTaskStatus(task)">
+        <div class="border-right">
+            <button class="task-done-btn">
+                <i class="icon-circle"></i>
+                <i class="icon-ok-sign"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-6 pull-left" data-ng-click="showEditMode($index)">
+        <div class="vertical-align-wrapper">
+            <div class="grid-4 vertical-align-item task-info-left">
+                <p class="padding-l-r">
+                    <span class="task-title" data-ng-bind="task.title" data-ng-show="task.title"></span>
+                    <span class="task-description" data-ng-bind="task.description" data-ng-show="task.description"></span>
+                </p>
+            </div>
+
+            <div class="grid-2 vertical-align-item task-info-right">
+                <p class="padding-l-r">
+                    <span class="task-duration">
+                        <i class='icon-time'></i>
+                        <span class="test" data-ng-bind-template="{{ task.duration | DurationFormat }}"></span>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-1 pull-left" data-ng-click="showTaskRemoveDialog($index)">
+        <div class="border-left">
+            <button class="task-remove-btn">
+                <i class="icon-trash"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
