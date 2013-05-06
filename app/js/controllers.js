@@ -6,20 +6,12 @@
     "use strict";
 
     // TaskListController
-    function TaskListController($scope, storage, filter) {
-        var self = this,
-            tasks = $scope.tasks = storage.get();
+    function TaskListController($scope, storage) {
+        var self;
 
-        $scope.state = {
-            selectedItem: null,
-            editMode: null,
-            removeDialog: null
-        };
-
-        $scope.$watch("tasks", function() {
-            $scope.remainingTasks = filter(tasks, {done: false}).length || 0;
-            $scope.completedTasks = filter(tasks, {done: true}).length || 0;
-        }, true);
+        self = this;
+        $scope.tasks = storage.getItems();
+        $scope.modelState = storage.getModelState();
 
 
         $scope.addTask = function(task) {
@@ -32,7 +24,7 @@
 
             $scope.newTask = null;
 
-            storage.post({
+            storage.addItem({
                 title: title,
                 // description: "...",
                 duration: duration,
@@ -54,21 +46,21 @@
             task.title = title;
             task.duration = duration || task.duration;
 
-            storage.put(task);
+            storage.editItem(task);
         };
 
-        $scope.removeTask = function(task) {
-            storage.delete(task);
+        $scope.deleteTask = function(task) {
+            storage.deleteItem(task);
         };
 
         $scope.toggleTaskStatus = function(task) {
             task.done = !task.done;
-            storage.put(task);
+            storage.editItem(task);
         };
     }
 
     // inject needed services
-    TaskListController.$inject = ["$scope", "LocalStorage", "filterFilter"];
+    TaskListController.$inject = ["$scope", "LocalStorage"];
 
 
     // prototype functions

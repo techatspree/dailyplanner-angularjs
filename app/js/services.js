@@ -1,43 +1,72 @@
 /*global
     angular,
-    localStorage
+    localStorage,
+    JSON
 */
 
-(function(angular, localStorage) {
+(function(angular, localStorage, JSON) {
     "use strict";
 
     angular.module("Services", []).
 
         // Local Storage Services
         factory("LocalStorage", [
+            "filterFilter",
 
             function(filter) {
-                var tasks;
+                var dataModel, tasksCount;
+
+                tasksCount = function() {
+                    dataModel.state.remainingTasks = filter(dataModel.data, {done: false}).length || 0;
+                    dataModel.state.completedTasks = filter(dataModel.data, {done: true}).length || 0;
+                };
+
+                // init model
+                dataModel = {};
+                dataModel.data = JSON.parse(localStorage.getItem("tasks") || '[]');
+                dataModel.state = {};
+                dataModel.state.selectedItem = null;
+                dataModel.state.editMode = null;
+                dataModel.state.deleteDialog = null;
+                dataModel.state.remainingTasks = 0;
+                dataModel.state.completedTasks = 0;
+                tasksCount();
 
                 return {
 
-                    get: function() {
-                        tasks = JSON.parse(localStorage.getItem("tasks") || '[]');
-                        return tasks;
+                    getModelState: function() {
+                        return dataModel.state;
                     },
 
-                    post: function(task) {
-                        tasks.push(task);
-                        localStorage.setItem("tasks", JSON.stringify(tasks));
+                    getItems: function() {
+                        return dataModel.data;
                     },
 
-                    put: function(task) {
-                        var index = tasks.indexOf(task);
-                        tasks[index] = task;
-                        localStorage.setItem("tasks", JSON.stringify(tasks));
+                    addItem: function(task) {
+                        dataModel.data.push(task);
+                        localStorage.setItem("tasks", JSON.stringify(dataModel.data));
+                        tasksCount();
                     },
 
-                    delete: function(task) {
-                        tasks.splice(tasks.indexOf(task), 1);
-                        localStorage.setItem("tasks", JSON.stringify(tasks));
+                    editItem: function(task) {
+                        var index = dataModel.data.indexOf(task);
+                        if (index !== -1) {
+                            dataModel.data[index] = task;
+                            localStorage.setItem("tasks", JSON.stringify(dataModel.data));
+                            tasksCount();
+                        }
+                    },
+
+                    deleteItem: function(task) {
+                        var index = dataModel.data.indexOf(task);
+                        if (index !== -1) {
+                            dataModel.data.splice(index, 1);
+                            localStorage.setItem("tasks", JSON.stringify(dataModel.data));
+                            tasksCount();
+                        }
                     }
                 };
             }
         ]);
 
-}(angular, localStorage));
+}(angular, localStorage, JSON));

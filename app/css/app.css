@@ -72,11 +72,11 @@ h1 {
     width: 320px;
 }
 
-.task-remove-dialog-left {
+.task-delete-dialog-left {
     width: 520px;
 }
 
-.task-remove-dialog-right {
+.task-delete-dialog-right {
     width: 80px;
 }
 
@@ -161,7 +161,7 @@ button:hover {
 }
 
 #task-add-form button:hover,
-#task-remove-dialog button:hover {
+#task-delete-dialog button:hover {
     color: #34495E;
 }
 
@@ -175,10 +175,10 @@ button.task-done-btn:hover i.icon-ok-sign {
     display: inline;
 }
 
-button.task-remove-btn i {
+button.task-delete-btn i {
     display: none;
 }
-#task-list li:hover button.task-remove-btn i {
+#task-list li:hover button.task-delete-btn i {
     display: inline;
 }
 
@@ -281,7 +281,7 @@ button.task-remove-btn i {
 }
 
 
-#task-remove-dialog {
+#task-delete-dialog {
     position: absolute;
     top: 0;
     left: 100%;

@@ -2,8 +2,6 @@
     angular
 */
 
-/*jslint unparam: true*/
-
 (function(angular) {
     "use strict";
 
@@ -13,24 +11,23 @@
 
         directive("task", [
             "PARTIAL_PATH",
-            "$rootScope",
 
-            function(PARTIAL_PATH, $rootScope) {
+            function(PARTIAL_PATH) {
                 return {
                     templateUrl: PARTIAL_PATH + "task.html",
                     restrict: "A",
                     replace: true,
                     link: function postLink(scope, element, attrs) {
                         scope.showEditMode = function(index) {
-                            scope.state.selectedItem = index;
-                            scope.state.editMode = index;
-                            scope.state.removeDialog = null;
+                            scope.modelState.selectedItem = index;
+                            scope.modelState.editMode = index;
+                            scope.modelState.deleteDialog = null;
                         };
 
-                        scope.showTaskRemoveDialog = function(index) {
-                            scope.state.selectedItem = index;
-                            scope.state.editMode = (scope.state.editMode === index) ? scope.state.editMode : null;
-                            scope.state.removeDialog = index;
+                        scope.showTaskDeleteDialog = function(index) {
+                            scope.modelState.selectedItem = index;
+                            scope.modelState.editMode = (scope.modelState.editMode === index) ? scope.modelState.editMode : null;
+                            scope.modelState.deleteDialog = index;
                         };
                     }
                 };
@@ -39,25 +36,20 @@
 
         directive("taskViewMode", [
             "PARTIAL_PATH",
-            "$rootScope",
 
-            function(PARTIAL_PATH, $rootScope) {
+            function(PARTIAL_PATH) {
                 return {
                     templateUrl: PARTIAL_PATH + "task_view.html",
                     replace: true,
-                    link: function(scope, element, attrs) {
-
-                    }
+                    link: function(scope, element, attrs) {}
                 };
             }
         ]).
 
         directive("taskEditMode", [
             "PARTIAL_PATH",
-            "$rootScope",
-            "$timeout",
 
-            function(PARTIAL_PATH, $rootScope, $timeout) {
+            function(PARTIAL_PATH) {
                 return {
                     templateUrl: PARTIAL_PATH + "task_edit.html",
                     link: function(scope, element, attrs) {
@@ -68,54 +60,55 @@
 
                         scope.submit = function(task) {
                             scope.editTask(task);
-                            scope.state.selectedItem = null;
-                            scope.state.editMode = null;
-                            scope.state.removeDialog = null;
+                            scope.modelState.selectedItem = null;
+                            scope.modelState.editMode = null;
+                            scope.modelState.deleteDialog = null;
                         };
 
-                        // element.css({"height": "80px"}).animate({"height": "236px"}, 200);
-                        // element.find("div").css({"height": "80px"}).animate({"height": "236px"}, 200);
+//                        element.css({"height": "80px"}).animate({"height": "236px"}, 200);
+//                        element.find("div").css({"height": "80px"}).animate({"height": "236px"}, 200);
                     }
                 };
             }
         ]).
 
-        directive("taskRemoveDialog", [
+        directive("taskDeleteDialog", [
             "PARTIAL_PATH",
+            "$timeout",
 
-            function(PARTIAL_PATH) {
+            function(PARTIAL_PATH, $timeout) {
                 return {
                     restrict: "A",
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task_remove_dialog.html",
+                    templateUrl: PARTIAL_PATH + "task_delete_dialog.html",
 
                     link: function postLink(scope, element, attrs) {
                         var slideIn, slideOut;
 
-                        slideIn = function(callback) {
-                            element.animate({"left": "0"}, 200, callback);
+                        slideIn = function() {
+                            element.animate({"left": "0"}, 200);
                         };
 
                         slideOut = function(callback) {
-                            element.animate({"left": "100%"}, 200, callback);
+                            element.animate({"left": "100%"}, 200);
                         };
 
                         slideIn(null);
 
                         scope.cancel = function() {
-                            slideOut(function() {
-                                scope.$apply(function() {
-                                    scope.state.removeDialog = null;
-                                });
-                            });
+                            slideOut();
+
+                            $timeout(function() {
+                                scope.modelState.deleteDialog = null;
+                            }, 200);
                         };
 
                         scope.submit = function(task) {
-                            scope.state.selectedItem = null;
-                            scope.state.editMode = null;
-                            scope.state.removeDialog = null;
+                            scope.modelState.selectedItem = null;
+                            scope.modelState.editMode = null;
+                            scope.modelState.deleteDialog = null;
 
-                            scope.removeTask(task);
+                            scope.deleteTask(task);
                         };
                     }
                 };
