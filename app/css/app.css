@@ -292,6 +292,11 @@ button.task-delete-btn i {
     background: #E74C3C;
     font-size: 24px;
     width: 100%;
+    color: white;
+}
+
+#task-delete-dialog button {
+    color: white;
 }
 
 #bottom {
