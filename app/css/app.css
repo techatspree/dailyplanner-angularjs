@@ -38,7 +38,6 @@ ul, li, p, form {
     padding: 0;
 }
 
-
 h1 {
     text-align: center;
 }
@@ -53,54 +52,33 @@ h1 {
     width: 640px;
 }
 
-.grid-1 { width: 80px; }
-.grid-2 { width: 160px; }
-.grid-3 { width: 240px; }
-.grid-4 { width: 320px; }
-.grid-5 { width: 400px; }
-.grid-6 { width: 480px; }
-.grid-7 { width: 560px; }
-.grid-8 { width: 640px; }
-
-.padding-l-r {
-    padding: 0 20px;
+#task-add-form p {
+    height: 80px;
+}
+#task-add-form p.input-wrapper {
+    width: 560px;
+}
+#task-add-form p.button-wrapper {
+    width: 80px;
 }
 
-.margin-bottom-10 {
-    margin-bottom: 10px;
+.task-view-mode {
+    height: 80px;
 }
-
-#task-add,
-#task-add p,
-.task-view-mode,
 .task-view-mode div {
     height: 80px;
 }
-
-.task-edit-mode,
+.task-edit-mode {
+    height: 240px;
+}
 .task-edit-mode div {
     height: 240px;
 }
-
-.task-info-left {
-    width: 360px;
-}
-
-.task-info-right {
-    width: 120px;
-}
-
-.task-title,
-.task-description {
-    width: 320px;
-}
-
-.task-delete-dialog-left {
-    width: 520px;
-}
-
-.task-delete-dialog-right {
+.task-wrapper .button-wrapper{
     width: 80px;
+}
+.task-wrapper .content-wrapper {
+    width: 480px;
 }
 
 .vertical-align-wrapper {
@@ -113,20 +91,62 @@ h1 {
     text-align: left;
 }
 
+.content-left {
+    width: 380px;
+}
+.content-right {
+    width: 100px;
+}
+
+span.task-title,
+span.task-description {
+    display: block;
+    padding: 0 20px;
+}
+span.task-duration {}
+
+#bottom {
+    padding: 5px 20px;
+}
+
+#bottom i {
+    margin-right: 2px;
+}
+
+#bottom span {
+    margin-right: 12px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+#task-edit-form {
+    padding: 0 20px;
+}
+
+.task-delete-dialog-left {
+    width: 560px;
+}
+.task-delete-dialog-right {
+    width: 80px;
+}
+.task-delete-dialog-left p {
+    padding: 0 20px;
+}
+
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     UI
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#task-add {
+#task-add-form {
     border-bottom: 1px solid #243342;
     cursor: pointer;
     background: #1ABC9C;
 }
-
-#task-add:hover,
-#task-add:focus {
+#task-add-form:hover {
     background: #1DCFAB;
 }
 
@@ -223,7 +243,7 @@ button.task-delete-btn i {
 }
 
 
-#tasks {
+#task-list {
     color: white;
     font-size: 20px;
     line-height: 1.618;
@@ -254,8 +274,7 @@ button.task-delete-btn i {
     border-right: 1px solid #243342;
 }
 
-.task-info-left,
-.task-info-right {
+.task-view-mode .content-wrapper {
     cursor: pointer;
 }
 
@@ -272,9 +291,9 @@ button.task-delete-btn i {
 .task-duration {
     display: inline-block;
     /*text-overflow: ellipsis;*/
-    line-height: 1.6;
     /*white-space: nowrap;*/
     overflow: hidden;
+    line-height: 1.6;
 }
 
 
@@ -317,22 +336,13 @@ button.task-delete-btn i {
     width: 100%;
     color: white;
 }
-
 #task-delete-dialog button {
     color: white;
 }
 
+
 #bottom {
-    padding: 5px 20px;
     font-size: 16px;
     background: #BDC3C7;
     color: #34495E;
-}
-
-#bottom i {
-    margin-right: 2px;
-}
-
-#bottom span {
-    margin-right: 12px;
 }

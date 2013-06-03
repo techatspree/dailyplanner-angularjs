@@ -32,7 +32,7 @@
             $scope.modelState.deleteDialog = null;
         };
 
-        $scope.showTaskDeleteDialog = function(index, task) {
+        $scope.showTaskDeleteDialog = function(index) {
             $scope.modelState.selectedItem = index;
             $scope.modelState.editMode = ($scope.modelState.editMode === index) ? $scope.modelState.editMode : null;
             $scope.modelState.deleteDialog = index;
@@ -60,10 +60,8 @@
         $scope.editTask = function(task) {
             var title, duration;
 
-            // set new title
             title = self.getTitle(self.matchPattern, task.title);
 
-            // set duration
             if (self.matchPattern(task.title)[0]) {
                 duration = self.getDuration(self.matchPattern, task.title);
             }
