@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84ddd6f2-a22a-4648-84e6-b3b146473d85" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/test/unit-test/spec/FiltersSpec.js" afterPath="$PROJECT_DIR$/app/test/unit-test/spec/FiltersSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/test/unit-test/spec/TaskListControllerSpec.js" afterPath="$PROJECT_DIR$/app/test/unit-test/spec/TaskListControllerSpec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/test/unit-test/spec/.gitkeep" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/directives.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/filters.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/services.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task_delete_dialog.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task_view.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/test/unit-test/spec/FiltersSpec.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/test/unit-test/spec/TaskListControllerSpec.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" afterPath="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/app.css" afterPath="$PROJECT_DIR$/app/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/filters.js" afterPath="$PROJECT_DIR$/app/js/filters.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/task_view.html" afterPath="$PROJECT_DIR$/app/partials/task_view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/main.html" afterPath="$PROJECT_DIR$/app/partials/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angularjs-ebook-demo.iws" />
@@ -44,12 +55,12 @@
     <file path="$APPLICATION_HOME_DIR$/plugins/JSF/lib/jsf-support.jar!/resources/schemas/jsf_core.tld" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367236372090" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/WebServices/lib/WebServices.jar!/schemas/wadl20090202.xsd" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367236372090" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/JavaEE/lib/javaee-impl.jar!/standardSchemas/ejb-jar_3_1.xsd" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367236372090" ignored="false" />
-    <file path="/controllers.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370268635482" ignored="false" />
+    <file path="/controllers.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270347837" ignored="false" />
     <file path="/services.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367829400540" ignored="false" />
     <file path="/directives.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370253240237" ignored="false" />
     <file path="/task.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370253272015" ignored="false" />
     <file path="$PROJECT_DIR$/app/js/lib/angularjs/angular-scenario.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367828067129" ignored="false" />
-    <file path="/main.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370263914576" ignored="false" />
+    <file path="/main.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270731399" ignored="false" />
     <file path="/task_edit.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370252973786" ignored="false" />
     <file path="/task_view.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370265312210" ignored="false" />
     <file path="/Dummy.txt" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370261429792" ignored="false" />
@@ -135,16 +146,17 @@
         <option value="$PROJECT_DIR$/app/js/services.js" />
         <option value="$PROJECT_DIR$/app/js/directives.js" />
         <option value="$PROJECT_DIR$/app/partials/task.html" />
-        <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/partials/main.html" />
         <option value="$PROJECT_DIR$/app/partials/task_edit.html" />
         <option value="$PROJECT_DIR$/app/partials/task_delete_dialog.html" />
-        <option value="$PROJECT_DIR$/app/css/app.css" />
-        <option value="$PROJECT_DIR$/app/js/controllers.js" />
         <option value="$PROJECT_DIR$/app/test/unit-test/spec/TaskListControllerSpec.js" />
         <option value="$PROJECT_DIR$/app/test/unit-test/spec/FiltersSpec.js" />
         <option value="$PROJECT_DIR$/app/partials/task_view.html" />
         <option value="$PROJECT_DIR$/app/js/filters.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers.js" />
+        <option value="$PROJECT_DIR$/app/partials/main.html" />
+        <option value="$PROJECT_DIR$/app/css/app.css" />
       </list>
     </option>
   </component>
@@ -211,90 +223,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unit-test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unit-test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularjs-ebook-demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -532,122 +460,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="7" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.42497376">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="36" selection-start="376" selection-end="376" vertical-scroll-proportion="0.14165792">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="338" column="0" selection-start="6071" selection-end="6071" vertical-scroll-proportion="3.640737">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/task_delete_dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="14" selection-start="305" selection-end="305" vertical-scroll-proportion="0.14165792">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="198" selection-end="198" vertical-scroll-proportion="0.23029682">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/test/unit-test/SpecRunner.html">
+    <entry file="file://$PROJECT_DIR$/app/test/unit-test/spec/.gitkeep">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/directives.js">
+    <entry file="file://$PROJECT_DIR$/app/partials/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="31" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.048106447">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="36" selection-start="422" selection-end="422" vertical-scroll-proportion="0.17313746">
+        <state line="18" column="11" selection-start="697" selection-end="697" vertical-scroll-proportion="0.28331584">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/task_edit.html">
+    <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="31" selection-start="612" selection-end="612" vertical-scroll-proportion="0.2518363">
+        <state line="23" column="7" selection-start="961" selection-end="961" vertical-scroll-proportion="0.36201468">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/test/unit-test/spec/FiltersSpec.js">
+    <entry file="file://$PROJECT_DIR$/app/test/unit-test/SpecRunner.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="4" selection-start="733" selection-end="733" vertical-scroll-proportion="0.47594678">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="45" selection-start="535" selection-end="535" vertical-scroll-proportion="0.36847493">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/filters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="24" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.59877175">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/test/unit-test/spec/TaskListControllerSpec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="41" selection-start="745" selection-end="745" vertical-scroll-proportion="0.4145343">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/task_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="122" selection-start="742" selection-end="742" vertical-scroll-proportion="0.23609653">
+        <state line="13" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.204617">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="679" selection-end="679" vertical-scroll-proportion="0.3531218">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="24" column="0" selection-start="506" selection-end="506" vertical-scroll-proportion="0.36847493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="215" column="0" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.9232344">
+          <folding />
         </state>
       </provider>
     </entry>

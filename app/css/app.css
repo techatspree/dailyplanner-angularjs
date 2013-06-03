@@ -52,35 +52,19 @@ h1 {
     width: 640px;
 }
 
-#task-add-form p {
-    height: 80px;
-}
-#task-add-form p.input-wrapper {
-    width: 560px;
-}
-#task-add-form p.button-wrapper {
-    width: 80px;
-}
-
 .task-view-mode {
     height: 80px;
 }
 .task-view-mode div {
     height: 80px;
 }
-.task-edit-mode {
-    height: 240px;
-}
-.task-edit-mode div {
-    height: 240px;
-}
+
 .task-wrapper .button-wrapper{
     width: 80px;
 }
 .task-wrapper .content-wrapper {
     width: 480px;
 }
-
 .vertical-align-wrapper {
     display: table;
     width: 100%;
@@ -105,87 +89,11 @@ span.task-description {
 }
 span.task-duration {}
 
-#bottom {
-    padding: 5px 20px;
-}
-
-#bottom i {
-    margin-right: 2px;
-}
-
-#bottom span {
-    margin-right: 12px;
-}
-
-.margin-bottom-10 {
-    margin-bottom: 10px;
-}
-
-#task-edit-form {
-    padding: 0 20px;
-}
-
-.task-delete-dialog-left {
-    width: 560px;
-}
-.task-delete-dialog-right {
-    width: 80px;
-}
-.task-delete-dialog-left p {
-    padding: 0 20px;
-}
-
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     UI
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-#task-add-form {
-    border-bottom: 1px solid #243342;
-    cursor: pointer;
-    background: #1ABC9C;
-}
-#task-add-form:hover {
-    background: #1DCFAB;
-}
-
-#task-add-form input,
-#task-edit-form input {
-    display: block;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    background: none;
-    color: white;
-    font-size: 20px;
-    line-height: 1.618;
-    width: 100%;
-    border-radius: 0;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    font-family: "Lato", sans-serif;
-    text-indent: 0;
-}
-
-#task-add-form input {
-    font-size: 24px;
-    text-indent: 25px;
-}
-
-#task-edit-form input {
-    border-bottom: 1px solid white;
-}
-
-#task-edit-form input:hover,
-#task-edit-form input:focus {
-    background: white;
-    color: #34495E;
-    border-bottom: 1px solid white;
-    box-shadow: none;
-    outline: none;
-}
 
 button {
     border: none;
@@ -201,11 +109,6 @@ button {
 
 button:hover {
     color: #1ABC9C;
-}
-
-#task-add-form button:hover,
-#task-delete-dialog button:hover {
-    color: #34495E;
 }
 
 button.task-done-btn i.icon-ok-sign {
@@ -228,20 +131,6 @@ button.task-delete-btn i {
 #task-edit-form button {
     text-align: right;
 }
-
-::-webkit-input-placeholder { /* WebKit browsers */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-
 
 #task-list {
     color: white;
@@ -296,7 +185,6 @@ button.task-delete-btn i {
     line-height: 1.6;
 }
 
-
 #task-list .task-wrapper.task-done {
     background: #2C3E50;
 }
@@ -324,25 +212,4 @@ button.task-delete-btn i {
 }
 .task-done button:hover {
     color: #1ABC9C;
-}
-
-
-#task-delete-dialog {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    background: #E74C3C;
-    font-size: 24px;
-    width: 100%;
-    color: white;
-}
-#task-delete-dialog button {
-    color: white;
-}
-
-
-#bottom {
-    font-size: 16px;
-    background: #BDC3C7;
-    color: #34495E;
 }
