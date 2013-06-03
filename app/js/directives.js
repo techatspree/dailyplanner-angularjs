@@ -14,23 +14,10 @@
 
             function(PARTIAL_PATH) {
                 return {
-                    templateUrl: PARTIAL_PATH + "task.html",
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    link: function postLink(scope, element, attrs) {
-                        scope.showEditMode = function(index) {
-                            scope.modelState.selectedItem = index;
-                            scope.modelState.editMode = index;
-                            scope.modelState.deleteDialog = null;
-                        };
-
-                        scope.showTaskDeleteDialog = function(index) {
-                            scope.modelState.selectedItem = index;
-                            scope.modelState.editMode = (scope.modelState.editMode === index) ? scope.modelState.editMode : null;
-                            scope.modelState.deleteDialog = index;
-                        };
-                    }
+                    templateUrl: PARTIAL_PATH + "task.html"
                 };
             }
         ]).
@@ -40,9 +27,10 @@
 
             function(PARTIAL_PATH) {
                 return {
-                    templateUrl: PARTIAL_PATH + "task_view.html",
+                    restrict: "A",
+                    scope: true,
                     replace: true,
-                    link: function(scope, element, attrs) {}
+                    templateUrl: PARTIAL_PATH + "task_view.html"
                 };
             }
         ]).
@@ -52,22 +40,25 @@
 
             function(PARTIAL_PATH) {
                 return {
+                    restrict: "A",
+                    scope: true,
+                    replace: true,
                     templateUrl: PARTIAL_PATH + "task_edit.html",
                     link: function(scope, element, attrs) {
 
-                        element.find("form input").bind("blur", function() {
-                            scope.editTask(scope.task);
+                        element.find("form input").blur(function() {
+                            scope.$apply(function() {
+                                scope.editTask(scope.task);
+                            });
                         });
 
-                        scope.submit = function(task) {
-                            scope.editTask(task);
-                            scope.modelState.selectedItem = null;
-                            scope.modelState.editMode = null;
-                            scope.modelState.deleteDialog = null;
-                        };
-
-//                        element.css({"height": "80px"}).animate({"height": "236px"}, 200);
-//                        element.find("div").css({"height": "80px"}).animate({"height": "236px"}, 200);
+                        element.find("form").submit(function() {
+                            scope.$apply(function() {
+                                scope.modelState.editMode = null;
+                                scope.modelState.selectedItem = null;
+                                scope.modelState.deleteDialog = null;
+                            });
+                        });
                     }
                 };
             }
@@ -80,28 +71,33 @@
             function(PARTIAL_PATH, $timeout) {
                 return {
                     restrict: "A",
+                    scope: {
+                        modelState: "=",
+                        deleteTask: "&"
+                    },
                     replace: true,
                     templateUrl: PARTIAL_PATH + "task_delete_dialog.html",
-
                     link: function postLink(scope, element, attrs) {
-                        var slideIn, slideOut;
+                        var slideIn, slideOut, animationDuration;
+
+                        animationDuration = 200;
 
                         slideIn = function() {
-                            element.animate({"left": "0"}, 200);
+                            element.animate({ "left": "0" }, animationDuration);
                         };
 
-                        slideOut = function(callback) {
-                            element.animate({"left": "100%"}, 200);
+                        slideOut = function() {
+                            element.animate({ "left": "100%" }, animationDuration);
                         };
 
-                        slideIn(null);
+                        slideIn();
 
                         scope.cancel = function() {
                             slideOut();
 
                             $timeout(function() {
                                 scope.modelState.deleteDialog = null;
-                            }, 200);
+                            }, animationDuration);
                         };
 
                         scope.submit = function(task) {

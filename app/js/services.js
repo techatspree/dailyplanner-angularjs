@@ -11,58 +11,35 @@
 
         // Local Storage Services
         factory("LocalStorage", [
-            "filterFilter",
 
-            function(filter) {
-                var dataModel, tasksCount;
+            function() {
+                var dataModel;
 
-                tasksCount = function() {
-                    dataModel.state.remainingTasks = filter(dataModel.data, {done: false}).length || 0;
-                    dataModel.state.completedTasks = filter(dataModel.data, {done: true}).length || 0;
-                };
-
-                // init model
-                dataModel = {};
-                dataModel.data = JSON.parse(localStorage.getItem("tasks") || '[]');
-                dataModel.state = {};
-                dataModel.state.selectedItem = null;
-                dataModel.state.editMode = null;
-                dataModel.state.deleteDialog = null;
-                dataModel.state.remainingTasks = 0;
-                dataModel.state.completedTasks = 0;
-                tasksCount();
+                dataModel = JSON.parse(localStorage.getItem("tasks") || '[]');
 
                 return {
-
-                    getModelState: function() {
-                        return dataModel.state;
-                    },
-
                     getItems: function() {
-                        return dataModel.data;
+                        return dataModel;
                     },
 
                     addItem: function(task) {
-                        dataModel.data.push(task);
-                        localStorage.setItem("tasks", JSON.stringify(dataModel.data));
-                        tasksCount();
+                        dataModel.push(task);
+                        localStorage.setItem("tasks", JSON.stringify(dataModel));
                     },
 
                     editItem: function(task) {
-                        var index = dataModel.data.indexOf(task);
+                        var index = dataModel.indexOf(task);
                         if (index !== -1) {
-                            dataModel.data[index] = task;
-                            localStorage.setItem("tasks", JSON.stringify(dataModel.data));
-                            tasksCount();
+                            dataModel[index] = task;
+                            localStorage.setItem("tasks", JSON.stringify(dataModel));
                         }
                     },
 
                     deleteItem: function(task) {
-                        var index = dataModel.data.indexOf(task);
+                        var index = dataModel.indexOf(task);
                         if (index !== -1) {
-                            dataModel.data.splice(index, 1);
-                            localStorage.setItem("tasks", JSON.stringify(dataModel.data));
-                            tasksCount();
+                            dataModel.splice(index, 1);
+                            localStorage.setItem("tasks", JSON.stringify(dataModel));
                         }
                     }
                 };

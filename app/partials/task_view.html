@@ -9,12 +9,12 @@
         </div>
     </div>
 
-    <div class="grid grid-6 pull-left" data-ng-click="showEditMode($index)">
+    <div class="grid grid-6 pull-left" data-ng-click="showEditMode($index, task)">
         <div class="vertical-align-wrapper">
             <div class="grid-4 vertical-align-item task-info-left">
                 <p class="padding-l-r">
-                    <span class="task-title" data-ng-bind="task.title" data-ng-show="task.title"></span>
-                    <span class="task-description" data-ng-bind="task.description" data-ng-show="task.description"></span>
+                    <span class="task-title" data-ng-show="task.title">{{ task.title | truncateCharacters:35 }}</span>
+                    <span class="task-description" data-ng-show="task.description">{{ task.description | truncateCharacters:35 }}</span>
                 </p>
             </div>
 
@@ -22,7 +22,7 @@
                 <p class="padding-l-r">
                     <span class="task-duration">
                         <i class='icon-time'></i>
-                        <span class="test" data-ng-bind-template="{{ task.duration | DurationFormat }}"></span>
+                        <span class="test">{{ task.duration | durationFormat }}</span>
                     </span>
                 </p>
             </div>

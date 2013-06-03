@@ -7,7 +7,7 @@
 
     angular.module("Filters", []).
 
-        filter("DurationFormat", [
+        filter("durationFormat", [
             function() {
                 return function(input) {
                     var output, hours, minutes;
@@ -36,19 +36,24 @@
             }
         ]).
 
-        filter("PreviewText", [
+        filter("truncateCharacters", [
             function() {
-                return function(input) {
-                    var output;
+                return function(input, chars) {
+                    if (isNaN(chars)) return input;
 
-                    if (input && input.length > 40) {
-                        output = input.substr(0, 40);
-                        output += " ...";
-                    } else {
-                        output = input;
+                    if (chars <= 0) return '';
+
+                    if(input && input.length >= chars) {
+                        input = input.substring(0, chars);
+
+                        var lastspace = input.lastIndexOf(' ');
+
+                        if (lastspace !== -1) {
+                            input = input.substr(0, lastspace);
+                        }
+                        return input + '...';
                     }
-
-                    return output;
+                    return input;
                 };
             }
         ]);

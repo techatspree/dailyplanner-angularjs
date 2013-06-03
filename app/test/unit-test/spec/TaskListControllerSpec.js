@@ -19,17 +19,17 @@
                 var tasks = [];
 
                 return {
-                    get: function() {
+                    getItems: function() {
                         return tasks;
                     },
-                    post: function(task) {
+                    addItem: function(task) {
                         tasks.push(task);
                     },
-                    put: function(task) {
+                    editItem: function(task) {
                         var index = tasks.indexOf(task);
                         tasks[index] = task;
                     },
-                    delete: function(task) {
+                    deleteItem: function(task) {
                         tasks.splice(tasks.indexOf(task), 1);
                     }
                 };
@@ -63,7 +63,7 @@
             scope.tasks.push(task);
             expect(scope.tasks.indexOf(task)).toEqual(0);
 
-            scope.removeTask(task);
+            scope.deleteTask(task);
             expect(scope.tasks.indexOf(task)).toEqual(-1);
         });
 

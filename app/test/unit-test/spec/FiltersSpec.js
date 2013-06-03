@@ -9,7 +9,7 @@
 
     describe("Filters", function() {
 
-        describe("DurationFormat Filter", function() {
+        describe("durationFormat Filter", function() {
 
             beforeEach(module("Filters"));
 
@@ -21,7 +21,7 @@
 
                 expect(formattedInput).toEqual("");
 
-                formattedInput = $filter("DurationFormat")(input);
+                formattedInput = $filter("durationFormat")(input);
 
                 expect(formattedInput).toEqual("02h 30m");
             }));

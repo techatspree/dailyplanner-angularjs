@@ -2,7 +2,30 @@
     Basics
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-@import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url('../font/Lato-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'), url('../font/Lato-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Lato Black'), local('Lato-Black'), url('../font/Lato-Black.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lato Italic'), local('Lato-Italic'), url('../font/Lato-italic.woff') format('woff');
+}
 
 body {
     background: #ECF0F1;
@@ -21,7 +44,7 @@ h1 {
 }
 
 .container {
-    width: 640px !important;
+    width: 640px;
 }
 
 
@@ -248,9 +271,9 @@ button.task-delete-btn i {
 .task-description,
 .task-duration {
     display: inline-block;
-    text-overflow: ellipsis;
+    /*text-overflow: ellipsis;*/
     line-height: 1.6;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;
 }
 
