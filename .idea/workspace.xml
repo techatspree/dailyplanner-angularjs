@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84ddd6f2-a22a-4648-84e6-b3b146473d85" name="Default" comment="" />
+    <list default="true" id="84ddd6f2-a22a-4648-84e6-b3b146473d85" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="angularjs-ebook-demo.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$APPLICATION_HOME_DIR$/plugins/WebServices/lib/WebServices.jar!/schemas/j2ee_jaxrpc_mapping_1_1.xsd" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367236372089" ignored="false" />
@@ -49,7 +51,6 @@
     <file path="/app.css" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370266457878" ignored="false" />
     <file path="/TaskListControllerSpec.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370268954567" ignored="false" />
     <file path="$PROJECT_DIR$/app/css/app.css" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
-    <file path="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
     <file path="$PROJECT_DIR$/app/partials/main.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
     <file path="$PROJECT_DIR$/app/js/controllers.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
     <file path="$PROJECT_DIR$/app/test/unit-test/spec/.gitkeep" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
