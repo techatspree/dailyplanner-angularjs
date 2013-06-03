@@ -16,6 +16,7 @@
                 return {
                     templateUrl: PARTIAL_PATH + "task.html",
                     restrict: "A",
+                    scope: true,
                     replace: true,
                     link: function postLink(scope, element, attrs) {
                         scope.showEditMode = function(index) {

@@ -2,7 +2,8 @@
      data-ng-class="{
          'selected': $index == modelState.selectedItem,
          'task-view-mode': $index != modelState.editMode,
-         'task-edit-mode': $index == modelState.editMode
+         'task-edit-mode': $index == modelState.editMode,
+         'task-done': task.done
      }">
 
     <!-- task view / edit mode -->

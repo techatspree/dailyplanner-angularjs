@@ -218,6 +218,7 @@ button.task-delete-btn i {
 }
 
 #task-list .task-wrapper:hover,
+#task-list .task-wrapper.task-done:hover,
 #task-list .task-wrapper.task-edit-mode {
     background: #3B536B;
 }
@@ -254,6 +255,9 @@ button.task-delete-btn i {
 }
 
 
+#task-list .task-wrapper.task-done {
+    background: #2C3E50;
+}
 .task-done,
 .task-done #task-edit-form input,
 .task-done #task-edit-form label {
