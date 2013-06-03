@@ -29,4 +29,5 @@
         });
 
     });
+
 }(describe, it, expect, beforeEach, afterEach, module, inject));
