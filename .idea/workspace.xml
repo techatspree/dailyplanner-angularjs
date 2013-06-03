@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84ddd6f2-a22a-4648-84e6-b3b146473d85" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/test/unit-test/spec/.gitkeep" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/directives.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/filters.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/services.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task_delete_dialog.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task_edit.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/partials/task_view.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/test/unit-test/spec/FiltersSpec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/test/unit-test/spec/TaskListControllerSpec.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" afterPath="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/app.css" afterPath="$PROJECT_DIR$/app/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/main.html" afterPath="$PROJECT_DIR$/app/partials/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="84ddd6f2-a22a-4648-84e6-b3b146473d85" name="Default" comment="" />
     <ignored path="angularjs-ebook-demo.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$APPLICATION_HOME_DIR$/plugins/WebServices/lib/WebServices.jar!/schemas/j2ee_jaxrpc_mapping_1_1.xsd" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1367236372089" ignored="false" />
@@ -66,6 +48,11 @@
     <file path="/Dummy.txt" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370261429792" ignored="false" />
     <file path="/app.css" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370266457878" ignored="false" />
     <file path="/TaskListControllerSpec.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370268954567" ignored="false" />
+    <file path="$PROJECT_DIR$/app/css/app.css" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
+    <file path="$PROJECT_DIR$/app/test/unit-test/SpecRunner.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
+    <file path="$PROJECT_DIR$/app/partials/main.html" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
+    <file path="$PROJECT_DIR$/app/js/controllers.js" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
+    <file path="$PROJECT_DIR$/app/test/unit-test/spec/.gitkeep" changelist="84ddd6f2-a22a-4648-84e6-b3b146473d85" time="1370270807065" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
