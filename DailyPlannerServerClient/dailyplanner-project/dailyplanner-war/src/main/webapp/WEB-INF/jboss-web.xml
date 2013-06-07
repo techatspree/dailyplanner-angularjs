@@ -1,0 +1,4 @@
+<jboss-web>
+    <security-domain>curamob</security-domain>
+    <disable-audit>false</disable-audit>
+</jboss-web>

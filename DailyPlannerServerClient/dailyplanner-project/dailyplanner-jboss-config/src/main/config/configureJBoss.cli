@@ -1,0 +1,60 @@
+# run with
+#  jboss-cli.sh --file=configureJBoss.cli
+
+connect
+
+# add jdbc driver
+# ---------------------------------------
+
+deploy ../lib/postgresql-9.2-1002.jdbc4.jar
+
+
+
+# create data source
+# ---------------------------------------
+
+data-source  add --name=curamobds --jndi-name="java:jboss\/datasources\/CuraMobDS"  --driver-name=postgresql-9.2-1002.jdbc4.jar  --connection-url="jdbc:postgresql://localhost:5432/curamobdb"  --user-name=curamobuser  --password=secret  --transaction-isolation=TRANSACTION_READ_COMMITTED  --spy=false
+
+data-source enable --name=curamobds --persistent=true
+
+data-source test-connection-in-pool --name=curamobds
+
+
+
+# add security domain
+# ---------------------------------------
+
+/subsystem=security/security-domain=curamob/:add(cache-type=default)
+
+/subsystem=security/security-domain=curamob/authentication=classic:add(login-modules=[{"code"=>"Database", "flag"=>"required", "module-options"=>[("dsJndiName"=>"java:jboss\/datasources\/CuraMobDS"),("principalsQuery"=>"SELECT PASSWORD FROM CM_USER WHERE LOGIN = ?"), ("rolesQuery"=>"SELECT R.NAME, 'Roles' FROM CM_ROLE_CM_USER RU INNER JOIN CM_ROLE R ON R.ID = RU.ROLES_ID INNER JOIN CM_USER U ON U.ID = RU.USERS_ID WHERE U.LOGIN = ?")]}])
+
+
+
+# add JMS queue
+# ---------------------------------------
+
+jms-queue add --queue-address=curamobQ --entries=queues/curamobQ
+
+
+# add Cache
+# ---------------------------------------
+/subsystem=infinispan/cache-container=curamob/:add(default-cache=requests)
+/subsystem=infinispan/cache-container=curamob/local-cache=requests/:add(start=EAGER,batching=false,jndi-name=requests)
+
+
+
+# add Logging
+# ---------------------------------------
+
+/subsystem=logging/logger=de.akquinet:add
+/subsystem=logging/logger=de.akquinet:write-attribute(name=level,value=ALL)
+/subsystem=logging/console-handler=CONSOLE:write-attribute(name=level,value=DEBUG)
+
+# /subsystem=logging/root-logger=ROOT/:change-root-log-level(level="INFO")
+
+
+# todo cache und jms
+
+ /:reload
+
+quit
