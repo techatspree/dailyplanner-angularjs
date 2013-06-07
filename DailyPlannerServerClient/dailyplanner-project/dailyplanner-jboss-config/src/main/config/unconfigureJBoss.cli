@@ -1,14 +1,6 @@
 connect
 
-data-source disable --name=curamobds
-
-data-source remove --name=curamobds
-
-undeploy postgresql-9.2-1002.jdbc4.jar
-
-/subsystem=security/security-domain=curamob/:remove
-
-jms-queue remove --queue-address=curamobQ
+/subsystem=security/security-domain=DailyPlanner/:remove
 
 /subsystem=logging/logger=de.akquinet:remove
 
