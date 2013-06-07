@@ -1,0 +1,348 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Basics
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url('../font/Lato-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'), url('../font/Lato-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Lato Black'), local('Lato-Black'), url('../font/Lato-Black.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lato Italic'), local('Lato-Italic'), url('../font/Lato-italic.woff') format('woff');
+}
+
+body {
+    background: #ECF0F1;
+    font-family: "Lato", sans-serif;
+    color: #34495E;
+}
+
+ul, li, p, form {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    Layout
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.container {
+    width: 640px;
+}
+
+#task-add-form p {
+    height: 80px;
+}
+#task-add-form p.input-wrapper {
+    width: 560px;
+}
+#task-add-form p.button-wrapper {
+    width: 80px;
+}
+
+.task-view-mode {
+    height: 80px;
+}
+.task-view-mode div {
+    height: 80px;
+}
+.task-edit-mode {
+    height: 240px;
+}
+.task-edit-mode div {
+    height: 240px;
+}
+.task-wrapper .button-wrapper{
+    width: 80px;
+}
+.task-wrapper .content-wrapper {
+    width: 480px;
+}
+
+.vertical-align-wrapper {
+    display: table;
+    width: 100%;
+}
+.vertical-align-item {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.content-left {
+    width: 380px;
+}
+.content-right {
+    width: 100px;
+}
+
+span.task-title,
+span.task-description {
+    display: block;
+    padding: 0 20px;
+}
+span.task-duration {}
+
+#bottom {
+    padding: 5px 20px;
+}
+
+#bottom i {
+    margin-right: 2px;
+}
+
+#bottom span {
+    margin-right: 12px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+#task-edit-form {
+    padding: 0 20px;
+}
+
+.task-delete-dialog-left {
+    width: 560px;
+}
+.task-delete-dialog-right {
+    width: 80px;
+}
+.task-delete-dialog-left p {
+    padding: 0 20px;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    UI
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#task-add-form {
+    border-bottom: 1px solid #243342;
+    cursor: pointer;
+    background: #1ABC9C;
+}
+#task-add-form:hover {
+    background: #1DCFAB;
+}
+
+#task-add-form input,
+#task-edit-form input {
+    display: block;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background: none;
+    color: white;
+    font-size: 20px;
+    line-height: 1.618;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-family: "Lato", sans-serif;
+    text-indent: 0;
+}
+
+#task-add-form input {
+    font-size: 24px;
+    text-indent: 25px;
+}
+
+#task-edit-form input {
+    border-bottom: 1px solid white;
+}
+
+#task-edit-form input:hover,
+#task-edit-form input:focus {
+    background: white;
+    color: #34495E;
+    border-bottom: 1px solid white;
+    box-shadow: none;
+    outline: none;
+}
+
+button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+button:hover {
+    color: #1ABC9C;
+}
+
+#task-add-form button:hover,
+#task-delete-dialog button:hover {
+    color: #34495E;
+}
+
+button.task-done-btn i.icon-ok-sign {
+    display: none;
+}
+button.task-done-btn:hover i.icon-circle {
+    display: none;
+}
+button.task-done-btn:hover i.icon-ok-sign {
+    display: inline;
+}
+
+button.task-delete-btn i {
+    display: none;
+}
+#task-list li:hover button.task-delete-btn i {
+    display: inline;
+}
+
+#task-edit-form button {
+    text-align: right;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+
+
+#task-list {
+    color: white;
+    font-size: 20px;
+    line-height: 1.618;
+}
+
+#task-list li {
+    list-style: none;
+}
+
+#task-list .task-wrapper {
+    border-bottom: 1px solid #243342;
+    background: #34495E;
+    position: relative;
+    overflow: hidden;
+}
+
+#task-list .task-wrapper:hover,
+#task-list .task-wrapper.task-done:hover,
+#task-list .task-wrapper.task-edit-mode {
+    background: #3B536B;
+}
+
+.border-left {
+    border-left: 1px solid #243342;
+}
+
+.border-right {
+    border-right: 1px solid #243342;
+}
+
+.task-view-mode .content-wrapper {
+    cursor: pointer;
+}
+
+.task-duration {
+    font-size: 14px;
+}
+
+.task-description {
+    font-size: 13px;
+}
+
+.task-title,
+.task-description,
+.task-duration {
+    display: inline-block;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    line-height: 1.6;
+}
+
+
+#task-list .task-wrapper.task-done {
+    background: #2C3E50;
+}
+.task-done,
+.task-done #task-edit-form input,
+.task-done #task-edit-form label {
+    color: #7F8C8D;
+}
+.task-done .task-title,
+.task-done .task-description,
+.task-done .task-duration span {
+    text-decoration: line-through;
+}
+.task-done #task-edit-form input {
+    border-bottom: 1px solid #7F8C8D;
+}
+.task-done .task-done-btn i.icon-ok-sign {
+    display: inline;
+}
+.task-done .task-done-btn i.icon-circle {
+    display: none;
+}
+.task-done button {
+    color: #7F8C8D;
+}
+.task-done button:hover {
+    color: #1ABC9C;
+}
+
+
+#task-delete-dialog {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #E74C3C;
+    font-size: 24px;
+    width: 100%;
+    color: white;
+}
+#task-delete-dialog button {
+    color: white;
+}
+
+
+#bottom {
+    font-size: 16px;
+    background: #BDC3C7;
+    color: #34495E;
+}

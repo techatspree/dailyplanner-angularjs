@@ -1,0 +1,29 @@
+<div class="task-wrapper"
+     data-ng-class="{
+         'selected': $index == modelState.selectedItem,
+         'task-view-mode': $index != modelState.editMode,
+         'task-edit-mode': $index == modelState.editMode,
+         'task-done': task.done
+     }">
+
+    <!-- task view / edit mode -->
+    <div data-ng-switch="$index == modelState.editMode">
+        <!-- task view mode -->
+        <div data-ng-switch-default>
+            <div data-task-view-mode></div>
+        </div>
+
+        <!-- task edit mode -->
+        <div data-ng-switch-when="true">
+            <div data-task-edit-mode></div>
+        </div>
+    </div>
+
+    <!-- task delete dialog -->
+    <div data-ng-switch="$index == modelState.deleteDialog">
+        <div data-ng-switch-when="true">
+            <div data-task-delete-dialog data-model-state="modelState" data-delete-task="deleteTask(task)"></div>
+        </div>
+    </div>
+
+</div>

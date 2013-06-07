@@ -42,14 +42,6 @@
                             <artifactId>dailyplanner-war</artifactId>
                             <contextRoot>dailyplanner</contextRoot>
                         </webModule>
-                        <!-- remove the version from the file, so that the name can be used for the deployment
-                             descriptor of the ear
-                        -->
-                        <ejbModule>
-                            <groupId>dailyplanner</groupId>
-                            <artifactId>dailyplanner-logic</artifactId>
-                            <bundleFileName>dailyplanner-logic.jar</bundleFileName>
-                        </ejbModule>
                     </modules>
                 </configuration>
             </plugin>
