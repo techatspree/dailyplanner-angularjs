@@ -2,16 +2,11 @@ package de.akquinet.dailyplanner.dbmodel;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 
 @Entity
 @Table(name = "cm_user")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class User extends AbstractEntity {
 
     @Basic
     private String login;
@@ -26,8 +21,6 @@ public class User {
     @Basic
     private String lastName;
 
-    @Basic
-    private Date birthday;
 
     @ManyToMany(mappedBy = "users")
     private Collection<Role> roles = new HashSet<Role>();
@@ -46,18 +39,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = (Date) birthday.clone();
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getLogin() {
@@ -82,13 +63,12 @@ public class User {
         }
     }
 
-    public static User createUser(String login, String password, String firstName, String lastName, Date birthday) {
+    public static User createUser(String login, String password, String firstName, String lastName) {
         User user = new User();
         user.setLogin(login);
         user.password = password;
         user.firstName = firstName;
         user.lastName = lastName;
-        user.birthday = birthday;
         return user;
     }
 

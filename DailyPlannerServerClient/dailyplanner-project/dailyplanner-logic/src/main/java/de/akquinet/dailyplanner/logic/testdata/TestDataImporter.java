@@ -1,8 +1,9 @@
 package de.akquinet.dailyplanner.logic.testdata;
 
-import de.akquinet.dailyplanner.logic.dao.UserDao;
+import de.akquinet.dailyplanner.dbmodel.DailyPlan;
 import de.akquinet.dailyplanner.dbmodel.Role;
 import de.akquinet.dailyplanner.dbmodel.User;
+import de.akquinet.dailyplanner.logic.dao.UserDao;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +12,6 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Date;
 import java.util.List;
 
 @Startup
@@ -40,12 +40,14 @@ public class TestDataImporter {
 
             LOGGER.info("Creating new test users");
             for (int i = 0; i <= NR_TEST_USER; i++) {
-                User user = User.createUser("user_" + i, "secret", "John_" + (NR_TEST_USER - i), "Doe_" + i, new Date());
+                User user = User.createUser("user" + i, "secret", "John_" + (NR_TEST_USER - i), "Doe_" + i);
                 user.addRole(userRole);
+                DailyPlan dailyPlan = new DailyPlan(user);
+                em.persist(dailyPlan);
                 em.persist(user);
             }
             for (int i = 0; i <= NR_TEST_ADMIN; i++) {
-                User user = User.createUser("admin_" + i, "secret", "Adam_" + (NR_TEST_ADMIN - i), "Administrator_" + i, new Date());
+                User user = User.createUser("admin" + i, "secret", "Adam_" + (NR_TEST_ADMIN - i), "Administrator_" + i);
                 user.addRole(adminRole);
                 user.addRole(userRole);
                 em.persist(user);

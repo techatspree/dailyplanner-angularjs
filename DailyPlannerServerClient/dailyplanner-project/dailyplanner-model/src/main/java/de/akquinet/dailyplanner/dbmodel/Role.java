@@ -7,11 +7,7 @@ import java.util.HashSet;
 
 @Entity
 @Table(name = "cm_role")
-public class Role {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Role extends AbstractEntity {
 
     public Role(String name) {
         this.name = name;
@@ -22,7 +18,13 @@ public class Role {
 
     @ManyToMany
     private Collection<User> users = new HashSet<User>();
-    ;
+
+    public Role() {
+    };
+
+    public String getName() {
+        return name;
+    }
 
     public Collection<User> getUsers() {
         return Collections.unmodifiableCollection(users);
