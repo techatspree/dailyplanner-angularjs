@@ -2,6 +2,7 @@ package de.akquinet.dailyplanner.logic.testdata;
 
 import de.akquinet.dailyplanner.dbmodel.DailyPlan;
 import de.akquinet.dailyplanner.dbmodel.Role;
+import de.akquinet.dailyplanner.dbmodel.Task;
 import de.akquinet.dailyplanner.dbmodel.User;
 import de.akquinet.dailyplanner.logic.dao.UserDao;
 import org.jboss.logging.Logger;
@@ -42,8 +43,16 @@ public class TestDataImporter {
             for (int i = 0; i <= NR_TEST_USER; i++) {
                 User user = User.createUser("user" + i, "secret", "John_" + (NR_TEST_USER - i), "Doe_" + i);
                 user.addRole(userRole);
+
                 DailyPlan dailyPlan = new DailyPlan(user);
                 em.persist(dailyPlan);
+
+                for (int j=0;j<5;j++) {
+                    final Task task = new Task("Tasktitle " + j, "Description " + j, "10m", Boolean.FALSE);
+                    dailyPlan.appendTask(task);
+                    em.persist(task);
+                }
+
                 em.persist(user);
             }
             for (int i = 0; i <= NR_TEST_ADMIN; i++) {

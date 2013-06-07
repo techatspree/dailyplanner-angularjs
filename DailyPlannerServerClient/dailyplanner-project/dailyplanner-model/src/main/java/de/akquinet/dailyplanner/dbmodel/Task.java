@@ -22,6 +22,15 @@ public class Task extends AbstractEntity {
     @ManyToOne
     private DailyPlan dailyPlan;
 
+    public Task() {
+    }
+
+    public Task(String title, String description, String duration, Boolean done) {
+        this.title = title;
+        this.description = description;
+        this.duration = duration;
+        this.done = done;
+    }
 
     public String getTitle() {
         return title;

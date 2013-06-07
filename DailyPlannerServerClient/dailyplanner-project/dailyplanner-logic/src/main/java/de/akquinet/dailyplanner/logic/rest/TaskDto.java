@@ -2,12 +2,23 @@ package de.akquinet.dailyplanner.logic.rest;
 
 import static java.lang.Boolean.FALSE;
 
+@SuppressWarnings("ALL")
 public class TaskDto {
 
     private String title = "";
     private String description = "";
     private String duration = "";
     private Boolean done = FALSE;
+
+    public TaskDto() {
+    }
+
+    public TaskDto(String title, String description, String duration, Boolean done) {
+        this.title = title;
+        this.description = description;
+        this.duration = duration;
+        this.done = done;
+    }
 
     public String getTitle() {
         return title;
