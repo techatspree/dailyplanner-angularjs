@@ -4,7 +4,7 @@
  JSON
  */
 
-(function (angular, localStorage, JSON) {
+(function (angular) {
     "use strict";
 
 
@@ -37,4 +37,4 @@
                     query: {method: 'GET', isArray: true}
                 });
             }]);
-}(angular, localStorage, JSON));
+}(angular));
