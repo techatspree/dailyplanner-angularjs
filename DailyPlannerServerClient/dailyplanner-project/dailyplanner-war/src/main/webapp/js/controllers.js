@@ -7,13 +7,11 @@
 
     // add controller to controllers module
     angular.module("Controllers", []).
-        controller("TaskListController", [
-            "$scope",
-            "LocalStorage",
-            "filterFilter",
+        controller("TaskListController", ["$scope","filterFilter","dailyPlanResource",
 
-            function($scope, storage, filter) {
-                $scope.tasks = storage.getItems();
+            function($scope, filter, dailyPlanResource) {
+
+                $scope.tasks = dailyPlanResource.query();
 
                 $scope.modelState = {};
                 $scope.modelState.remainingCount = 0;
@@ -43,27 +41,22 @@
                 $scope.addTask = function(task) {
                     if (!task) { return; }
 
-                    storage.addItem({
-                        title: task,
-                        // description: "...",
-                        duration: 0,
-                        done: false
-                    });
+                    // $scope.tasks.push(task);
 
                     $scope.newTask = null;
                 };
 
                 $scope.editTask = function(task) {
-                    storage.editItem(task);
+
                 };
 
                 $scope.deleteTask = function(task) {
-                    storage.deleteItem(task);
+
                 };
 
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
-                    storage.editItem(task);
+
                 };
             }
         ]);
