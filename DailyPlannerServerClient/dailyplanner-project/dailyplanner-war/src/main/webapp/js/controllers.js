@@ -51,8 +51,9 @@
                     };
 
                     $scope.tasks.push(newTask);
-
                     $scope.newTask = null;
+
+                    $scope.synchronizeWithServer();
                 };
 
                 $scope.editTask = function(task) {
@@ -60,6 +61,7 @@
                     if (index !== -1) {
                         $scope.tasks[index] = task;
                     }
+                    $scope.synchronizeWithServer();
                 };
 
                 $scope.deleteTask = function(task) {
@@ -67,12 +69,24 @@
                     if (index !== -1) {
                         $scope.tasks.splice(index, 1);
                     }
+                    $scope.synchronizeWithServer();
                 };
 
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
-
+                    $scope.synchronizeWithServer();
                 };
+
+                $scope.synchronizeWithServer = function() {
+                    dailyPlanResource.save({}, $scope.tasks, function() {
+                        // success
+                        $scope.tasks = dailyPlanResource.query();
+                    }, function() {
+                        // failure
+                        $log.error("Could not save my daily plan.");
+                    });
+
+                }
             }
         ]);
 

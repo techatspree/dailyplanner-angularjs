@@ -34,7 +34,8 @@
                 var resourceUrl = composePath(path);
                 $log.log("resourceUrl=" + resourceUrl);
                 return $resource(resourceUrl, {}, {
-                    query: {method: 'GET', isArray: true}
+                    query: {method: 'GET', isArray: true},
+                    save:  {method: 'POST', isArray: true}
                 });
             }]);
 }(angular));

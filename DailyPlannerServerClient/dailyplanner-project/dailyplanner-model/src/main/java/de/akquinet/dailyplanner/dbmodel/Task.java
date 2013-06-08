@@ -2,7 +2,6 @@ package de.akquinet.dailyplanner.dbmodel;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Task extends AbstractEntity {
@@ -18,9 +17,6 @@ public class Task extends AbstractEntity {
 
     @Basic
     private Boolean done;
-
-    @ManyToOne
-    private DailyPlan dailyPlan;
 
     public Task() {
     }
@@ -62,9 +58,5 @@ public class Task extends AbstractEntity {
 
     public void setDone(Boolean done) {
         this.done = done;
-    }
-
-    protected void setDailyPlan(DailyPlan dailyPlan) {
-        this.dailyPlan = dailyPlan;
     }
 }

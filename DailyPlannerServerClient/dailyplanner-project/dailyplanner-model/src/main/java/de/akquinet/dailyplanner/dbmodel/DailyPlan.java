@@ -1,9 +1,7 @@
 package de.akquinet.dailyplanner.dbmodel;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @NamedQuery(name = DailyPlan.FIND_DAILY_PLAN_BY_USER_ID,
@@ -11,6 +9,7 @@ import java.util.List;
 public class DailyPlan extends AbstractEntity {
 
     public static final String FIND_DAILY_PLAN_BY_USER_ID = "findDailyPlanByUserId";
+    @SuppressWarnings({"FieldCanBeLocal", "UnusedDeclaration"})
     @ManyToOne
     private User user;
 
@@ -25,26 +24,28 @@ public class DailyPlan extends AbstractEntity {
         this.user = user;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public List<Task> getTasks() {
         return Collections.unmodifiableList(tasks);
     }
 
-    public void addTaskAt(int index, Task task) {
-        tasks.add(index, task);
-        task.setDailyPlan(this);
-    }
-
-
     public void appendTask (Task task) {
         tasks.add(task);
-        task.setDailyPlan(this);
+    }
+
+    public Set<Task> returnOwnTasksWhichAreNotInTheList(List<Task> newTaskList) {
+        final HashSet<Task> result = new HashSet<Task>(tasks.size());
+        for (Task task : tasks) {
+            if (! newTaskList.contains(task)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
+    public void updateTasksFromList(List<Task> newTaskList) {
+        tasks =  new ArrayList<Task>();
+        for (Task task : newTaskList) {
+            appendTask(task);
+        }
     }
 }

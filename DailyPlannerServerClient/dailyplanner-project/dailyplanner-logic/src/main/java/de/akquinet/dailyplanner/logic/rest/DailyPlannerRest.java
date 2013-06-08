@@ -7,10 +7,9 @@ import org.jboss.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 @Path("/")
@@ -29,6 +28,13 @@ public class DailyPlannerRest {
 
         DailyPlan dailyPlan = dailyPlanDao.findDailyPlan(userId);
 
+        TaskDto[] taskDtos = convertTaskListToDtoArray(dailyPlan);
+
+        LOG.debugf("Return %s tasks (%d)", taskDtos, taskDtos.length);
+        return taskDtos;
+    }
+
+    private TaskDto[] convertTaskListToDtoArray(DailyPlan dailyPlan) {
         TaskDto[] taskDtos = new TaskDto[dailyPlan.getTasks().size()];
         for (int i = 0; i < taskDtos.length; i++) {
             final Task task = dailyPlan.getTasks().get(i);
@@ -36,7 +42,31 @@ public class DailyPlannerRest {
                     new TaskDto(task.getId(), task.getTitle(), task.getDescription(), task.getDuration(), task.getDone());
             taskDtos[i] = (taskDto);
         }
-        LOG.debugf("Return %s tasks (%d)", taskDtos, taskDtos.length);
         return taskDtos;
+    }
+
+    @POST
+    @Path("/plans/{id}")
+    @Consumes({"application/json"})
+    public void saveDailyPlan(@PathParam("id") String userId, TaskDto[] taskDtos) {
+        LOG.debugf("saveDailyPlan(%s, %s)", userId, taskDtos);
+
+        final DailyPlan dailyPlan = dailyPlanDao.findDailyPlan(userId);
+
+        List<Task> newTaskList = new ArrayList<Task>(taskDtos.length);
+        for (final TaskDto taskDto : taskDtos) {
+            final Task task;
+            if (taskDto.getId() == null) {
+                task = dailyPlanDao.createNewTask(taskDto.getTitle(), taskDto.getDescription(),
+                        taskDto.getDuration(), taskDto.getDone());
+            } else {
+                task = dailyPlanDao.updateTask(taskDto.getId(), taskDto.getTitle(), taskDto.getDescription(),
+                        taskDto.getDuration(), taskDto.getDone());
+            }
+            newTaskList.add(task);
+        }
+        assert taskDtos.length == newTaskList.size();
+
+        dailyPlanDao.updateTaskList(dailyPlan, newTaskList);
     }
 }
