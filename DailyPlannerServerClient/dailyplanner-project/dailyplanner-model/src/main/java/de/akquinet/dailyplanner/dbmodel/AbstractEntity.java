@@ -13,4 +13,7 @@ public abstract class AbstractEntity {
     @SuppressWarnings({"UnusedDeclaration"})
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
 }

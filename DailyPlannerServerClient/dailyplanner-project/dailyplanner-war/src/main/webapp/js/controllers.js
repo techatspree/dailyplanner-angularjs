@@ -43,6 +43,7 @@
                     if (!taskTitle) { return; }
 
                     var newTask = {
+                        id : null,
                         title: taskTitle,
                         description: "..",
                         duration: 0,

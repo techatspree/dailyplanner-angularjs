@@ -32,7 +32,8 @@ public class DailyPlannerRest {
         TaskDto[] taskDtos = new TaskDto[dailyPlan.getTasks().size()];
         for (int i = 0; i < taskDtos.length; i++) {
             final Task task = dailyPlan.getTasks().get(i);
-            final TaskDto taskDto = new TaskDto(task.getTitle(), task.getDescription(), task.getDuration(), task.getDone());
+            final TaskDto taskDto =
+                    new TaskDto(task.getId(), task.getTitle(), task.getDescription(), task.getDuration(), task.getDone());
             taskDtos[i] = (taskDto);
         }
         LOG.debugf("Return %s tasks (%d)", taskDtos, taskDtos.length);
