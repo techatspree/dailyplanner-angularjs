@@ -51,4 +51,9 @@ public class TaskDto {
     public void setDone(Boolean done) {
         this.done = done;
     }
+
+    @Override
+    public String toString() {
+        return "Task<"+title+","+description+","+duration+","+ (done?"done":"open")+">";
+    }
 }

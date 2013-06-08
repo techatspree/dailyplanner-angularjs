@@ -11,8 +11,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import java.util.ArrayList;
-import java.util.List;
 
 @Stateless
 @Path("/")
@@ -26,20 +24,18 @@ public class DailyPlannerRest {
     @GET
     @Path("/plans/{id}")
     @Produces({"application/json"})
-    public DailyPlanDto getDailyPlan(@PathParam("id") String userId) {
+    public TaskDto[] getDailyPlan(@PathParam("id") String userId) {
         LOG.debugf("getDailyPlan(%s) called", userId);
 
         DailyPlan dailyPlan = dailyPlanDao.findDailyPlan(userId);
 
-        List<TaskDto> taskDtos = new ArrayList<TaskDto>(dailyPlan.getTasks().size());
-        for (Task task : dailyPlan.getTasks()) {
+        TaskDto[] taskDtos = new TaskDto[dailyPlan.getTasks().size()];
+        for (int i = 0; i < taskDtos.length; i++) {
+            final Task task = dailyPlan.getTasks().get(i);
             final TaskDto taskDto = new TaskDto(task.getTitle(), task.getDescription(), task.getDuration(), task.getDone());
-            taskDtos.add(taskDto);
+            taskDtos[i] = (taskDto);
         }
-
-        final DailyPlanDto dailyPlanDto = new DailyPlanDto();
-        dailyPlanDto.setTasks(taskDtos);
-
-        return dailyPlanDto;
+        LOG.debugf("Return %s tasks (%d)", taskDtos, taskDtos.length);
+        return taskDtos;
     }
 }
