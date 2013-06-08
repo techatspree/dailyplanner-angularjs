@@ -7,9 +7,9 @@
 
     // add controller to controllers module
     angular.module("Controllers", []).
-        controller("TaskListController", ["$scope","filterFilter","dailyPlanResource",
+        controller("TaskListController", ["$log", "$scope","filterFilter","dailyPlanResource",
 
-            function($scope, filter, dailyPlanResource) {
+            function($log, $scope, filter, dailyPlanResource) {
 
                 $scope.tasks = dailyPlanResource.query();
 
@@ -38,20 +38,34 @@
                 };
 
 
-                $scope.addTask = function(task) {
-                    if (!task) { return; }
+                $scope.addTask = function(taskTitle) {
 
-                    // $scope.tasks.push(task);
+                    if (!taskTitle) { return; }
+
+                    var newTask = {
+                        title: taskTitle,
+                        description: "..",
+                        duration: 0,
+                        done: false
+                    };
+
+                    $scope.tasks.push(newTask);
 
                     $scope.newTask = null;
                 };
 
                 $scope.editTask = function(task) {
-
+                    var index = $scope.tasks.indexOf(task);
+                    if (index !== -1) {
+                        $scope.tasks[index] = task;
+                    }
                 };
 
                 $scope.deleteTask = function(task) {
-
+                    var index = $scope.tasks.indexOf(task);
+                    if (index !== -1) {
+                        $scope.tasks.splice(index, 1);
+                    }
                 };
 
                 $scope.toggleTaskStatus = function(task) {
