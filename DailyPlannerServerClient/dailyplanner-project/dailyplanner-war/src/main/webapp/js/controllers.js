@@ -89,13 +89,14 @@
                 }
             }
         ]).
-        controller ("AuthenticationController", ["$log", "$scope" ,
+        controller ("AuthenticationController", ["$log", "$scope" , "authentication" ,
 
-            function($log, $scope) {
-                $scope.authenticatedUser = "Schulze";
+            function($log, $scope, authentication) {
+                $scope.authenticatedUser = authentication.getAuthenticatedUserId();
 
                 $scope.logout = function () {
-                    $log.log("I should logout");
+                    authentication.logout();
+                    // todo: should I do a reload here?
                 }
             }
         ])

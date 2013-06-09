@@ -9,6 +9,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -50,13 +51,50 @@ public class DailyPlanDao {
         return task;
     }
 
-    public void updateTaskList(DailyPlan dailyPlan, List<Task> newTaskList) {
-        Set<Task> tasksToDelete = dailyPlan.returnOwnTasksWhichAreNotInTheList (newTaskList);
-        dailyPlan.updateTasksFromList(newTaskList);
-        for (Task task : tasksToDelete) {
+    public void saveDailyPlan(String userId, TaskDto[] taskDtos) {
+        final DailyPlan dailyPlan = findDailyPlan(userId);
 
+        List<Task> newTaskList = new ArrayList<Task>(taskDtos.length);
+        for (final TaskDto taskDto : taskDtos) {
+            final Task task;
+            if (taskDto.getId() == null) {
+                task = createNewTask(taskDto.getTitle(), taskDto.getDescription(),
+                        taskDto.getDuration(), taskDto.getDone());
+            } else {
+                task = updateTask(taskDto.getId(), taskDto.getTitle(), taskDto.getDescription(),
+                        taskDto.getDuration(), taskDto.getDone());
+            }
+            newTaskList.add(task);
+        }
+        assert taskDtos.length == newTaskList.size();
+
+        Set<Task> tasksToDelete = dailyPlan.returnOwnTasksWhichAreNotInTheList(newTaskList);
+
+        dailyPlan.updateTasksFromList(newTaskList);
+
+        for (Task task : tasksToDelete) {
             em.remove(task);
         }
-
     }
+
+    public TaskDto[] findTasksOfDailyPlanForUser(String userId) {
+        LOG.debugf("getDailyPlan() called for %s", userId);
+
+        DailyPlan dailyPlan = findDailyPlan(userId);
+
+        return convertTaskListToDtoArray(dailyPlan);
+    }
+
+    private TaskDto[] convertTaskListToDtoArray(DailyPlan dailyPlan) {
+        TaskDto[] taskDtos = new TaskDto[dailyPlan.getTasks().size()];
+        for (int i = 0; i < taskDtos.length; i++) {
+            final Task task = dailyPlan.getTasks().get(i);
+            final TaskDto taskDto =
+                    new TaskDto(task.getId(), task.getTitle(), task.getDescription(), task.getDuration(), task.getDone());
+            taskDtos[i] = (taskDto);
+        }
+        return taskDtos;
+    }
+
+
 }

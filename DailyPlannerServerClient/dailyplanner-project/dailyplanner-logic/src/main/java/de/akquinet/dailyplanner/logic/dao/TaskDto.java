@@ -1,4 +1,4 @@
-package de.akquinet.dailyplanner.logic.rest;
+package de.akquinet.dailyplanner.logic.dao;
 
 import static java.lang.Boolean.FALSE;
 

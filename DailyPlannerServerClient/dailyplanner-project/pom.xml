@@ -32,12 +32,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.richfaces</groupId>
-                <artifactId>richfaces-bom</artifactId>
-                <version>4.2.0.Final</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
                 <groupId>dailyplanner</groupId>
                 <artifactId>dailyplanner-model</artifactId>
                 <version>${project.version}</version>
@@ -79,9 +73,15 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>org.infinispan</groupId>
-                <artifactId>infinispan-core</artifactId>
-                <version>5.1.7.Final</version>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+                <version>1.0.2.Final</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jstl</groupId>
+                <artifactId>jstl</artifactId>
+                <version>1.2</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>

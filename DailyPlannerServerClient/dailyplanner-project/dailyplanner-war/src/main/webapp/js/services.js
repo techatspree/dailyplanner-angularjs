@@ -9,13 +9,6 @@
 
 
     angular.module("Services", ["ngResource"]).
-        factory("authentication", [ function () {
-            return {
-                getAuthenticatedUserId: function () {
-                    return "user0";
-                }
-            }
-        }]).
         factory("composePath", [ "$location",
             function ($location) {
 
@@ -27,15 +20,33 @@
                     return protocoll + "://" + host + ":" + port + "\\:" + port + path;
                 }
             }]).
-        factory("dailyPlanResource", [ "$resource", "$location", "$log", "composePath", "authentication",
-            function ($resource, $location, $log, composePath, authentication) {
+        factory("authentication", [ "$log", "composePath", "$resource",
+            function ($log, composePath, $resource) {
 
-                var path = '/dailyplanner/rest/plans/' + authentication.getAuthenticatedUserId();
+                return {
+                    getAuthenticatedUserId: function () {
+                        var path = '/dailyplanner/rest/currentuserid';
+                        var resourceUrl = composePath(path);
+
+                        return $resource(resourceUrl, {}, {
+                            get: {method: 'GET', isArray: false}
+                        });
+
+                    },
+                    logout: function () {
+                        $log.log("I should logout...");
+                    }
+                }
+            }]).
+        factory("dailyPlanResource", [ "$resource", "$location", "$log", "composePath",
+            function ($resource, $location, $log, composePath) {
+
+                var path = '/dailyplanner/rest/plan';
                 var resourceUrl = composePath(path);
-                $log.log("resourceUrl=" + resourceUrl);
+
                 return $resource(resourceUrl, {}, {
                     query: {method: 'GET', isArray: true},
-                    save:  {method: 'POST', isArray: true}
+                    save: {method: 'POST', isArray: true}
                 });
             }]);
 }(angular));
