@@ -7,7 +7,6 @@
 (function (angular) {
     "use strict";
 
-
     angular.module("Services", ["ngResource"]).
         factory("composePath", [ "$location",
             function ($location) {
@@ -20,17 +19,26 @@
                     return protocoll + "://" + host + ":" + port + "\\:" + port + path;
                 }
             }]).
-        factory("authentication", [ "$log", "composePath", "$resource",
-            function ($log, composePath, $resource) {
+        factory("buildResource", [ "$resource", "composePath",
+            function ($resource, composePath) {
+                var basePath = "/dailyplanner/rest/";
+
+                return function (resourcePath, resourceSpec) {
+                    var path = basePath + resourcePath;
+                    var resourceUrl = composePath(path);
+
+                    return $resource(resourceUrl, {}, resourceSpec);
+                }
+            }
+        ]).
+        factory("authentication", [ "$log", "buildResource",
+            function ($log, buildResource) {
 
                 return {
                     getAuthenticatedUserId: function () {
-                        var path = '/dailyplanner/rest/currentuserid';
-                        var resourceUrl = composePath(path);
-
-                        return $resource(resourceUrl, {}, {
-                            get: {method: 'GET', isArray: false}
-                        });
+                         return buildResource("currentuserid", {
+                             get: {method: 'GET', isArray: false}
+                         });
 
                     },
                     logout: function () {
@@ -38,15 +46,13 @@
                     }
                 }
             }]).
-        factory("dailyPlanResource", [ "$resource", "$location", "$log", "composePath",
-            function ($resource, $location, $log, composePath) {
+        factory("dailyPlanResource", [ "$log", "buildResource",
+            function ($log, buildResource) {
 
-                var path = '/dailyplanner/rest/plan';
-                var resourceUrl = composePath(path);
-
-                return $resource(resourceUrl, {}, {
+                return buildResource("plan", {
                     query: {method: 'GET', isArray: true},
                     save: {method: 'POST', isArray: true}
                 });
+
             }]);
 }(angular));

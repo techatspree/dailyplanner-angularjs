@@ -92,7 +92,7 @@
         controller ("AuthenticationController", ["$log", "$scope" , "authentication" ,
 
             function($log, $scope, authentication) {
-                $scope.authenticatedUser = authentication.getAuthenticatedUserId();
+                $scope.authenticatedUser = authentication.getAuthenticatedUserId().get();
 
                 $scope.logout = function () {
                     authentication.logout();
