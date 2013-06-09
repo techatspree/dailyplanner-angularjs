@@ -89,9 +89,9 @@
                 }
             }
         ]).
-        controller ("AuthenticationController", ["$log", "$scope", "$route", "authentication" ,
+        controller ("AuthenticationController", ["$log", "$scope", "authentication" ,
 
-            function($log, $scope, $route, authentication) {
+            function($log, $scope, authentication) {
                 $scope.authenticatedUser = authentication.getAuthenticatedUserId().get();
 
                 $scope.logout = function () {
