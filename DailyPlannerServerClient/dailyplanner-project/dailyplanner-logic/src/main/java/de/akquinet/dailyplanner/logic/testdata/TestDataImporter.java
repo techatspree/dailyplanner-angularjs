@@ -4,34 +4,32 @@ import de.akquinet.dailyplanner.dbmodel.DailyPlan;
 import de.akquinet.dailyplanner.dbmodel.Role;
 import de.akquinet.dailyplanner.dbmodel.Task;
 import de.akquinet.dailyplanner.dbmodel.User;
-import de.akquinet.dailyplanner.logic.dao.UserDao;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+import javax.annotation.security.RunAs;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
-@Startup
 @Singleton
+@Startup
+@RunAs("admin") // set the current role to admin to enable the execution of protected methods, does not work an AS7 :-(
 public class TestDataImporter {
 
     private static final Logger LOGGER = Logger.getLogger(TestDataImporter.class);
     private static final int NR_TEST_USER = 6;
     private static final int NR_TEST_ADMIN = 4;
 
-    @EJB
-    private UserDao userDao;
-
     @PersistenceContext
     private EntityManager em;
 
     @PostConstruct
     public void insertTestData() {
-        List<User> allUsers = userDao.findAllUsers();
+        List<User> allUsers = findAllUsers();
         if (allUsers.isEmpty()) {
             final Role userRole = new Role("user");
             em.persist(userRole);
@@ -66,6 +64,12 @@ public class TestDataImporter {
         } else {
             LOGGER.info("There are users in the database. I will not create additional ones.");
         }
+    }
+
+    private List<User> findAllUsers() {
+        LOGGER.debug("findAllUsers()");
+        Query query = em.createQuery("select user from User user");
+        return (List<User>) query.getResultList();
     }
 
 }

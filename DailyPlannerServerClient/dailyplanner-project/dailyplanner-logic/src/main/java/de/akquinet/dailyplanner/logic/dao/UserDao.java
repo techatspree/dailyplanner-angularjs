@@ -4,6 +4,7 @@ package de.akquinet.dailyplanner.logic.dao;
 import de.akquinet.dailyplanner.dbmodel.User;
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +12,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
+@RolesAllowed({"admin","user"})
 public class UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDao.class);

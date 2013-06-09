@@ -1,4 +1,0 @@
-<jboss-web>
-    <security-domain>DailyPlanner</security-domain>
-    <disable-audit>false</disable-audit>
-</jboss-web>

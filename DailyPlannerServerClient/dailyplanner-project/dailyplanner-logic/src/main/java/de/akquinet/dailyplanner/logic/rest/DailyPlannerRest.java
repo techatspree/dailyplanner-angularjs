@@ -5,6 +5,7 @@ import de.akquinet.dailyplanner.dbmodel.Task;
 import de.akquinet.dailyplanner.logic.dao.DailyPlanDao;
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Stateless
 @Path("/")
+@RolesAllowed({"admin","user"})
 public class DailyPlannerRest {
 
     private static final Logger LOG = Logger.getLogger(DailyPlannerRest.class);
