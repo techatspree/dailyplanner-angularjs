@@ -89,14 +89,20 @@
                 }
             }
         ]).
-        controller ("AuthenticationController", ["$log", "$scope" , "authentication" ,
+        controller ("AuthenticationController", ["$log", "$scope", "$route", "authentication" ,
 
-            function($log, $scope, authentication) {
+            function($log, $scope, $route, authentication) {
                 $scope.authenticatedUser = authentication.getAuthenticatedUserId().get();
 
                 $scope.logout = function () {
-                    authentication.logout();
-                    // todo: should I do a reload here?
+                    authentication.session().delete(function() {
+                        // success
+                        $log.log("Session succesfully deleted");
+                        window.location.reload(true);
+                    }, function() {
+                        // failure
+                        $log.error("Could not logout.");
+                    });
                 }
             }
         ])

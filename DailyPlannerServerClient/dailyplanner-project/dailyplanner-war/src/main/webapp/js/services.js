@@ -36,13 +36,14 @@
 
                 return {
                     getAuthenticatedUserId: function () {
-                         return buildResource("currentuserid", {
-                             get: {method: 'GET', isArray: false}
-                         });
-
+                        return buildResource("currentuserid", {
+                            get: {method: 'GET', isArray: false}
+                        });
                     },
-                    logout: function () {
-                        $log.log("I should logout...");
+                    session: function () {
+                        return buildResource("session", {
+                            delete: {method: "DELETE"}
+                        });
                     }
                 }
             }]).

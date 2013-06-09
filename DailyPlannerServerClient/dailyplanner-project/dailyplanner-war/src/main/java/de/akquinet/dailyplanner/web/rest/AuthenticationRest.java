@@ -32,9 +32,8 @@ public class AuthenticationRest {
         }
     }
 
-    @POST
+    @DELETE
     @Path("/session")
-    @Consumes({"application/json"})
     public void logout() {
         LOG.debug("logout the current user");
         httpRequest.getSession().invalidate();
