@@ -88,6 +88,17 @@
 
                 }
             }
-        ]);
+        ]).
+        controller ("AuthenticationController", ["$log", "$scope" ,
+
+            function($log, $scope) {
+                $scope.authenticatedUser = "Schulze";
+
+                $scope.logout = function () {
+                    $log.log("I should logout");
+                }
+            }
+        ])
+    ;
 
 }(angular));
