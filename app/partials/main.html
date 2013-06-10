@@ -1,14 +1,27 @@
 <div data-ng-controller="TaskListController">
     <h1>Tagesplaner</h1>
 
+    <div id="top">
+        <form id="task-add-form" class="clearfix" data-ng-submit="addTask(newTaskTitle)">
+            <p class="input-wrapper pull-left">
+                <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTaskTitle">
+            </p>
+
+            <p class="button-wrapper pull-left">
+                <button type="submit"><i class="icon-plus"></i></span></button>
+            </p>
+        </form>
+    </div>
+
     <div id="content">
         <ul id="task-list">
             <li data-ng-repeat="task in tasks">
-                <div class="task-wrapper task-view-mode clearfix">
+                <div class="task-wrapper task-view-mode clearfix"
+                     data-ng-class="{ 'task-done': task.done }">
 
                     <div class="button-wrapper pull-left">
                         <div class="border-right">
-                            <button class="task-done-btn">
+                            <button class="task-done-btn" data-ng-click="toggleTaskStatus($index)">
                                 <i class="icon-circle"></i>
                                 <i class="icon-ok-sign"></i>
                             </button>
@@ -33,7 +46,7 @@
 
                     <div class="button-wrapper pull-left">
                         <div class="border-left">
-                            <button class="task-delete-btn">
+                            <button class="task-delete-btn" data-ng-click="deleteTask($index)">
                                 <i class="icon-trash"></i>
                             </button>
                         </div>

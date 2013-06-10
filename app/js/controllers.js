@@ -1,24 +1,26 @@
 "use strict";
 
 function TaskListController($scope) {
-    $scope.tasks = [
-        {
-            title: "Task 1",
-            description: "Task1 Beschreibung",
-            duration: 120,
-            done: false
-        },
-        {
-            title: "Task 2",
-            description: "",
-            duration: 15,
-            done: false
-        },
-        {
-            title: "Task 2",
-            description: "Task3 Beschreibung",
-            duration: 40,
-            done: false
-        }
-    ];
+    $scope.tasks = [];
+
+    $scope.addTask = function(title) {
+        if (!title) { return; }
+
+        $scope.tasks.push({
+                title: title,
+                description: "",
+                duration: 0,
+                done: false
+        });
+
+        $scope.newTaskTitle = null;
+    };
+
+    $scope.deleteTask = function(id) {
+        $scope.tasks.splice(id, 1);
+    };
+
+    $scope.toggleTaskStatus = function(id) {
+        $scope.tasks[id].done = !$scope.tasks[id].done;
+    };
 }
