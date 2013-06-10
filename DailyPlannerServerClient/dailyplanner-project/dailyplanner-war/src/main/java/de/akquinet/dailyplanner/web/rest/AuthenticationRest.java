@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import java.security.Principal;
+import java.util.LinkedList;
 
 @Path("/")
-@RolesAllowed({"admin","user"})
+@RolesAllowed({"admin", "user"})
 @RequestScoped
 public class AuthenticationRest {
 
@@ -23,12 +24,23 @@ public class AuthenticationRest {
     @GET
     @Path("/currentuserid")
     @Produces({"application/json"})
-    public String getAuthenticatedUserId() {
+    public AuthenticatedUserDto getAuthenticatedUserId() {
         final Principal userPrincipal = httpRequest.getUserPrincipal();
         if (userPrincipal == null) {
-            return "Gast";
+            return new AuthenticatedUserDto("Gast", new String[]{});
         } else {
-            return userPrincipal.getName();
+            final LinkedList<String> roles = new LinkedList<String>();
+            checkAndAddRole("admin", roles);
+            checkAndAddRole("user", roles);
+            final String[] rolesArray = roles.toArray(new String[roles.size()]);
+
+            return new AuthenticatedUserDto(userPrincipal.getName(), rolesArray);
+        }
+    }
+
+    private void checkAndAddRole(String role, LinkedList<String> roles) {
+        if (httpRequest.isUserInRole(role)) {
+            roles.add(role);
         }
     }
 

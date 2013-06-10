@@ -26,7 +26,7 @@ public class DailyPlannerRest {
     @Path("/plan")
     @Produces({"application/json"})
     public TaskDto[] getDailyPlan() {
-        final String userId = authenticationRest.getAuthenticatedUserId();
+        final String userId = authenticationRest.getAuthenticatedUserId().getLogin();
 
         return dailyPlanDao.findTasksOfDailyPlanForUser(userId);
     }
@@ -35,7 +35,7 @@ public class DailyPlannerRest {
     @Path("/plan")
     @Consumes({"application/json"})
     public void saveDailyPlan(TaskDto[] taskDtos) {
-        final String userId = authenticationRest.getAuthenticatedUserId();
+        final String userId = authenticationRest.getAuthenticatedUserId().getLogin();
 
         LOG.debugf("saveDailyPlan(%s) for %s", taskDtos, userId);
 

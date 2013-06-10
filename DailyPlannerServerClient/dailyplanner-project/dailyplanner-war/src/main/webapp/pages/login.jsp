@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <input type="reset" class="btn" value="Zurücksetzen"/>
+            <input type="reset" class="btn" value="Zur&uuml;cksetzen"/>
             <input type="submit" class="btn btn-primary" value="Anmelden"/>
         </div>
     </div>

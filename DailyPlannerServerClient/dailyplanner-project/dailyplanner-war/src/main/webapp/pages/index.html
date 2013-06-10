@@ -16,7 +16,8 @@
         <div class="navbar-inner">
             <a class="brand" href="#">Tagesplaner</a>
             <ul class="nav pull-right">
-                <li><a>{{authenticatedUser}}</a></li>
+                <li><a>{{authenticatedUser.login}}
+                    (<span data-ng-repeat="role in authenticatedUser.roles"> {{role}} </span>) </a></li>
                 <li><a data-ng-click="logout()">Abmelden</a></li>
             </ul>
         </div>
