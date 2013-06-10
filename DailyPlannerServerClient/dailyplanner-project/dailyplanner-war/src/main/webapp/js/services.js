@@ -36,14 +36,10 @@
 
                 return {
                     getAuthenticatedUserId: function () {
-                        return buildResource("currentuserid", {
-                            get: {method: 'GET', isArray: false}
-                        });
+                        return buildResource("currentuserid", {});
                     },
                     session: function () {
-                        return buildResource("session", {
-                            delete: {method: "DELETE"}
-                        });
+                        return buildResource("session", {});
                     }
                 }
             }]).
@@ -51,7 +47,6 @@
             function ($log, buildResource) {
 
                 return buildResource("plan", {
-                    query: {method: 'GET', isArray: true},
                     save: {method: 'POST', isArray: true}
                 });
 
