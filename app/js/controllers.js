@@ -1,26 +1,38 @@
-"use strict";
+/*global
+    angular
+ */
 
-function TaskListController($scope) {
-    $scope.tasks = [];
+(function(angular) {
+    "use strict";
 
-    $scope.addTask = function(title) {
-        if (!title) { return; }
+    angular.module("controllers", []).
 
-        $scope.tasks.push({
-                title: title,
-                description: "",
-                duration: 0,
-                done: false
-        });
+        controller("taskListController", [
+            "$scope",
 
-        $scope.newTaskTitle = null;
-    };
+            function($scope) {
+                $scope.tasks = [];
 
-    $scope.deleteTask = function(id) {
-        $scope.tasks.splice(id, 1);
-    };
+                $scope.addTask = function(title) {
+                    if (!title) { return; }
 
-    $scope.toggleTaskStatus = function(id) {
-        $scope.tasks[id].done = !$scope.tasks[id].done;
-    };
-}
+                    $scope.tasks.push({
+                        title: title,
+                        description: "",
+                        duration: 0,
+                        done: false
+                    });
+
+                    $scope.newTaskTitle = null;
+                };
+
+                $scope.deleteTask = function(id) {
+                    $scope.tasks.splice(id, 1);
+                };
+
+                $scope.toggleTaskStatus = function(id) {
+                    $scope.tasks[id].done = !$scope.tasks[id].done;
+                };
+            }
+        ]);
+}(angular));
