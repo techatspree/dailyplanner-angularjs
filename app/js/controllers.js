@@ -1,6 +1,6 @@
 "use strict";
 
-function TaskListController($scope) {
+function taskListController($scope) {
     $scope.tasks = [
         {
             title: "Task 1",
