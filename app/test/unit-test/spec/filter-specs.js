@@ -7,11 +7,11 @@
 (function(describe, it, expect, beforeEach, afterEach, module, inject) {
     "use strict";
 
-    describe("Filters", function() {
+    describe("filters", function() {
 
-        describe("durationFormat Filter", function() {
+        describe("durationFormat", function() {
 
-            beforeEach(module("Filters"));
+            beforeEach(module("filters"));
 
             it("should format 150 minutes to '02h 30m'", inject(function($filter) {
                 var input, formattedInput;

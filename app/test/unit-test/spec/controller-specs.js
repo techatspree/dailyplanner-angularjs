@@ -7,10 +7,10 @@
 (function(describe, it, expect, beforeEach, afterEach, module, inject) {
     "use strict";
 
-    describe("TaskListController", function() {
+    describe("taskListController", function() {
         var scope, controller, task, localStorageMock;
 
-        beforeEach(module("Controllers"));
+        beforeEach(module("controllers"));
 
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
@@ -38,10 +38,10 @@
             }());
 
             controller = $controller(
-                "TaskListController",
+                "taskListController",
                 {
                     $scope: scope,
-                    LocalStorage: localStorageMock
+                    localStorage: localStorageMock
                 }
             );
 

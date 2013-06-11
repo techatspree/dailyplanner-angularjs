@@ -7,10 +7,9 @@
 (function(angular, localStorage, JSON) {
     "use strict";
 
-    angular.module("Services", []).
+    angular.module("services", []).
 
-        // Local Storage Services
-        factory("LocalStorage", [
+        factory("localStorage", [
 
             function() {
                 var dataModel;
@@ -45,5 +44,4 @@
                 };
             }
         ]);
-
 }(angular, localStorage, JSON));

@@ -5,11 +5,10 @@
 (function(angular) {
     "use strict";
 
-    angular.module("App", [
-        "Services",
-        "Filters",
-        "Directives",
-        "Controllers"
+    angular.module("dailyPlanner", [
+        "controllers",
+        "services",
+        "directives",
+        "filters"
     ]);
-
 }(angular));

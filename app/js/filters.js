@@ -5,7 +5,7 @@
 (function(angular) {
     "use strict";
 
-    angular.module("Filters", []).
+    angular.module("filters", []).
 
         filter("durationFormat", [
             function() {
@@ -53,5 +53,4 @@
                 };
             }
         ]);
-
 }(angular));

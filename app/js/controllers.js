@@ -6,10 +6,10 @@
     "use strict";
 
     // add controller to controllers module
-    angular.module("Controllers", []).
-        controller("TaskListController", [
+    angular.module("controllers", []).
+        controller("taskListController", [
             "$scope",
-            "LocalStorage",
+            "localStorage",
             "filterFilter",
 
             function($scope, storage, filter) {
@@ -67,5 +67,4 @@
                 };
             }
         ]);
-
 }(angular));
