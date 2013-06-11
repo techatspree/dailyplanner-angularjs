@@ -6,5 +6,4 @@
     "use strict";
 
     angular.module("directives", []);
-
 }(angular));
