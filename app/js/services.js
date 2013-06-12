@@ -5,5 +5,12 @@
 (function(angular) {
     "use strict";
 
-    angular.module("services", []);
+    angular.module("services", []).
+
+        factory("dailyPlanLocalStorage", [
+            function() {
+
+                return {};
+            }
+        ]);
 }(angular));
