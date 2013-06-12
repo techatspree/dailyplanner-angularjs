@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/angularjs-ebook-demo.iml" filepath="$PROJECT_DIR$/angularjs-ebook-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-ear/dailyplanner-ear.iml" filepath="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-ear/dailyplanner-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-it/dailyplanner-it.iml" filepath="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-it/dailyplanner-it.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-logic/dailyplanner-logic.iml" filepath="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-logic/dailyplanner-logic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-model/dailyplanner-model.iml" filepath="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-model/dailyplanner-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-project.iml" filepath="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-war/dailyplanner-war.iml" filepath="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-war/dailyplanner-war.iml" />
     </modules>
   </component>
 </project>

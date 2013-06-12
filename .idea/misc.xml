@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="ejb" url="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-logic" />
+    <file type="javaeeApplication" url="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-ear" />
+    <file type="web" url="file://$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/dailyplanner-war" />
+  </component>
   <component name="IdProvider" IDEtalkID="AD986B9CB30C6E9B76AA9345F3F89B30" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/DailyPlannerServerClient/dailyplanner-project/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK" />
 </project>
 

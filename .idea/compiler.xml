@@ -17,7 +17,26 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="dailyplanner-ear" />
+        <module name="dailyplanner-it" />
+        <module name="dailyplanner-logic" />
+        <module name="dailyplanner-model" />
+        <module name="dailyplanner-war" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dailyplanner-ear" target="1.6" />
+      <module name="dailyplanner-it" target="1.6" />
+      <module name="dailyplanner-logic" target="1.6" />
+      <module name="dailyplanner-model" target="1.6" />
+      <module name="dailyplanner-project" target="1.6" />
+      <module name="dailyplanner-war" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

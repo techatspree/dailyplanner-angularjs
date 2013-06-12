@@ -80,7 +80,10 @@
                 $scope.synchronizeWithServer = function() {
                     dailyPlanResource.save({}, $scope.tasks, function() {
                         // success
-                        $scope.tasks = dailyPlanResource.query();
+//                        $scope.tasks = dailyPlanResource.query();
+                        dailyPlanResource.query(function(response) {
+                            $scope.tasks = response;
+                        });
                     }, function() {
                         // failure
                         $log.error("Could not save my daily plan.");
