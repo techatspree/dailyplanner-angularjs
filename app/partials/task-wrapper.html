@@ -22,7 +22,7 @@
     <!-- task delete dialog -->
     <div data-ng-switch="$index == modelState.deleteDialog">
         <div data-ng-switch-when="true">
-            <div data-task-delete-dialog data-model-state="modelState" data-delete-task="deleteTask(task)"></div>
+            <div data-task-delete-dialog data-model-state="modelState" data-delete-task="deleteTask($index)"></div>
         </div>
     </div>
 

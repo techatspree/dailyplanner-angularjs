@@ -9,37 +9,24 @@
 
     angular.module("services", []).
 
-        factory("localStorage", [
+        factory("dailyPlanLocalStorage", [
 
             function() {
-                var dataModel;
+                var dataModel, synchronizeWithLocalStorage;
+                dataModel = {};
+                dataModel.tasks = [];
 
-                dataModel = JSON.parse(localStorage.getItem("tasks") || '[]');
+                synchronizeWithLocalStorage = function() {
+                    localStorage.setItem("tasks", JSON.stringify(dataModel.tasks));
+                };
 
                 return {
-                    getItems: function() {
-                        return dataModel;
+                    getTasks: function() {
+                        dataModel.tasks = JSON.parse(localStorage.getItem("tasks") || '[]');
+                        return dataModel.tasks;
                     },
-
-                    addItem: function(task) {
-                        dataModel.push(task);
-                        localStorage.setItem("tasks", JSON.stringify(dataModel));
-                    },
-
-                    editItem: function(task) {
-                        var index = dataModel.indexOf(task);
-                        if (index !== -1) {
-                            dataModel[index] = task;
-                            localStorage.setItem("tasks", JSON.stringify(dataModel));
-                        }
-                    },
-
-                    deleteItem: function(task) {
-                        var index = dataModel.indexOf(task);
-                        if (index !== -1) {
-                            dataModel.splice(index, 1);
-                            localStorage.setItem("tasks", JSON.stringify(dataModel));
-                        }
+                    saveTasks: function() {
+                        synchronizeWithLocalStorage();
                     }
                 };
             }

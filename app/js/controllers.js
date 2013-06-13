@@ -9,11 +9,12 @@
     angular.module("controllers", []).
         controller("taskListController", [
             "$scope",
-            "localStorage",
+            "dailyPlanLocalStorage",
             "filterFilter",
 
             function($scope, storage, filter) {
-                $scope.tasks = storage.getItems();
+                var tasks;
+                $scope.tasks = tasks = storage.getTasks();
 
                 $scope.modelState = {};
                 $scope.modelState.remainingCount = 0;
@@ -40,30 +41,35 @@
                 };
 
 
-                $scope.addTask = function(task) {
-                    if (!task) { return; }
+                $scope.addNewTask = function(newTaskTitle) {
+                    var newTask;
 
-                    storage.addItem({
-                        title: task,
-                        // description: "...",
+                    if (!newTaskTitle) { return; }
+
+                    newTask = {
+                        title: newTaskTitle,
+                        description: "",
                         duration: 0,
                         done: false
-                    });
+                    };
+                    tasks.push(newTask);
 
-                    $scope.newTask = null;
+                    $scope.newTaskTitle = null;
+                    storage.saveTasks();
                 };
 
-                $scope.editTask = function(task) {
-                    storage.editItem(task);
+                $scope.editTask = function() {
+                    storage.saveTasks();
                 };
 
-                $scope.deleteTask = function(task) {
-                    storage.deleteItem(task);
+                $scope.deleteTask = function(taskId) {
+                    tasks.splice(taskId, 1);
+                    storage.saveTasks();
                 };
 
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
-                    storage.editItem(task);
+                    storage.saveTasks();
                 };
             }
         ]);
