@@ -12,13 +12,10 @@
         factory("dailyPlanLocalStorage", [
 
             function() {
-                var dataModel, synchronizeWithLocalStorage;
+                var dataModel;
+                
                 dataModel = {};
                 dataModel.tasks = [];
-
-                synchronizeWithLocalStorage = function() {
-                    localStorage.setItem("tasks", JSON.stringify(dataModel.tasks));
-                };
 
                 return {
                     getTasks: function() {
@@ -26,7 +23,7 @@
                         return dataModel.tasks;
                     },
                     saveTasks: function() {
-                        synchronizeWithLocalStorage();
+                        localStorage.setItem("tasks", JSON.stringify(dataModel.tasks));
                     }
                 };
             }
