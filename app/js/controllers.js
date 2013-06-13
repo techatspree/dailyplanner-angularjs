@@ -9,29 +9,37 @@
 
         controller("taskListController", [
             "$scope",
+            "dailyPlanLocalStorage",
 
-            function($scope) {
-                $scope.tasks = [];
+            function($scope, storage) {
+                var tasks;
+                $scope.tasks = tasks = storage.getTasks();
 
-                $scope.addTask = function(title) {
-                    if (!title) { return; }
+                $scope.addNewTask = function(newTaskTitle) {
+                    var newTask;
 
-                    $scope.tasks.push({
-                        title: title,
+                    if (!newTaskTitle) { return; }
+
+                    newTask = {
+                        title: newTaskTitle,
                         description: "",
                         duration: 0,
                         done: false
-                    });
+                    };
 
+                    tasks.push(newTask);
                     $scope.newTaskTitle = null;
+                    storage.saveTasks();
                 };
 
-                $scope.deleteTask = function(id) {
-                    $scope.tasks.splice(id, 1);
+                $scope.deleteTask = function(taskIndex) {
+                    tasks.splice(taskIndex, 1);
+                    storage.saveTasks();
                 };
 
-                $scope.toggleTaskStatus = function(id) {
-                    $scope.tasks[id].done = !$scope.tasks[id].done;
+                $scope.toggleTaskStatus = function(task) {
+                    task.done = !task.done;
+                    storage.saveTasks();
                 };
             }
         ]);

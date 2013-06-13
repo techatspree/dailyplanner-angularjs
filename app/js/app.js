@@ -5,7 +5,7 @@
 (function(angular) {
     "use strict";
 
-    angular.module("dailyPlanner", [
+    angular.module("dailyPlan", [
         "controllers",
         "services",
         "directives",

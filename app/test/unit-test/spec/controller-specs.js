@@ -8,14 +8,31 @@
     "use strict";
 
     describe("TaskListController", function() {
-        var scope, controller;
+        var scope, controller, localStorageMock;
 
 
         beforeEach(module("controllers"));
 
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            controller = $controller("taskListController", { $scope: scope });
+
+            localStorageMock = (function() {
+                var tasks;
+
+                tasks = [];
+
+                return {
+                    getTasks: function() {
+                        return tasks;
+                    },
+                    saveTasks: function() {}
+                };
+            }());
+
+            controller = $controller("taskListController", {
+                $scope: scope,
+                dailyPlanLocalStorage: localStorageMock
+            });
         }));
 
 
@@ -24,7 +41,7 @@
 
             expect(scope.tasks.length).toEqual(0);
 
-            scope.addTask(newTaskTitle);
+            scope.addNewTask(newTaskTitle);
             expect(scope.tasks.length).toEqual(1);
         });
 
@@ -52,10 +69,11 @@
                 done: false
             };
             scope.tasks.push(task);
+
             expect(scope.tasks.length).toEqual(1);
             expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(false);
 
-            scope.toggleTaskStatus(scope.tasks.indexOf(task));
+            scope.toggleTaskStatus(task);
 
             expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(true);
         });

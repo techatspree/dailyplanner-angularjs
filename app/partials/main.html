@@ -2,7 +2,7 @@
     <h1>Tagesplaner</h1>
 
     <div id="top">
-        <form id="task-add-form" class="clearfix" data-ng-submit="addTask(newTaskTitle)">
+        <form id="task-add-form" class="clearfix" data-ng-submit="addNewTask(newTaskTitle)">
             <p class="input-wrapper pull-left">
                 <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTaskTitle">
             </p>
@@ -21,7 +21,7 @@
 
                     <div class="button-wrapper pull-left">
                         <div class="border-right">
-                            <button class="task-done-btn" data-ng-click="toggleTaskStatus($index)">
+                            <button class="task-done-btn" data-ng-click="toggleTaskStatus(task)">
                                 <i class="icon-circle"></i>
                                 <i class="icon-ok-sign"></i>
                             </button>
