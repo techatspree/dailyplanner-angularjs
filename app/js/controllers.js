@@ -9,11 +9,11 @@
 
         controller("taskListController", [
             "$scope",
-            "dailyPlanLocalStorage",
+            "localStorage",
 
             function($scope, storage) {
-                var tasks;
-                $scope.tasks = tasks = storage.getTasks();
+                $scope.tasks = storage;
+                storage.fetchTasks();
 
                 $scope.addNewTask = function(newTaskTitle) {
                     var newTask;
@@ -27,19 +27,19 @@
                         done: false
                     };
 
-                    tasks.push(newTask);
                     $scope.newTaskTitle = null;
-                    storage.saveTasks();
+                    storage.addNewTask(newTask);
+                    storage.synchronize();
                 };
 
                 $scope.deleteTask = function(taskIndex) {
-                    tasks.splice(taskIndex, 1);
-                    storage.saveTasks();
+                    storage.deleteTask(taskIndex);
+                    storage.synchronize();
                 };
 
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
-                    storage.saveTasks();
+                    storage.synchronize();
                 };
             }
         ]);
