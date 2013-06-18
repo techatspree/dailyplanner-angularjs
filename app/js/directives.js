@@ -54,10 +54,14 @@
 
                         element.find("form").submit(function() {
                             scope.$apply(function() {
-                                scope.modelState.editMode = null;
-                                scope.modelState.selectedItem = null;
-                                scope.modelState.deleteDialog = null;
+                                scope.$emit("changeTaskInEditMode", { taskIndex: null });
                             });
+
+//                            scope.$apply(function() {
+//                                scope.modelState.editMode = null;
+//                                scope.modelState.selectedItem = null;
+//                                scope.modelState.deleteDialog = null;
+//                            });
                         });
                     }
                 };

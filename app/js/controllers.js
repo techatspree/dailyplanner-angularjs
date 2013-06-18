@@ -15,33 +15,22 @@
                 var tasks;
 
                 $scope.tasks = tasks = storage;
-
                 storage.fetchTasks();
 
-                $scope.modelState = {};
-                $scope.modelState.remainingCount = 0;
-                $scope.modelState.completedCount = 0;
-                $scope.modelState.selectedItem = null;
-                $scope.modelState.editMode = null;
-                $scope.modelState.deleteDialog = null;
-
+                $scope.remainingTasks = 0;
+                $scope.completedTasks = 0;
                 $scope.$watch('tasks', function () {
-                    $scope.modelState.remainingTasks = filter(tasks.data, {done: false}).length || 0;
-                    $scope.modelState.completedTasks = filter(tasks.data, {done: true}).length || 0;
+                    $scope.remainingTasks = filter(tasks.data, {done: false}).length || 0;
+                    $scope.completedTasks = filter(tasks.data, {done: true}).length || 0;
                 }, true);
 
-                $scope.showEditMode = function(index) {
-                    $scope.modelState.selectedItem = index;
-                    $scope.modelState.editMode = index;
-                    $scope.modelState.deleteDialog = null;
+                $scope.taskInEditMode = null;
+                $scope.showTaskEditMode = function(taskIndex) {
+                    $scope.taskInEditMode = taskIndex;
                 };
-
-                $scope.showTaskDeleteDialog = function(index) {
-                    $scope.modelState.selectedItem = index;
-                    $scope.modelState.editMode = ($scope.modelState.editMode === index) ? $scope.modelState.editMode : null;
-                    $scope.modelState.deleteDialog = index;
-                };
-
+                $scope.$on("changeTaskInEditMode", function(event, data) {
+                    $scope.taskInEditMode = data.taskIndex;
+                });
 
                 $scope.addNewTask = function(newTaskTitle) {
                     var newTask;
