@@ -5,16 +5,18 @@
 (function(angular) {
     "use strict";
 
-    // add controller to controllers module
     angular.module("controllers", []).
         controller("taskListController", [
             "$scope",
-            "dailyPlanLocalStorage",
+            "localStorage",
             "filterFilter",
 
             function($scope, storage, filter) {
                 var tasks;
-                $scope.tasks = tasks = storage.getTasks();
+
+                $scope.tasks = tasks = storage;
+
+                storage.fetchTasks();
 
                 $scope.modelState = {};
                 $scope.modelState.remainingCount = 0;
@@ -24,8 +26,8 @@
                 $scope.modelState.deleteDialog = null;
 
                 $scope.$watch('tasks', function () {
-                    $scope.modelState.remainingTasks = filter($scope.tasks, {done: false}).length || 0;
-                    $scope.modelState.completedTasks = filter($scope.tasks, {done: true}).length || 0;
+                    $scope.modelState.remainingTasks = filter(tasks.data, {done: false}).length || 0;
+                    $scope.modelState.completedTasks = filter(tasks.data, {done: true}).length || 0;
                 }, true);
 
                 $scope.showEditMode = function(index) {
@@ -52,24 +54,24 @@
                         duration: 0,
                         done: false
                     };
-                    tasks.push(newTask);
 
                     $scope.newTaskTitle = null;
-                    storage.saveTasks();
+                    storage.addNewTask(newTask);
+                    storage.synchronize();
                 };
 
                 $scope.editTask = function() {
-                    storage.saveTasks();
+                    storage.synchronize();
                 };
 
-                $scope.deleteTask = function(taskId) {
-                    tasks.splice(taskId, 1);
-                    storage.saveTasks();
+                $scope.deleteTask = function(taskIndex) {
+                    storage.deleteTask(taskIndex);
+                    storage.synchronize();
                 };
 
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
-                    storage.saveTasks();
+                    storage.synchronize();
                 };
             }
         ]);

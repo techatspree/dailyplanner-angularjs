@@ -1,39 +1,49 @@
 /*global
- angular,
- localStorage,
- JSON
+    angular,
+    localStorage,
+    JSON
  */
 
 (function (angular) {
     "use strict";
 
-    angular.module("Services", ["ngResource"]).
-        factory("composePath", [ "$location",
-            function ($location) {
+    angular.module("services", ["ngResource"]).
 
+        factory("composePath", [
+            "$location",
+
+            function ($location) {
                 return function (path) {
-                    var protocoll = $location.protocol();
-                    var host = $location.host();
-                    var port = $location.port();
+                    var protocoll = $location.protocol(),
+                        host = $location.host(),
+                        port = $location.port();
+
                     // weird AngularJS bug, I have to give the port twice (hint on IRC from sigurding)
                     return protocoll + "://" + host + ":" + port + "\\:" + port + path;
-                }
-            }]).
-        factory("buildResource", [ "$resource", "composePath",
+                };
+            }
+        ]).
+
+        factory("buildResource", [
+            "$resource",
+            "composePath",
+
             function ($resource, composePath) {
                 var basePath = "/dailyplanner/rest/";
 
                 return function (resourcePath, resourceSpec) {
-                    var path = basePath + resourcePath;
-                    var resourceUrl = composePath(path);
+                    var path = basePath + resourcePath,
+                        resourceUrl = composePath(path);
 
                     return $resource(resourceUrl, {}, resourceSpec);
-                }
+                };
             }
         ]).
-        factory("authentication", [ "$log", "buildResource",
-            function ($log, buildResource) {
 
+        factory("authentication", [
+            "buildResource",
+
+            function (buildResource) {
                 return {
                     getAuthenticatedUserId: function () {
                         return buildResource("currentuserid", {});
@@ -41,14 +51,55 @@
                     session: function () {
                         return buildResource("session", {});
                     }
-                }
-            }]).
-        factory("dailyPlanResource", [ "$log", "buildResource",
-            function ($log, buildResource) {
+                };
+            }
+        ]).
 
+        factory("dailyPlanResource", [
+            "buildResource",
+
+            function (buildResource) {
                 return buildResource("plan", {
                     save: {method: 'POST', isArray: true}
                 });
+            }
+        ]).
 
-            }]);
+        factory("remoteStorage", [
+            "dailyPlanResource",
+            "$log",
+
+            function (dailyPlanResource, $log) {
+                return {
+                    data: [],
+
+                    fetchTasks: function() {
+                        var self = this;
+
+                        dailyPlanResource.query(function(result) {
+                            self.data = result;
+                        });
+                    },
+
+                    addNewTask: function(newTask) {
+                        this.data.push(newTask);
+                    },
+
+                    deleteTask: function(taskIndex) {
+                        this.data.splice(taskIndex, 1);
+                    },
+
+                    synchronize: function() {
+                        var self = this;
+                        dailyPlanResource.save({}, this.data, function() {
+                            // success
+                            self.fetchTasks();
+                        }, function() {
+                            // failure
+                            $log.error("Could not save my daily plan.");
+                        });
+                    }
+                };
+            }
+        ]);
 }(angular));

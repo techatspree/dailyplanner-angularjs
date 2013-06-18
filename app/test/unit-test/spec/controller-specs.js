@@ -16,23 +16,16 @@
             scope = $rootScope.$new();
 
             localStorageMock = (function() {
-                var tasks;
-
-                tasks = [];
-
                 return {
-                    getItems: function() {
-                        return tasks;
+                    data: [],
+
+                    synchronize: function() {},
+                    fetchTasks: function() {},
+                    addNewTask: function(newTask) {
+                        this.data.push(newTask);
                     },
-                    addItem: function(task) {
-                        tasks.push(task);
-                    },
-                    editItem: function(task) {
-                        var index = tasks.indexOf(task);
-                        tasks[index] = task;
-                    },
-                    deleteItem: function(task) {
-                        tasks.splice(tasks.indexOf(task), 1);
+                    deleteTask: function(taskIndex) {
+                        this.data.splice(taskIndex, 1);
                     }
                 };
             }());
@@ -55,28 +48,28 @@
 
 
         it("should add a new task", function() {
-            expect(scope.tasks.length).toEqual(0);
+            expect(scope.tasks.data.length).toEqual(0);
 
-            scope.addTask(task);
-            expect(scope.tasks.length).toEqual(1);
+            scope.addNewTask(task);
+            expect(scope.tasks.data.length).toEqual(1);
         });
 
         it("should remove a task", function() {
-            scope.tasks.push(task);
-            expect(scope.tasks.indexOf(task)).toEqual(0);
+            scope.tasks.data.push(task);
+            expect(scope.tasks.data.indexOf(task)).toEqual(0);
 
-            scope.deleteTask(task);
-            expect(scope.tasks.indexOf(task)).toEqual(-1);
+            scope.deleteTask(scope.tasks.data.indexOf(task));
+            expect(scope.tasks.data.indexOf(task)).toEqual(-1);
         });
 
         it("should set a task done", function() {
-            scope.tasks.push(task);
-            expect(scope.tasks.length).toEqual(1);
-            expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(false);
+            scope.tasks.data.push(task);
+            expect(scope.tasks.data.length).toEqual(1);
+            expect(scope.tasks.data[scope.tasks.data.indexOf(task)].done).toEqual(false);
 
             scope.toggleTaskStatus(task);
 
-            expect(scope.tasks[scope.tasks.indexOf(task)].done).toEqual(true);
+            expect(scope.tasks.data[scope.tasks.data.indexOf(task)].done).toEqual(true);
         });
 
     });

@@ -5,7 +5,7 @@
 (function(angular) {
     "use strict";
 
-    angular.module("Directives", []).
+    angular.module("directives", []).
 
         constant("PARTIAL_PATH", "partials/").
 
@@ -17,7 +17,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task.html"
+                    templateUrl: PARTIAL_PATH + "task-wrapper.html"
                 };
             }
         ]).
@@ -30,7 +30,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task_view.html"
+                    templateUrl: PARTIAL_PATH + "task-view.html"
                 };
             }
         ]).
@@ -43,7 +43,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task_edit.html",
+                    templateUrl: PARTIAL_PATH + "task-edit.html",
                     link: function(scope, element, attrs) {
 
                         element.find("form input").blur(function() {
@@ -76,7 +76,7 @@
                         deleteTask: "&"
                     },
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task_delete_dialog.html",
+                    templateUrl: PARTIAL_PATH + "task-delete-dialog.html",
                     link: function postLink(scope, element, attrs) {
                         var slideIn, slideOut, animationDuration;
 

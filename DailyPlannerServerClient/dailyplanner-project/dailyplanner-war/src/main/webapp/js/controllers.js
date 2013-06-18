@@ -1,17 +1,23 @@
 /*global
-    angular
+    angular,
+    window
 */
 
-(function(angular) {
+(function(angular, window) {
     "use strict";
 
-    // add controller to controllers module
-    angular.module("Controllers", []).
-        controller("TaskListController", ["$log", "$scope","filterFilter","dailyPlanResource",
+    angular.module("controllers", []).
+        controller("taskListController", [
+            "$scope",
+            "remoteStorage",
+            "filterFilter",
 
-            function($log, $scope, filter, dailyPlanResource) {
+            function($scope, storage, filter) {
+                var tasks;
 
-                $scope.tasks = dailyPlanResource.query();
+                $scope.tasks = tasks = storage;
+
+                storage.fetchTasks();
 
                 $scope.modelState = {};
                 $scope.modelState.remainingCount = 0;
@@ -21,8 +27,8 @@
                 $scope.modelState.deleteDialog = null;
 
                 $scope.$watch('tasks', function () {
-                    $scope.modelState.remainingTasks = filter($scope.tasks, {done: false}).length || 0;
-                    $scope.modelState.completedTasks = filter($scope.tasks, {done: true}).length || 0;
+                    $scope.modelState.remainingTasks = filter(tasks.data, {done: false}).length || 0;
+                    $scope.modelState.completedTasks = filter(tasks.data, {done: true}).length || 0;
                 }, true);
 
                 $scope.showEditMode = function(index) {
@@ -38,63 +44,44 @@
                 };
 
 
-                $scope.addTask = function(taskTitle) {
+                $scope.addNewTask = function(newTaskTitle) {
+                    var newTask;
 
-                    if (!taskTitle) { return; }
+                    if (!newTaskTitle) { return; }
 
-                    var newTask = {
-                        id : null,
-                        title: taskTitle,
-                        description: "..",
+                    newTask = {
+                        title: newTaskTitle,
+                        description: "",
                         duration: 0,
                         done: false
                     };
-
-                    $scope.tasks.push(newTask);
-                    $scope.newTask = null;
-
-                    $scope.synchronizeWithServer();
+                    $scope.newTaskTitle = null;
+                    storage.addNewTask(newTask);
+                    storage.synchronize();
                 };
 
-                $scope.editTask = function(task) {
-                    var index = $scope.tasks.indexOf(task);
-                    if (index !== -1) {
-                        $scope.tasks[index] = task;
-                    }
-                    $scope.synchronizeWithServer();
+                $scope.editTask = function() {
+                    storage.synchronize();
                 };
 
-                $scope.deleteTask = function(task) {
-                    var index = $scope.tasks.indexOf(task);
-                    if (index !== -1) {
-                        $scope.tasks.splice(index, 1);
-                    }
-                    $scope.synchronizeWithServer();
+                $scope.deleteTask = function(taskIndex) {
+                    storage.deleteTask(taskIndex);
+                    storage.synchronize();
                 };
 
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
-                    $scope.synchronizeWithServer();
+                    storage.synchronize();
                 };
-
-                $scope.synchronizeWithServer = function() {
-                    dailyPlanResource.save({}, $scope.tasks, function() {
-                        // success
-//                        $scope.tasks = dailyPlanResource.query();
-                        dailyPlanResource.query(function(response) {
-                            $scope.tasks = response;
-                        });
-                    }, function() {
-                        // failure
-                        $log.error("Could not save my daily plan.");
-                    });
-
-                }
             }
         ]).
-        controller ("AuthenticationController", ["$log", "$scope", "authentication" ,
 
-            function($log, $scope, authentication) {
+        controller("authenticationController", [
+            "$scope",
+            "authentication",
+            "$log",
+
+            function($scope, authentication, $log) {
                 $scope.authenticatedUser = authentication.getAuthenticatedUserId().get();
 
                 $scope.logout = function () {
@@ -106,9 +93,7 @@
                         // failure
                         $log.error("Could not logout.");
                     });
-                }
+                };
             }
-        ])
-    ;
-
-}(angular));
+        ]);
+}(angular, window));

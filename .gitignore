@@ -7,3 +7,6 @@
 /DailyPlannerServerClient/dailyplanner-project/dailyplanner-logic/target/
 /DailyPlannerServerClient/dailyplanner-project/dailyplanner-model/target/
 /DailyPlannerServerClient/dailyplanner-project/dailyplanner-war/target/
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/jsLinters/jshint.xml
