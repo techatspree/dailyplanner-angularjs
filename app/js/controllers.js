@@ -28,6 +28,7 @@
                 $scope.taskInEditMode = null;
                 $scope.showTaskEditDialog = function(taskIndex) {
                     $scope.taskInEditMode = taskIndex;
+                    $scope.taskInDeleteMode = null;
                 };
                 $scope.$on("hideTaskEditDialog", function() {
                     $scope.taskInEditMode = null;
@@ -36,6 +37,7 @@
                 $scope.taskInDeleteMode = null;
                 $scope.showTaskDeleteDialog = function(taskIndex) {
                     $scope.taskInDeleteMode = taskIndex;
+                    $scope.taskInEditMode = ($scope.taskInEditMode === taskIndex) ? taskIndex : null;
                 };
                 $scope.$on("hideTaskDeleteDialog", function() {
                     $scope.taskInDeleteMode = null;
