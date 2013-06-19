@@ -41,23 +41,6 @@
                     task.done = !task.done;
                     storage.synchronize();
                 };
-
-                $scope.editTask = function() {
-                    storage.synchronize();
-                };
-
-
-                $scope.viewState = {};
-                $scope.viewState.taskInEditMode = null;
-                $scope.showHideTaskEditDialog = function(taskIndex) {
-                    $scope.viewState.taskInEditMode = taskIndex;
-                    $scope.viewState.taskInDeleteMode = null;
-                };
-                $scope.viewState.taskInDeleteMode = null;
-                $scope.showHideTaskDeleteDialog = function(taskIndex) {
-                    $scope.viewState.taskInDeleteMode = taskIndex;
-                    $scope.viewState.taskInEditMode = ($scope.viewState.taskInEditMode === taskIndex) ? taskIndex : null;
-                };
             }
         ]);
 }(angular));

@@ -5,23 +5,36 @@
          'task-edit-mode': $index == viewState.taskInEditMode
      }">
 
-    <!-- task view/edit mode -->
-    <div data-ng-switch="$index == viewState.taskInEditMode">
-        <!-- task view mode -->
-        <div data-ng-switch-default>
-            <div data-task-view></div>
-        </div>
-
-        <!-- task edit mode -->
-        <div data-ng-switch-when="true">
-            <div data-task-edit-dialog></div>
+    <div class="button-wrapper pull-left">
+        <div class="border-right">
+            <button class="task-done-btn" data-ng-click="toggleTaskStatus(task)">
+                <i class="icon-circle"></i>
+                <i class="icon-ok-sign"></i>
+            </button>
         </div>
     </div>
 
-    <!-- task delete dialog -->
-    <div data-ng-switch="$index == viewState.taskInDeleteMode">
-        <div data-ng-switch-when="true">
-            <div data-task-delete-dialog></div>
+    <div class="content-wrapper pull-left">
+        <div class="vertical-align-wrapper">
+            <p class="content-left vertical-align-item">
+                <span class="task-title" data-ng-show="task.title">{{ task.title }}</span>
+                <span class="task-description" data-ng-show="task.description">{{ task.description }}</span>
+            </p>
+
+            <p class="content-right vertical-align-item">
+            <span class="task-duration">
+                <i class='icon-time'></i>
+                <span class="test" data-ng-show="task.duration">{{ task.duration }}m</span>
+            </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="button-wrapper pull-left">
+        <div class="border-left">
+            <button class="task-delete-btn" data-ng-click="deleteTask($index)">
+                <i class="icon-trash"></i>
+            </button>
         </div>
     </div>
 </div>
