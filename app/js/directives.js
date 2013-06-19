@@ -22,7 +22,7 @@
             }
         ]).
 
-        directive("taskViewMode", [
+        directive("taskView", [
             "PARTIAL_PATH",
 
             function(PARTIAL_PATH) {
@@ -30,12 +30,12 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task-view-mode.html"
+                    templateUrl: PARTIAL_PATH + "task-view.html"
                 };
             }
         ]).
 
-        directive("taskEditMode", [
+        directive("taskEditDialog", [
             "PARTIAL_PATH",
 
             function(PARTIAL_PATH) {
@@ -43,7 +43,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task-edit-mode.html",
+                    templateUrl: PARTIAL_PATH + "task-edit-dialog.html",
                     link: function(scope, element, attrs) {
 
                         element.find("form input").blur(function() {
@@ -54,14 +54,8 @@
 
                         element.find("form").submit(function() {
                             scope.$apply(function() {
-                                scope.$emit("changeTaskInEditMode", { taskIndex: null });
+                                scope.$emit("hideTaskEditDialog", {});
                             });
-
-//                            scope.$apply(function() {
-//                                scope.modelState.editMode = null;
-//                                scope.modelState.selectedItem = null;
-//                                scope.modelState.deleteDialog = null;
-//                            });
                         });
                     }
                 };
@@ -76,7 +70,6 @@
                 return {
                     restrict: "A",
                     scope: {
-                        modelState: "=",
                         deleteTask: "&"
                     },
                     replace: true,
@@ -96,19 +89,16 @@
 
                         slideIn();
 
-                        scope.cancel = function() {
+                        scope.hideTaskDeleteDialog = function() {
                             slideOut();
-
                             $timeout(function() {
-                                scope.modelState.deleteDialog = null;
+                                scope.$emit("hideTaskDeleteDialog", {});
                             }, animationDuration);
                         };
 
-                        scope.submit = function(task) {
-                            scope.modelState.selectedItem = null;
-                            scope.modelState.editMode = null;
-                            scope.modelState.deleteDialog = null;
-
+                        scope.submitTaskDeleteDialog = function(task) {
+                            scope.$emit("hideTaskDeleteDialog", {});
+                            scope.$emit("hideTaskEditDialog", {});
                             scope.deleteTask(task);
                         };
                     }

@@ -24,13 +24,23 @@
                     $scope.completedTasks = filter(tasks.data, {done: true}).length || 0;
                 }, true);
 
+
                 $scope.taskInEditMode = null;
-                $scope.showTaskEditMode = function(taskIndex) {
+                $scope.showTaskEditDialog = function(taskIndex) {
                     $scope.taskInEditMode = taskIndex;
                 };
-                $scope.$on("changeTaskInEditMode", function(event, data) {
-                    $scope.taskInEditMode = data.taskIndex;
+                $scope.$on("hideTaskEditDialog", function() {
+                    $scope.taskInEditMode = null;
                 });
+
+                $scope.taskInDeleteMode = null;
+                $scope.showTaskDeleteDialog = function(taskIndex) {
+                    $scope.taskInDeleteMode = taskIndex;
+                };
+                $scope.$on("hideTaskDeleteDialog", function() {
+                    $scope.taskInDeleteMode = null;
+                });
+
 
                 $scope.addNewTask = function(newTaskTitle) {
                     var newTask;

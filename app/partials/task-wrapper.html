@@ -9,19 +9,19 @@
     <div data-ng-switch="$index == taskInEditMode">
         <!-- task view mode -->
         <div data-ng-switch-default>
-            <div data-task-view-mode></div>
+            <div data-task-view></div>
         </div>
 
         <!-- task edit mode -->
         <div data-ng-switch-when="true">
-            <div data-task-edit-mode></div>
+            <div data-task-edit-dialog></div>
         </div>
     </div>
 
     <!-- task delete dialog -->
-    <div data-ng-switch="$index == modelState.deleteDialog">
+    <div data-ng-switch="$index == taskInDeleteMode">
         <div data-ng-switch-when="true">
-            <div data-task-delete-dialog data-model-state="modelState" data-delete-task="deleteTask($index)"></div>
+            <div data-task-delete-dialog data-delete-task="deleteTask($index)"></div>
         </div>
     </div>
 
