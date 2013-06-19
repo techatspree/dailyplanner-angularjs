@@ -18,7 +18,7 @@
             <p class="content-right vertical-align-item">
                 <span class="task-duration">
                     <i class='icon-time'></i>
-                    <span class="test" data-ng-show="task.duration">{{ task.duration }}m</span>
+                    <span class="test" data-ng-show="task.duration">{{ task.duration | durationFormat }}</span>
                 </span>
             </p>
         </div>
