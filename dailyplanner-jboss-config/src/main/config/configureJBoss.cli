@@ -8,7 +8,7 @@ connect
 
 /subsystem=security/security-domain=DailyPlanner/:add
 /subsystem=security/security-domain=DailyPlanner/authentication=classic:add
-/subsystem=security/security-domain=DailyPlanner/authentication=classic/login-module=DailyPlannerDBLogin:add(code="Database", flag="required", module-options=[("dsJndiName"=>"java:jboss\/datasources\/ExampleDS"),("principalsQuery"=>"SELECT PASSWORD FROM CM_USER WHERE LOGIN = ?"), ("rolesQuery"=>"SELECT R.NAME, 'Roles' FROM CM_ROLE_CM_USER RU INNER JOIN CM_ROLE R ON R.ID = RU.ROLES_ID INNER JOIN CM_USER U ON U.ID = RU.USERS_ID WHERE U.LOGIN = ?")])
+#/subsystem=security/security-domain=DailyPlanner/authentication=classic/login-module=DailyPlannerDBLogin:add(code="Database", flag="required", module-options=[("dsJndiName"=>"java:jboss\/datasources\/ExampleDS"),("principalsQuery"=>"SELECT PASSWORD FROM CM_USER WHERE LOGIN = ?"), ("rolesQuery"=>"SELECT R.NAME, 'Roles' FROM CM_ROLE_CM_USER RU INNER JOIN CM_ROLE R ON R.ID = RU.ROLES_ID INNER JOIN CM_USER U ON U.ID = RU.USERS_ID WHERE U.LOGIN = ?")])
 
 
 # add Logging
