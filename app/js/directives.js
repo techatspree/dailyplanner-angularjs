@@ -1,60 +1,53 @@
 /*global
     angular
-*/
+ */
 
 (function(angular) {
     "use strict";
 
     angular.module("directives", []).
 
-        constant("PARTIAL_PATH", "partials/").
-
         directive("task", [
-            "PARTIAL_PATH",
-
-            function(PARTIAL_PATH) {
+            function() {
                 return {
                     restrict: "A",
                     scope: true,
+                    templateUrl: "partials/task.html",
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task-wrapper.html"
+                    link: function(scope, element, attrs) {}
                 };
             }
         ]).
 
         directive("taskView", [
-            "PARTIAL_PATH",
-
-            function(PARTIAL_PATH) {
+            function() {
                 return {
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task-view.html"
+                    templateUrl: "partials/task-view.html",
+                    link: function(scope, element, attrs) {}
                 };
             }
         ]).
 
         directive("taskEditDialog", [
-            "PARTIAL_PATH",
-
-            function(PARTIAL_PATH) {
+            function() {
                 return {
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task-edit-dialog.html",
+                    templateUrl: "partials/task-edit-dialog.html",
                     link: function(scope, element, attrs) {
-
                         element.find("form input").blur(function() {
                             scope.$apply(function() {
-                                scope.editTask(scope.task);
+                                scope.editTask();
                             });
                         });
 
                         element.find("form").submit(function() {
                             scope.$apply(function() {
-                                scope.$emit("hideTaskEditDialog", {});
+                                scope.viewState.taskInEditMode = null;
                             });
                         });
                     }
@@ -63,18 +56,15 @@
         ]).
 
         directive("taskDeleteDialog", [
-            "PARTIAL_PATH",
             "$timeout",
 
-            function(PARTIAL_PATH, $timeout) {
+            function($timeout) {
                 return {
                     restrict: "A",
-                    scope: {
-                        deleteTask: "&"
-                    },
+                    scope: true,
                     replace: true,
-                    templateUrl: PARTIAL_PATH + "task-delete-dialog.html",
-                    link: function postLink(scope, element, attrs) {
+                    templateUrl: "partials/task-delete-dialog.html",
+                    link: function(scope, element, attrs) {
                         var slideIn, slideOut, animationDuration;
 
                         animationDuration = 200;
@@ -92,14 +82,14 @@
                         scope.hideTaskDeleteDialog = function() {
                             slideOut();
                             $timeout(function() {
-                                scope.$emit("hideTaskDeleteDialog", {});
+                                scope.viewState.taskInDeleteMode = null;
                             }, animationDuration);
                         };
 
-                        scope.submitTaskDeleteDialog = function(task) {
-                            scope.$emit("hideTaskDeleteDialog", {});
-                            scope.$emit("hideTaskEditDialog", {});
-                            scope.deleteTask(task);
+                        scope.submitTaskDeleteDialog = function(taskIndex) {
+                            scope.viewState.taskInDeleteMode = null;
+                            scope.viewState.taskEditModeMode = null;
+                            scope.deleteTask(taskIndex);
                         };
                     }
                 };

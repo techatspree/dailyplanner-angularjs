@@ -1,48 +1,27 @@
 /*global
     angular
-*/
+ */
 
 (function(angular) {
     "use strict";
 
     angular.module("controllers", []).
+
         controller("taskListController", [
             "$scope",
             "localStorage",
             "filterFilter",
 
             function($scope, storage, filter) {
-                var tasks;
-
-                $scope.tasks = tasks = storage;
+                $scope.tasks = storage;
                 storage.fetchTasks();
 
                 $scope.remainingTasks = 0;
                 $scope.completedTasks = 0;
-                $scope.$watch('tasks', function () {
-                    $scope.remainingTasks = filter(tasks.data, {done: false}).length || 0;
-                    $scope.completedTasks = filter(tasks.data, {done: true}).length || 0;
+                $scope.$watch("tasks", function () {
+                    $scope.remainingTasks = filter($scope.tasks.data, {done: false}).length || 0;
+                    $scope.completedTasks = filter($scope.tasks.data, {done: true}).length || 0;
                 }, true);
-
-
-                $scope.taskInEditMode = null;
-                $scope.showTaskEditDialog = function(taskIndex) {
-                    $scope.taskInEditMode = taskIndex;
-                    $scope.taskInDeleteMode = null;
-                };
-                $scope.$on("hideTaskEditDialog", function() {
-                    $scope.taskInEditMode = null;
-                });
-
-                $scope.taskInDeleteMode = null;
-                $scope.showTaskDeleteDialog = function(taskIndex) {
-                    $scope.taskInDeleteMode = taskIndex;
-                    $scope.taskInEditMode = ($scope.taskInEditMode === taskIndex) ? taskIndex : null;
-                };
-                $scope.$on("hideTaskDeleteDialog", function() {
-                    $scope.taskInDeleteMode = null;
-                });
-
 
                 $scope.addNewTask = function(newTaskTitle) {
                     var newTask;
@@ -61,10 +40,6 @@
                     storage.synchronize();
                 };
 
-                $scope.editTask = function() {
-                    storage.synchronize();
-                };
-
                 $scope.deleteTask = function(taskIndex) {
                     storage.deleteTask(taskIndex);
                     storage.synchronize();
@@ -73,6 +48,23 @@
                 $scope.toggleTaskStatus = function(task) {
                     task.done = !task.done;
                     storage.synchronize();
+                };
+
+                $scope.editTask = function() {
+                    storage.synchronize();
+                };
+
+
+                $scope.viewState = {};
+                $scope.viewState.taskInEditMode = null;
+                $scope.showHideTaskEditDialog = function(taskIndex) {
+                    $scope.viewState.taskInEditMode = taskIndex;
+                    $scope.viewState.taskInDeleteMode = null;
+                };
+                $scope.viewState.taskInDeleteMode = null;
+                $scope.showHideTaskDeleteDialog = function(taskIndex) {
+                    $scope.viewState.taskInDeleteMode = taskIndex;
+                    $scope.viewState.taskInEditMode = ($scope.viewState.taskInEditMode === taskIndex) ? taskIndex : null;
                 };
             }
         ]);

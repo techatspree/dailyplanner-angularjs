@@ -1,8 +1,8 @@
 /*global
-    angular,
-    localStorage,
-    JSON
-*/
+ angular,
+ localStorage,
+ JSON
+ */
 
 (function(angular, localStorage, JSON) {
     "use strict";
@@ -19,7 +19,7 @@
                     },
 
                     fetchTasks: function() {
-                        this.data =  JSON.parse(localStorage.getItem("tasks") || '[]');
+                        this.data = JSON.parse(localStorage.getItem("tasks") || '[]');
                     },
 
                     addNewTask: function(newTask) {
