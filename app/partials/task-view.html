@@ -11,14 +11,14 @@
     <div class="content-wrapper pull-left" data-ng-click="showHideTaskEditDialog($index)">
         <div class="vertical-align-wrapper">
             <p class="content-left vertical-align-item">
-                <span class="task-title" data-ng-show="task.title">{{ task.title }}</span>
-                <span class="task-description" data-ng-show="task.description">{{ task.description }}</span>
+                <span class="task-title" data-ng-show="task.title">{{ task.title | truncateCharacters:35 }}</span>
+                <span class="task-description" data-ng-show="task.description">{{ task.description | truncateCharacters:55 }}</span>
             </p>
 
             <p class="content-right vertical-align-item">
                 <span class="task-duration">
                     <i class='icon-time'></i>
-                    <span class="test" data-ng-show="task.duration">{{ task.duration | durationFormat }}</span>
+                    <span data-ng-show="task.duration">{{ task.duration | durationFormat }}</span>
                 </span>
             </p>
         </div>
