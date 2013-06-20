@@ -10,10 +10,18 @@
         controller("taskListController", [
             "$scope",
             "localStorage",
+            "filterFilter",
 
-            function($scope, storage) {
+            function($scope, storage, filter) {
                 $scope.tasks = storage;
                 storage.fetchTasks();
+
+                $scope.remainingTasks = 0;
+                $scope.completedTasks = 0;
+                $scope.$watch("tasks", function () {
+                    $scope.remainingTasks = filter($scope.tasks.data, {done: false}).length || 0;
+                    $scope.completedTasks = filter($scope.tasks.data, {done: true}).length || 0;
+                }, true);
 
                 $scope.addNewTask = function(newTaskTitle) {
                     var newTask;
