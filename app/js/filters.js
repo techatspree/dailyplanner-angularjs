@@ -12,27 +12,15 @@
                 return function(input) {
                     var output, hours, minutes;
 
-                    if (isNaN(input)) { return input; }
+                    if (isNaN(input) || input === 0) { return; }
 
-                    hours = 0;
-                    minutes = 0;
-                    output = "";
+                    hours = (input >= 60) ? parseInt(input / 60, 10).toString() : "0";
+                    output = (input < 600) ? "0" + hours : hours;
+                    output += "h ";
 
-                    if (input) {
-                        if (input >= 60) {
-                            hours = parseInt(input / 60, 10);
-                        }
-
-                        if (input > 0) {
-                            minutes = input % 60;
-                        }
-
-                        output = (hours < 10) ? "0" + hours : hours;
-                        output += "h";
-                        output += " ";
-                        output += (minutes < 10) ? "0" + minutes : minutes;
-                        output += "m";
-                    }
+                    minutes = (input % 60).toString();
+                    output += (input % 60 < 10) ? "0" + minutes : minutes;
+                    output += "m";
 
                     return output;
                 };
