@@ -1,0 +1,27 @@
+<div class="task-wrapper clearfix"
+     data-ng-class="{
+         'task-done': task.done,
+         'task-view-mode': $index != viewState.taskInEditMode,
+         'task-edit-mode': $index == viewState.taskInEditMode
+     }">
+
+    <!-- task view/edit mode -->
+    <div data-ng-switch="$index == viewState.taskInEditMode">
+        <!-- task view mode -->
+        <div data-ng-switch-default>
+            <div data-task-view></div>
+        </div>
+
+        <!-- task edit mode -->
+        <div data-ng-switch-when="true">
+            <div data-task-edit-dialog></div>
+        </div>
+    </div>
+
+    <!-- task delete dialog -->
+    <div data-ng-switch="$index == viewState.taskInDeleteMode">
+        <div data-ng-switch-when="true">
+            <div data-task-delete-dialog></div>
+        </div>
+    </div>
+</div>
