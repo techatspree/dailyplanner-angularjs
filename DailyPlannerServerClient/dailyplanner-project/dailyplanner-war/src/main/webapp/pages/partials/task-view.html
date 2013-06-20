@@ -1,15 +1,14 @@
 <div class="clearfix">
-
-    <div class="button-wrapper pull-left" data-ng-click="toggleTaskStatus(task)">
+    <div class="button-wrapper pull-left">
         <div class="border-right">
-            <button class="task-done-btn">
+            <button class="task-done-btn" data-ng-click="toggleTaskStatus(task)">
                 <i class="icon-circle"></i>
                 <i class="icon-ok-sign"></i>
             </button>
         </div>
     </div>
 
-    <div class="content-wrapper pull-left" data-ng-click="showEditMode($index)">
+    <div class="content-wrapper pull-left" data-ng-click="showHideTaskEditDialog($index)">
         <div class="vertical-align-wrapper">
             <p class="content-left vertical-align-item">
                 <span class="task-title" data-ng-show="task.title">{{ task.title | truncateCharacters:35 }}</span>
@@ -19,18 +18,17 @@
             <p class="content-right vertical-align-item">
                 <span class="task-duration">
                     <i class='icon-time'></i>
-                    <span class="test">{{ task.duration | durationFormat }}</span>
+                    <span data-ng-show="task.duration">{{ task.duration | durationFormat }}</span>
                 </span>
             </p>
         </div>
     </div>
 
-    <div class="button-wrapper pull-left" data-ng-click="showTaskDeleteDialog($index)">
+    <div class="button-wrapper pull-left">
         <div class="border-left">
-            <button class="task-delete-btn">
+            <button class="task-delete-btn" data-ng-click="showHideTaskDeleteDialog($index)">
                 <i class="icon-trash"></i>
             </button>
         </div>
     </div>
-
 </div>

@@ -1,6 +1,6 @@
 /*global
     angular
-*/
+ */
 
 (function(angular) {
     "use strict";
@@ -11,25 +11,16 @@
             function() {
                 return function(input) {
                     var output, hours, minutes;
-                    hours = 0;
-                    minutes = 0;
-                    output = "";
 
-                    if (input) {
-                        if (input >= 60) {
-                            hours = parseInt(input / 60, 10);
-                        }
+                    if (isNaN(input) || input === 0) { return; }
 
-                        if (input > 0) {
-                            minutes = input % 60;
-                        }
+                    hours = parseInt(input / 60, 10);
+                    output = (input < 600) ? "0" + hours.toString() : hours.toString();
+                    output += "h ";
 
-                        output = (hours < 10) ? "0" + hours : hours;
-                        output += "h";
-                        output += " ";
-                        output += (minutes < 10) ? "0" + minutes : minutes;
-                        output += "m";
-                    }
+                    minutes = input % 60;
+                    output += (input % 60 < 10) ? "0" + minutes.toString() : minutes.toString();
+                    output += "m";
 
                     return output;
                 };
@@ -41,17 +32,16 @@
                 return function(input, chars) {
                     if (isNaN(chars)) { return input; }
 
-                    if (chars <= 0) { return ''; }
+                    if (chars <= 0) { return ""; }
 
                     if (input && input.length >= chars) {
                         input = input.substring(0, chars);
 
-                        return input + '...';
+                        return input + "...";
                     }
 
                     return input;
                 };
             }
         ]);
-
 }(angular));

@@ -1,7 +1,7 @@
 /*global
- angular,
- localStorage,
- JSON
+     angular,
+     localStorage,
+     JSON
  */
 
 (function(angular, localStorage, JSON) {

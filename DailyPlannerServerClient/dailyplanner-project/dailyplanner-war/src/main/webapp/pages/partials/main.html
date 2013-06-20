@@ -1,5 +1,5 @@
-<!--suppress HtmlFormInputWithoutLabel -->
 <div data-ng-controller="taskListController">
+    <h1>Tagesplaner</h1>
 
     <div id="top">
         <form id="task-add-form" class="clearfix" data-ng-submit="addNewTask(newTaskTitle)">
@@ -8,7 +8,7 @@
             </p>
 
             <p class="button-wrapper pull-left">
-                <button type="submit"><i class="icon-plus"></i></button>
+                <button type="submit"><i class="icon-plus"></i></span></button>
             </p>
         </form>
     </div>
@@ -22,7 +22,7 @@
     </div>
 
     <div id="bottom">
-        <i class="icon-circle"></i> <span>{{ modelState.remainingTasks }}</span>
-        <i class="icon-ok-sign"></i> <span>{{ modelState.completedTasks }}</span>
+        <i class="icon-circle"></i> <span>{{ remainingTasks }}</span>
+        <i class="icon-ok-sign"></i> <span>{{ completedTasks }}</span>
     </div>
 </div>
