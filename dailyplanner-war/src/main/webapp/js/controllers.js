@@ -1,16 +1,15 @@
 /*global
-    angular,
-    window
-*/
+    angular
+ */
 
-(function(angular, window) {
+(function(angular) {
     "use strict";
 
     angular.module("controllers", []).
 
         controller("taskListController", [
             "$scope",
-            "remoteStorage",
+            "localStorage",
             "filterFilter",
 
             function($scope, storage, filter) {
@@ -68,26 +67,5 @@
                     $scope.viewState.taskInEditMode = ($scope.viewState.taskInEditMode === taskIndex) ? taskIndex : null;
                 };
             }
-        ]).
-
-        controller("authenticationController", [
-            "$scope",
-            "authentication",
-            "$log",
-
-            function($scope, authentication, $log) {
-                $scope.authenticatedUser = authentication.getAuthenticatedUserId().get();
-
-                $scope.logout = function () {
-                    authentication.session().delete(function() {
-                        // success
-                        $log.log("Session succesfully deleted");
-                        window.location.reload(true);
-                    }, function() {
-                        // failure
-                        $log.error("Could not logout.");
-                    });
-                };
-            }
         ]);
-}(angular, window));
+}(angular));

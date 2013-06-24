@@ -12,7 +12,7 @@
                 return {
                     restrict: "A",
                     scope: true,
-                    templateUrl: "partials/task.html",
+                    templateUrl: "pages/partials/task.html",
                     replace: true,
                     link: function(scope, element, attrs) {}
                 };
@@ -25,7 +25,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: "partials/task-view.html",
+                    templateUrl: "pages/partials/task-view.html",
                     link: function(scope, element, attrs) {}
                 };
             }
@@ -37,7 +37,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: "partials/task-edit-dialog.html",
+                    templateUrl: "pages/partials/task-edit-dialog.html",
                     link: function(scope, element, attrs) {
                         element.find("form input").blur(function() {
                             scope.$apply(function() {
@@ -63,7 +63,7 @@
                     restrict: "A",
                     scope: true,
                     replace: true,
-                    templateUrl: "partials/task-delete-dialog.html",
+                    templateUrl: "pages/partials/task-delete-dialog.html",
                     link: function(scope, element, attrs) {
                         var slideIn, slideOut, animationDuration;
 
