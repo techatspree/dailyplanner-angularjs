@@ -48,8 +48,23 @@ h1 {
     Layout
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+.navbar .brand,
+.navbar .nav li a {
+    color: white;
+}
+.navbar .brand:hover,
+.navbar .nav li a:hover {
+    color: #1ABC9C;
+}
+.navbar-inverse .navbar-inner {
+    background: #34495e;
+    border-bottom: 1px solid #243342;
+}
+
+
 .container {
     width: 640px;
+    margin-top: 30px;
 }
 
 #task-add-form p {
@@ -140,6 +155,20 @@ span.task-duration {}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     UI
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.navbar .brand,
+.navbar .nav li a {
+    color: white;
+}
+.navbar .brand:hover,
+.navbar .nav li a:hover {
+    color: #1ABC9C;
+}
+.navbar-inverse .navbar-inner {
+    background: #34495e;
+    border-bottom: 1px solid #243342;
+}
+
 
 #task-add-form {
     border-bottom: 1px solid #243342;
