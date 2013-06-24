@@ -1,9 +1,0 @@
-connect
-
-/subsystem=security/security-domain=DailyPlanner/:remove
-
-/subsystem=logging/logger=de.akquinet:remove
-
-/:reload
-
-quit
