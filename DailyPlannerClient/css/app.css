@@ -249,20 +249,20 @@ button:hover {
     color: #7F8C8D;
 }
 
-task-view,
-task-edit-view,
-task-delete-view {
+#task-view,
+#task-edit-view,
+#task-delete-view {
     display: table;
 }
-task-wrapper .button-wrapper,
-task-wrapper .content-wrapper {
+#task-wrapper .button-wrapper,
+#task-wrapper .content-wrapper {
     display: table-cell;
     vertical-align: middle;
     text-align: left;
     height: 100%;
 }
-task-wrapper .content-wrapper .content-left,
-task-wrapper .content-wrapper .content-right {
+#task-wrapper .content-wrapper .content-left,
+#task-wrapper .content-wrapper .content-right {
     display: inherit;
     vertical-align: inherit;
     text-align: inherit;
@@ -307,18 +307,18 @@ button.task-delete-btn i {
     task-view
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-task-view {
+#task-view {
     height: 80px;
 }
 
-task-view .button-wrapper {
+#task-view .button-wrapper {
     width: 80px;
 }
-task-view .content-wrapper {
+#task-view .content-wrapper {
     width: 480px;
 }
 
-task-view .content-wrapper {
+#task-view .content-wrapper {
     cursor: pointer;
 }
 
@@ -348,16 +348,16 @@ task-view .content-wrapper {
     task-edit-view
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-task-edit-view {
+#task-edit-view {
     background: #3B536B;
     height: 240px;
     opacity: 0;
 }
 
-task-edit-view .button-wrapper {
+#task-edit-view .button-wrapper {
     width: 80px;
 }
-task-edit-view .content-wrapper {
+#task-edit-view .content-wrapper {
     width: 480px;
 }
 
@@ -365,7 +365,7 @@ task-edit-view .content-wrapper {
     task-delete-view
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-task-delete-view {
+#task-delete-view {
     position: absolute;
     top: 0;
     left: 100%;
@@ -382,19 +382,19 @@ task-delete-view {
     height: 240px;
 }
 
-task-delete-view .button-wrapper {
+#task-delete-view .button-wrapper {
     width: 80px;
 }
-task-delete-view .content-wrapper {
+#task-delete-view .content-wrapper {
     width: 560px;
     padding-left: 20px;
 }
 
-task-delete-view button {
+#task-delete-view button {
     height: 30px;
     color: white !important;
 }
-task-delete-view button:hover {
+#task-delete-view button:hover {
     color: #2C3E50 !important;
 }
 
