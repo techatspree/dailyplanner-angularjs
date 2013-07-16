@@ -3,24 +3,27 @@
 function taskListController($scope) {
     $scope.tasks = [];
 
-    $scope.addTask = function(title) {
-        if (!title) { return; }
+    $scope.addNewTask = function (newTaskTitle) {
+        var newTask;
 
-        $scope.tasks.push({
-                title: title,
-                description: "",
-                duration: 0,
-                done: false
-        });
+        if (!newTaskTitle) { return; }
+
+        newTask = {
+            title: newTaskTitle,
+            description: "",
+            duration: 0,
+            done: false
+        };
 
         $scope.newTaskTitle = null;
+        $scope.tasks.push(newTask);
     };
 
-    $scope.deleteTask = function(id) {
-        $scope.tasks.splice(id, 1);
+    $scope.deleteTask = function (taskIndex) {
+        $scope.tasks.splice(taskIndex, 1);
     };
 
-    $scope.toggleTaskStatus = function(id) {
-        $scope.tasks[id].done = !$scope.tasks[id].done;
+    $scope.toggleTaskStatus = function (task) {
+        task.done = !task.done;
     };
 }
