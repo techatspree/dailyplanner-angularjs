@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    Basics
+    basic
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 @font-face {
@@ -33,161 +33,58 @@ body {
     color: #34495E;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    misc
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 ul, li, p, form {
     margin: 0;
     padding: 0;
 }
 
-h1 {
-    text-align: center;
-}
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    Layout
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-.navbar .brand,
-.navbar .nav li a {
-    color: white;
-}
-.navbar .brand:hover,
-.navbar .nav li a:hover {
-    color: #1ABC9C;
-}
-.navbar-inverse .navbar-inner {
-    background: #34495e;
-    border-bottom: 1px solid #243342;
-}
-
-
 .container {
     width: 640px;
-    margin-top: 30px;
 }
 
-#task-add-form p {
-    height: 80px;
-}
-#task-add-form p.input-wrapper {
-    width: 560px;
-}
-#task-add-form p.button-wrapper {
-    width: 80px;
-}
-
-.task-view-mode {
-    height: 80px;
-}
-.task-view-mode div {
-    height: 80px;
-}
-.task-edit-mode {
-    height: 240px;
-}
-.task-edit-mode div {
-    height: 240px;
-}
-.task-wrapper .button-wrapper{
-    width: 80px;
-}
-.task-wrapper .content-wrapper {
-    width: 480px;
-}
-
-.vertical-align-wrapper {
-    display: table;
-    width: 100%;
-}
-.vertical-align-item {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: left;
-}
-
-.content-left {
-    width: 380px;
-}
-.content-right {
-    width: 100px;
-}
-
-span.task-title,
-span.task-description {
-    display: block;
-    padding: 0 20px;
-}
-span.task-duration {}
-
-#bottom {
-    padding: 5px 20px;
-}
-
-#bottom i {
-    margin-right: 2px;
-}
-
-#bottom span {
-    margin-right: 12px;
+.margin-left-20px {
+    margin-left: 20px;
 }
 
 .margin-bottom-10 {
     margin-bottom: 10px;
 }
 
-#task-edit-form {
-    padding: 0 20px;
+.border-left {
+    border-left: 1px solid #243342;
 }
 
-.task-delete-dialog-left {
-    width: 560px;
-}
-.task-delete-dialog-right {
-    width: 80px;
-}
-.task-delete-dialog-left p {
-    padding: 0 20px;
+.border-right {
+    border-right: 1px solid #243342;
 }
 
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    UI
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-.navbar .brand,
-.navbar .nav li a {
+#edit-task-form input.ng-invalid {
+    border-bottom: 1px solid #e74c3c;
+}
+#edit-task-form input.ng-invalid:hover,
+#edit-task-form input.ng-invalid:focus {
+    background: #e74c3c;
     color: white;
-}
-.navbar .brand:hover,
-.navbar .nav li a:hover {
-    color: #1ABC9C;
-}
-.navbar-inverse .navbar-inner {
-    background: #34495e;
-    border-bottom: 1px solid #243342;
+    border-bottom: 1px solid #e74c3c;
 }
 
-
-#task-add-form {
-    border-bottom: 1px solid #243342;
-    cursor: pointer;
-    background: #1ABC9C;
-}
-#task-add-form:hover {
-    background: #1DCFAB;
+.form-error {
+    color: #e74c3c;
+    float: right;
 }
 
-#task-add-form input,
-#task-edit-form input {
+#add-task-form input,
+#edit-task-form input {
     display: block;
     padding: 0;
     margin: 0;
     height: 100%;
     background: none;
     color: white;
-    font-size: 20px;
     line-height: 1.618;
     width: 100%;
     border-radius: 0;
@@ -195,25 +92,6 @@ span.task-duration {}
     outline: none;
     box-shadow: none;
     font-family: "Lato", sans-serif;
-    text-indent: 0;
-}
-
-#task-add-form input {
-    font-size: 24px;
-    text-indent: 25px;
-}
-
-#task-edit-form input {
-    border-bottom: 1px solid white;
-}
-
-#task-edit-form input:hover,
-#task-edit-form input:focus {
-    background: white;
-    color: #34495E;
-    border-bottom: 1px solid white;
-    box-shadow: none;
-    outline: none;
 }
 
 button {
@@ -227,14 +105,167 @@ button {
     width: 100%;
     height: 100%;
 }
-
 button:hover {
     color: #1ABC9C;
 }
 
-#task-add-form button:hover,
-#task-delete-dialog button:hover {
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: rgba(236, 240, 241, 0.6) !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    navbar
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.navbar {
+    margin: 0;
+}
+
+.navbar .brand,
+.navbar .nav li a {
+    color: white;
+}
+
+.navbar-inverse .navbar-inner {
+    background: #34495e;
+    border-bottom: 1px solid #243342;
+    border-radius: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    status-bar
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#status-bar {
+    padding: 5px 20px;
+    font-size: 16px;
+    background: #BDC3C7;
     color: #34495E;
+}
+
+#status-bar i {
+    margin-right: 2px;
+}
+
+#status-bar span {
+    margin-right: 12px;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    add-task-form
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#add-task-form {
+    border-bottom: 1px solid #243342;
+    cursor: pointer;
+    background: #1ABC9C;
+}
+#add-task-form:hover {
+    background: #1DCFAB;
+}
+
+#add-task-form .input-wrapper {
+    height: 80px;
+    width: 560px;
+}
+#add-task-form .button-wrapper {
+    height: 80px;
+    width: 80px;
+}
+
+#add-task-form input {
+    font-size: 24px;
+    text-indent: 25px;
+}
+
+#add-task-form button:hover {
+    color: #34495E;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    edit-task-form
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#edit-task-form {
+    padding: 0 20px;
+}
+
+#edit-task-form input {
+    border-bottom: 1px solid white;
+    font-size: 20px;
+    text-indent: 0;
+}
+#edit-task-form input:hover,
+#edit-task-form input:focus {
+    background: white;
+    color: #34495E;
+    border-bottom: 1px solid white;
+    box-shadow: none;
+    outline: none;
+}
+.task-done #edit-task-form input {
+    color: #7F8C8D;
+    border-bottom: 1px solid #7F8C8D;
+}
+
+#edit-task-form button {
+    text-align: right;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    task-list
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#task-list {
+    color: white;
+    font-size: 20px;
+    line-height: 1.618;
+}
+#task-list li {
+    list-style: none;
+}
+
+.task-wrapper {
+    border-bottom: 1px solid #243342;
+    background: #34495e;
+    position: relative;
+    overflow: hidden;
+}
+.task-wrapper:hover {
+    background: #3B536B;
+}
+.task-wrapper.task-done {
+    background: #2C3E50;
+    color: #7F8C8D;
+}
+
+task-view,
+task-edit-view,
+task-delete-view {
+    display: table;
+}
+task-wrapper .button-wrapper,
+task-wrapper .content-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    height: 100%;
+}
+task-wrapper .content-wrapper .content-left,
+task-wrapper .content-wrapper .content-right {
+    display: inherit;
+    vertical-align: inherit;
+    text-align: inherit;
 }
 
 button.task-done-btn i.icon-ok-sign {
@@ -254,93 +285,10 @@ button.task-delete-btn i {
     display: inline;
 }
 
-#task-edit-form button {
-    text-align: right;
-}
-
-::-webkit-input-placeholder { /* WebKit browsers */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: rgba(236, 240, 241, 0.6) !important;
-}
-
-
-#task-list {
-    color: white;
-    font-size: 20px;
-    line-height: 1.618;
-}
-
-#task-list li {
-    list-style: none;
-}
-
-#task-list .task-wrapper {
-    border-bottom: 1px solid #243342;
-    background: #34495E;
-    position: relative;
-    overflow: hidden;
-}
-
-#task-list .task-wrapper:hover,
-#task-list .task-wrapper.task-done:hover,
-#task-list .task-wrapper.task-edit-mode {
-    background: #3B536B;
-}
-
-.border-left {
-    border-left: 1px solid #243342;
-}
-
-.border-right {
-    border-right: 1px solid #243342;
-}
-
-.task-view-mode .content-wrapper {
-    cursor: pointer;
-}
-
-.task-duration {
-    font-size: 14px;
-}
-
-.task-description {
-    font-size: 13px;
-}
-
-.task-title,
-.task-description,
-.task-duration {
-    display: inline-block;
-    /*text-overflow: ellipsis;*/
-    /*white-space: nowrap;*/
-    overflow: hidden;
-    line-height: 1.6;
-}
-
-
-#task-list .task-wrapper.task-done {
-    background: #2C3E50;
-}
-.task-done,
-.task-done #task-edit-form input,
-.task-done #task-edit-form label {
-    color: #7F8C8D;
-}
 .task-done .task-title,
 .task-done .task-description,
 .task-done .task-duration span {
     text-decoration: line-through;
-}
-.task-done #task-edit-form input {
-    border-bottom: 1px solid #7F8C8D;
 }
 .task-done .task-done-btn i.icon-ok-sign {
     display: inline;
@@ -355,8 +303,69 @@ button.task-delete-btn i {
     color: #1ABC9C;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    task-view
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#task-delete-dialog {
+task-view {
+    height: 80px;
+}
+
+task-view .button-wrapper {
+    width: 80px;
+}
+task-view .content-wrapper {
+    width: 480px;
+}
+
+task-view .content-wrapper {
+    cursor: pointer;
+}
+
+.content-wrapper .content-left {
+    padding-left: 20px;
+    width: 380px;
+}
+.content-wrapper .content-right {
+    width: 100px;
+}
+
+.task-title,
+.task-description,
+.task-duration {
+    display: block;
+    overflow: hidden;
+    line-height: 1.6;
+}
+.task-duration {
+    font-size: 14px;
+}
+.task-description {
+    font-size: 13px;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    task-edit-view
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+task-edit-view {
+    background: #3B536B;
+    height: 240px;
+    opacity: 0;
+}
+
+task-edit-view .button-wrapper {
+    width: 80px;
+}
+task-edit-view .content-wrapper {
+    width: 480px;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    task-delete-view
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+task-delete-view {
     position: absolute;
     top: 0;
     left: 100%;
@@ -365,13 +374,190 @@ button.task-delete-btn i {
     width: 100%;
     color: white;
 }
-#task-delete-dialog button {
-    color: white;
+
+.task-view task-delete-view {
+    height: 80px;
+}
+.task-edit-view task-delete-view {
+    height: 240px;
 }
 
+task-delete-view .button-wrapper {
+    width: 80px;
+}
+task-delete-view .content-wrapper {
+    width: 560px;
+    padding-left: 20px;
+}
 
-#bottom {
-    font-size: 16px;
-    background: #BDC3C7;
-    color: #34495E;
+task-delete-view button {
+    height: 30px;
+    color: white !important;
+}
+task-delete-view button:hover {
+    color: #2C3E50 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    login
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.login {
+    width: 600px;
+    height:250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -190px 0 0 -300px;
+}
+
+.login .dailyplanner-icon img {
+    width: 150px;
+}
+
+.login .login-form-container {
+    margin-left: 20px;
+    width: 390px;
+    padding: 0 20px;
+}
+
+.login .login-form {
+    width: 100%;
+}
+
+.login .login-form label i.icon-user {
+    font-size: 20px;
+}
+.login .login-form label i.icon-lock {
+    font-size: 23px;
+    margin-right: 1px;
+}
+
+.login .login-form ::-webkit-input-placeholder { /* WebKit browsers */
+    color: lightgray !important;
+}
+.login .login-form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: lightgray !important;
+}
+.login .login-form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: lightgray !important;
+}
+.login .login-form :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: lightgray !important;
+}
+
+.login .btn {
+    border: none;
+    background: #1ABC9C;
+    color: #ffffff;
+    padding: 9px 12px 10px;
+    line-height: 22px;
+    text-decoration: none;
+    text-shadow: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    -webkit-backface-visibility: hidden;
+}
+.login .btn:hover {
+    background-color: #1DCFAB;
+    color: #ffffff;
+    outline: none;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    -webkit-backface-visibility: hidden;
+}
+
+.login .login-form .control-group {
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.login .login-form .login-field {
+    border-color: transparent;
+    font-size: 17px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    text-indent: 3px;
+    width: 375px;
+    margin-bottom: 10px !important;
+}
+
+.login .login-form .login-field-icon {
+    color: #bfc9ca;
+    position: absolute;
+    right: 13px;
+    top: 14px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    -webkit-backface-visibility: hidden;
+}
+
+.login .login-form .login-field:focus + .login-field-icon {
+    color: #1ABC9C;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    border: 2px solid #bdc3c7;
+    color: #34495e;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    padding: 8px 5px;
+    height: 21px;
+    text-indent: 6px;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: border .25s linear, color .25s linear;
+    -moz-transition: border .25s linear, color .25s linear;
+    -o-transition: border .25s linear, color .25s linear;
+    transition: border .25s linear, color .25s linear;
+    -webkit-backface-visibility: hidden;
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    border-color: #1ABC9C;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.login-error {
+    position: absolute;
+    width: 620px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -310px;
+}
+
+.login-error .alert {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.login-error .alert-error {
+    color: #c0392b;
+}
+
+.login-error .alert a {
+    color: #34495e;
 }
