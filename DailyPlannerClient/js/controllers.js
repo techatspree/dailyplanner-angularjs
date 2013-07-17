@@ -2,20 +2,20 @@
     angular
  */
 
-(function(angular) {
+(function (angular) {
     "use strict";
 
     angular.module("controllers", []).
 
         controller("taskListController", [
             "$scope",
-            "localStorage",
+            "localTaskStorage",
 
-            function($scope, storage) {
+            function ($scope, storage) {
                 $scope.tasks = storage;
                 storage.fetchTasks();
 
-                $scope.addNewTask = function(newTaskTitle) {
+                $scope.addNewTask = function (newTaskTitle) {
                     var newTask;
 
                     if (!newTaskTitle) { return; }
@@ -32,12 +32,12 @@
                     storage.synchronize();
                 };
 
-                $scope.deleteTask = function(taskIndex) {
+                $scope.deleteTask = function (taskIndex) {
                     storage.deleteTask(taskIndex);
                     storage.synchronize();
                 };
 
-                $scope.toggleTaskStatus = function(task) {
+                $scope.toggleTaskStatus = function (task) {
                     task.done = !task.done;
                     storage.synchronize();
                 };
