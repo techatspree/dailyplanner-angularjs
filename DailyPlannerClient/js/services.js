@@ -1,35 +1,35 @@
 /*global
-    angular,
-    localStorage,
-    JSON
+    angular
  */
 
-(function(angular, localStorage, JSON) {
+(function (angular) {
     "use strict";
 
     angular.module("services", []).
 
-        factory("localStorage", [
-            function() {
+        factory("localTaskStorage", [
+            "$window",
+
+            function ($window) {
                 return {
                     data: [],
 
-                    synchronize: function() {
-                        localStorage.setItem("tasks", JSON.stringify(this.data));
+                    synchronize: function () {
+                        $window.localStorage.setItem("tasks", $window.JSON.stringify(this.data));
                     },
 
-                    fetchTasks: function() {
-                        this.data = JSON.parse(localStorage.getItem("tasks") || '[]');
+                    fetchTasks: function () {
+                        this.data = $window.JSON.parse($window.localStorage.getItem("tasks") || '[]');
                     },
 
-                    addNewTask: function(newTask) {
+                    addNewTask: function (newTask) {
                         this.data.push(newTask);
                     },
 
-                    deleteTask: function(taskIndex) {
+                    deleteTask: function (taskIndex) {
                         this.data.splice(taskIndex, 1);
                     }
                 };
             }
         ]);
-}(angular, localStorage, JSON));
+}(angular));

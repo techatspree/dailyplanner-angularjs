@@ -1,0 +1,32 @@
+<div class="button-wrapper">
+    <button class="task-done-btn border-right" ng-click="toggleTaskStatus(task)">
+        <i class="icon-circle"></i>
+        <i class="icon-ok-sign"></i>
+    </button>
+</div>
+
+<div class="content-wrapper">
+    <form id="edit-task-form" name="form" ng-submit="saveEditedTask($index)" novalidate>
+        <p class="margin-bottom-10">
+            <input id="task-title-input" name="title" type="text" ng-model="taskToEdit.title">
+            <label for="task-title-input" class="clearfix">Titel</label>
+        </p>
+        <p class="margin-bottom-10">
+            <input id="task-description-input" type="text" ng-model="taskToEdit.description">
+            <label for="task-description-input">Beschreibung</label>
+        </p>
+        <p class="margin-bottom-10">
+            <input id="task-duration-input" name="duration" type="text" ng-model="taskToEdit.duration">
+            <label for="task-duration-input">Dauer (z.B. 1h 30m)</label>
+        </p>
+        <p>
+            <button type="submit"><i class="icon-ok"></i></button>
+        </p>
+    </form>
+</div>
+
+<div class="button-wrapper">
+    <button class="task-delete-btn border-left" ng-click="showTaskDeleteView($index)">
+        <i class="icon-trash"></i>
+    </button>
+</div>

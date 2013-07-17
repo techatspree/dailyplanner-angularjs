@@ -1,27 +1,23 @@
-<div class="navbar navbar-static-top navbar-inverse">
+<div class="navbar navbar-inverse">
     <div class="navbar-inner">
-        <a class="brand" href="/">Tagesplaner</a>
+        <span class="brand">Tagesplaner</span>
     </div>
 </div>
 
-<div data-ng-controller="taskListController">
-    <div id="top">
-        <form id="task-add-form" class="clearfix" data-ng-submit="addNewTask(newTaskTitle)">
-            <p class="input-wrapper pull-left">
-                <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" data-ng-model="newTaskTitle">
-            </p>
+<div ng-controller="taskListController">
+    <form id="add-task-form" class="clearfix" ng-submit="addNewTask(newTaskTitle)">
+        <p class="input-wrapper pull-left">
+            <input type="text" placeholder="Aufgabe hinzuf&uuml;gen" ng-model="newTaskTitle">
+        </p>
 
-            <p class="button-wrapper pull-left">
-                <button type="submit"><i class="icon-plus"></i></span></button>
-            </p>
-        </form>
-    </div>
+        <p class="button-wrapper pull-left">
+            <button type="submit"><i class="icon-plus"></i></span></button>
+        </p>
+    </form>
 
-    <div id="content">
-        <ul id="task-list">
-            <li data-ng-repeat="task in tasks.data">
-                <div data-task></div>
-            </li>
-        </ul>
-    </div>
+    <ul id="task-list">
+        <li ng-repeat="task in tasks.data">
+            <task-wrapper/>
+        </li>
+    </ul>
 </div>
