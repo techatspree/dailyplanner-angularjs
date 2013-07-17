@@ -8,4 +8,38 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>dailyplanner-war</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+                <version>1.3.1.2</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
+                    <!--<webDriverCapabilities>-->
+                    <!--<phantomjs.binary.path>/usr/local/bin/phantomjs</phantomjs.binary.path>-->
+                    <!--</webDriverCapabilities>-->
+
+                    <jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
+                    <jsTestSrcDir>${project.basedir}/src/test/webapp/js/spec</jsTestSrcDir>
+
+                    <preloadSources>
+                        <source>${project.basedir}/src/test/webapp/js/lib/jquery-1.10.2.min.js</source>
+                        <source>${project.basedir}/src/test/webapp/js/lib/angular.js</source>
+                        <source>${project.basedir}/src/test/webapp/js/lib/angular-mocks.js</source>
+                    </preloadSources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
