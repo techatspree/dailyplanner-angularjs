@@ -2,14 +2,14 @@
     angular
  */
 
-(function(angular) {
+(function (angular) {
     "use strict";
 
     angular.module("filters", []).
 
         filter("durationFormat", [
-            function() {
-                return function(input) {
+            function () {
+                return function (input) {
                     var output, hours, minutes;
 
                     if (isNaN(input) || input === 0) { return; }
@@ -28,8 +28,8 @@
         ]).
 
         filter("truncateCharacters", [
-            function() {
-                return function(input, chars) {
+            function () {
+                return function (input, chars) {
                     if (isNaN(chars)) { return input; }
 
                     if (chars <= 0) { return ""; }

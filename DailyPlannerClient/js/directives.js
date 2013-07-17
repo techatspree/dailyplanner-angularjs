@@ -2,95 +2,69 @@
     angular
  */
 
-(function(angular) {
+(function (angular) {
     "use strict";
 
     angular.module("directives", []).
 
-        directive("task", [
-            function() {
+        directive("taskWrapper", [
+            function () {
                 return {
-                    restrict: "A",
-                    scope: true,
-                    templateUrl: "partials/task.html",
-                    replace: true,
-                    link: function(scope, element, attrs) {}
+                    restrict: "E",
+                    templateUrl: "partials/task-wrapper.html"
                 };
             }
         ]).
 
         directive("taskView", [
-            function() {
+            function () {
                 return {
-                    restrict: "A",
-                    scope: true,
-                    replace: true,
-                    templateUrl: "partials/task-view.html",
-                    link: function(scope, element, attrs) {}
+                    restrict: "E",
+                    templateUrl: "partials/task-view.html"
                 };
             }
         ]).
 
-        directive("taskEditDialog", [
-            function() {
+        directive("taskEditView", [
+            function () {
                 return {
-                    restrict: "A",
-                    scope: true,
-                    replace: true,
-                    templateUrl: "partials/task-edit-dialog.html",
-                    link: function(scope, element, attrs) {
-                        element.find("form input").blur(function() {
-                            scope.$apply(function() {
-                                scope.editTask();
-                            });
-                        });
-
-                        element.find("form").submit(function() {
-                            scope.$apply(function() {
-                                scope.viewState.taskInEditMode = null;
-                            });
-                        });
+                    restrict: "E",
+                    templateUrl: "partials/task-edit-view.html",
+                    link: function (scope, element) {
+                        element.animate({ "opacity": "1" }, 200);
                     }
                 };
             }
         ]).
 
-        directive("taskDeleteDialog", [
-            "$timeout",
-
-            function($timeout) {
+        directive("taskDeleteView", [
+            function () {
                 return {
-                    restrict: "A",
-                    scope: true,
-                    replace: true,
-                    templateUrl: "partials/task-delete-dialog.html",
-                    link: function(scope, element, attrs) {
-                        var slideIn, slideOut, animationDuration;
+                    restrict: "E",
+                    templateUrl: "partials/task-delete-view.html",
+                    link: function (scope, element) {
+                        var slideIn, slideOut, animationDuration, defaultAnimationDuration;
 
-                        animationDuration = 200;
+                        // default animation duration
+                        defaultAnimationDuration = 200;
 
-                        slideIn = function() {
+                        slideIn = function () {
                             element.animate({ "left": "0" }, animationDuration);
                         };
 
-                        slideOut = function() {
+                        slideOut = function () {
                             element.animate({ "left": "100%" }, animationDuration);
                         };
 
-                        slideIn();
+                        scope.$on("showTaskDeleteView", function (event, duration) {
+                            animationDuration = duration || defaultAnimationDuration;
+                            slideIn();
+                        });
 
-                        scope.hideTaskDeleteDialog = function() {
+                        scope.$on("hideTaskDeleteView", function (event, duration) {
+                            animationDuration = duration || defaultAnimationDuration;
                             slideOut();
-                            $timeout(function() {
-                                scope.viewState.taskInDeleteMode = null;
-                            }, animationDuration);
-                        };
-
-                        scope.submitTaskDeleteDialog = function(taskIndex) {
-                            scope.viewState.taskInDeleteMode = null;
-                            scope.viewState.taskEditModeMode = null;
-                            scope.deleteTask(taskIndex);
-                        };
+                        });
                     }
                 };
             }
