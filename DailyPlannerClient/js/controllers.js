@@ -54,7 +54,7 @@
 
                     if (!$scope.taskToEdit) { return; }
 
-                    regex = /([0-9]+h)?(\s*[0-9]+m)?$/;
+                    regex = /^([0-9]+h)?(\s*[0-9]+m)?$/;
                     matchedInput = ($scope.taskToEdit.duration) ? $scope.taskToEdit.duration.toString().match(regex) : null;
 
                     duration = (matchedInput && matchedInput[1]) ? parseInt(matchedInput[1].replace(/\s|h/, ""), 10) * 60 : 0;
