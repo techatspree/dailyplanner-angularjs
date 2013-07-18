@@ -109,6 +109,11 @@ button:hover {
     color: #1ABC9C;
 }
 
+button:disabled {
+    color: #7f8c8d !important;
+    cursor: default !important;
+}
+
 ::-webkit-input-placeholder { /* WebKit browsers */
     color: rgba(236, 240, 241, 0.6) !important;
 }
