@@ -36,5 +36,6 @@
                 expect(truncatedInput.length).toEqual(8);
             }));
         });
+
     });
 }(jasmine, describe, it, expect, beforeEach, afterEach, module, inject, angular));

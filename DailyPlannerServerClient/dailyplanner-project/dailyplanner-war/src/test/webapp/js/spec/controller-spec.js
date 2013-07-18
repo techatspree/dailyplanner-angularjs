@@ -10,10 +10,11 @@
     "use strict";
 
     describe("controllers", function () {
+
+        beforeEach(module("controllers"));
+
         describe("taskListController", function () {
             var scope, controller, taskStorageMock, data;
-
-            beforeEach(module("controllers"));
 
             beforeEach(inject(function ($rootScope, $controller) {
                 scope = $rootScope.$new();
@@ -91,5 +92,6 @@
                 expect(scope.tasks.data[taskToEditIndex].duration).toEqual(90);
             });
         });
+
     });
 }(jasmine, describe, it, expect, beforeEach, afterEach, module, inject, angular));
