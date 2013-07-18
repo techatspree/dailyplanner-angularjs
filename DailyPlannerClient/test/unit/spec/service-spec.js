@@ -11,10 +11,10 @@
 
     describe("services", function () {
 
+        beforeEach(module("services"));
+
         describe("localTaskStorage", function () {
             var windowMock, service, data;
-
-            beforeEach(module("services"));
 
             beforeEach(function () {
                 windowMock = {
@@ -70,5 +70,6 @@
                 expect(service.data.length).toEqual(0);
             });
         });
+
     });
 }(jasmine, describe, it, expect, beforeEach, afterEach, module, inject, angular));
