@@ -7,21 +7,18 @@
 <div ng-controller="taskListController">
     <div class="row">
         <form id="add-new-task-form"
-              class=""
               name="addNewTaskForm"
               ng-submit="addNewTask(newTaskTitle)"
               novalidate>
 
             <p class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
-                <button type="submit"
-                        ng-disabled="addNewTaskForm.$invalid"><span class="icon icon-plus"></span></button>
+                <button type="submit"><span class="icon icon-plus"></span></button>
             </p>
 
             <p class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
                 <input type="text"
                        ng-model="newTaskTitle"
-                       placeholder="Aufgabe hinzuf&uuml;gen"
-                       required>
+                       placeholder="Aufgabe hinzuf&uuml;gen">
             </p>
         </form>
     </div>
