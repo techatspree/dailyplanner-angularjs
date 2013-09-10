@@ -3,21 +3,21 @@
 function taskListController($scope) {
     $scope.tasks = [
         {
-            title: "Task 1",
-            description: "Task 1 Beschreibung",
-            duration: 120,
+            title: "Joggen",
+            description: "Lauf um dein Leben, Marty!",
+            duration: 60,
             done: false
         },
         {
-            title: "Task 2",
-            description: "",
-            duration: 15,
+            title: "Sushi",
+            description: "Nigiri, Maguro, Tamagoyaki",
+            duration: 30,
             done: false
         },
         {
-            title: "Task 3",
-            description: "Task 3 Beschreibung",
-            duration: 40,
+            title: "AngularJS coden",
+            description: "AngularJS, the Superheroic JavaScript MVW Framework",
+            duration: 300,
             done: false
         }
     ];
