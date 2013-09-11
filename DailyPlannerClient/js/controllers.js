@@ -12,21 +12,22 @@
 
             function ($scope) {
                 $scope.tasks = [];
+                $scope.newTaskTitle = null;
 
-                $scope.addNewTask = function (newTaskTitle) {
+                $scope.addNewTask = function () {
                     var newTask;
 
-                    if (!newTaskTitle) { return; }
+                    if (!$scope.newTaskTitle) { return; }
 
                     newTask = {
-                        title: newTaskTitle,
+                        title: $scope.newTaskTitle,
                         description: "",
                         duration: 0,
                         done: false
                     };
 
                     $scope.newTaskTitle = null;
-                    $scope.tasks.push(newTask);
+                    $scope.tasks.unshift(newTask);
                 };
 
                 $scope.deleteTask = function (taskIndex) {
@@ -35,6 +36,10 @@
 
                 $scope.toggleTaskStatus = function (task) {
                     task.done = !task.done;
+
+                    $scope.tasks.sort(function (a, b) {
+                        return a.done - b.done;
+                    });
                 };
             }
         ]);
