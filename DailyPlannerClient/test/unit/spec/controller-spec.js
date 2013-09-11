@@ -14,7 +14,7 @@
         beforeEach(module("controllers"));
 
         describe("taskListController", function () {
-            var scope, controller, data;
+            var scope, controller, testData;
 
             beforeEach(inject(function ($rootScope, $controller) {
                 scope = $rootScope.$new();
@@ -22,9 +22,9 @@
             }));
 
             beforeEach(function () {
-                data = {};
-                data.newTaskTitle = "new task";
-                data.task = {
+                testData = {};
+                testData.newTaskTitle = "new task";
+                testData.task = {
                     title: "new task",
                     description: "description",
                     duration: 15,
@@ -35,25 +35,35 @@
             it("should add a new task", function () {
                 expect(scope.tasks.length).toEqual(0);
 
-                scope.addNewTask(data.newTaskTitle);
+                scope.newTaskTitle = testData.newTaskTitle;
+                scope.addNewTask();
                 expect(scope.tasks.length).toEqual(1);
             });
 
             it("should remove a task", function () {
-                scope.tasks.push(data.task);
-                expect(scope.tasks.indexOf(data.task)).toEqual(0);
+                var taskToDeleteIndex;
 
-                scope.deleteTask(0);
-                expect(scope.tasks.indexOf(data.task)).toEqual(-1);
+                scope.tasks.push(testData.task);
+                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+
+                taskToDeleteIndex = scope.tasks.indexOf(testData.task);
+
+                scope.deleteTask(taskToDeleteIndex);
+                expect(scope.tasks.indexOf(testData.task)).toEqual(-1);
             });
 
             it("should set a task done", function () {
-                scope.tasks.push(data.task);
-                expect(scope.tasks.indexOf(data.task)).toEqual(0);
-                expect(scope.tasks[0].done).toEqual(false);
+                var taskIndex;
 
-                scope.toggleTaskStatus(scope.tasks[0]);
-                expect(scope.tasks[0].done).toEqual(true);
+                scope.tasks.push(testData.task);
+                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+
+                taskIndex = scope.tasks.indexOf(testData.task);
+
+                expect(scope.tasks[taskIndex].done).toEqual(false);
+
+                scope.toggleTaskStatus(testData.task, null);
+                expect(scope.tasks[taskIndex].done).toEqual(true);
             });
         });
 
