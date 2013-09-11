@@ -5,41 +5,46 @@
 (function (angular) {
     "use strict";
 
-    angular.module("controllers", []).
+    angular.module("controllers", [])
 
-        controller("taskListController", [
+        .controller("taskListController", [
             "$scope",
             "localTaskStorage",
 
             function ($scope, storage) {
-                $scope.tasks = storage;
-                storage.fetchTasks();
+                $scope.tasks = storage.getTasks();
+                $scope.newTaskTitle = null;
 
-                $scope.addNewTask = function (newTaskTitle) {
+                $scope.addNewTask = function () {
                     var newTask;
 
-                    if (!newTaskTitle) { return; }
+                    if (!$scope.newTaskTitle) { return; }
 
                     newTask = {
-                        title: newTaskTitle,
+                        title: $scope.newTaskTitle,
                         description: "",
                         duration: 0,
                         done: false
                     };
 
                     $scope.newTaskTitle = null;
-                    storage.addNewTask(newTask);
-                    storage.synchronize();
+                    $scope.tasks.unshift(newTask);
+                    storage.saveTasks($scope.tasks);
                 };
 
                 $scope.deleteTask = function (taskIndex) {
-                    storage.deleteTask(taskIndex);
-                    storage.synchronize();
+                    $scope.tasks.splice(taskIndex, 1);
+                    storage.saveTasks($scope.tasks);
                 };
 
                 $scope.toggleTaskStatus = function (task) {
                     task.done = !task.done;
-                    storage.synchronize();
+
+                    $scope.tasks.sort(function (a, b) {
+                        return a.done - b.done;
+                    });
+
+                    storage.saveTasks($scope.tasks);
                 };
             }
         ]);

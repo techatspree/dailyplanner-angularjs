@@ -2,20 +2,22 @@
 <html ng-app="dailyPlanner">
     <head>
         <meta charset="utf-8">
-        <title>Tagesplan</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Tagesplaner</title>
 
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
+
     <body>
-        <div class="container" ng-include="'partials/main.html'"></div>
+        <div class="container" ng-include="'pages/partials/main.html'"></div>
 
         <!-- JavaScript -->
         <script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="js/lib/bootstrap/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/lib/angularjs/angular.min.js"></script>
 
         <!-- AngularJS services, controllers, ... -->
