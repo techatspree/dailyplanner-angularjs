@@ -244,12 +244,15 @@ button:disabled {
     border-bottom: 1px solid white;
 }
 
-#edit-task-form input[type="text"].ng-invalid,
 #edit-task-form input[type="text"]:focus {
     background: white;
     color: #283849;
 }
 
+#edit-task-form input[type="text"].ng-invalid {
+    background: #d31814;
+    color: white;
+}
 
 label {
     position: relative;
@@ -260,7 +263,7 @@ label {
 
 .form-error {
     position: absolute;
-    color: #d31814;
+    color: white;
     top: -28px;
     right: 10px;
     font-size: 18px;
