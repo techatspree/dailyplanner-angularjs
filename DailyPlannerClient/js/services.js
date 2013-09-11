@@ -1,5 +1,5 @@
 /*global
- angular
+    angular
  */
 
 (function (angular) {
