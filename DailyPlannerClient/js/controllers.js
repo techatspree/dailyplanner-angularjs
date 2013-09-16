@@ -31,10 +31,7 @@
                 $scope.selectTask = function (task, taskIndex) {
                     // if there is already a task selected, try to save this task
                     if ($scope.selectedTask) {
-                        if (!$scope.saveTask()) {
-                            $log.error("could not select task");
-                            return;
-                        }
+                        if (!$scope.saveTask()) { return; }
                     }
 
                     $scope.selectedTask = angular.copy(task);
