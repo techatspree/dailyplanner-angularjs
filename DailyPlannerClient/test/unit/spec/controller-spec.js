@@ -96,7 +96,7 @@
                 scope.selectedTask.valid = true;
                 scope.selectedTask.title = "edited title";
                 scope.selectedTask.description = "edited description";
-                scope.selectedTask.duration = 30;
+                scope.selectedTask.duration = "30m";
 
                 scope.saveTask();
 

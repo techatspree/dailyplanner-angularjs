@@ -16,12 +16,11 @@
             function ($scope, storage, $filter, $log) {
                 $scope.tasks = storage.getTasks();
 
-                $scope.remainingTasks = 0;
-                $scope.completedTasks = 0;
-
                 $scope.newTaskTitle = null;
                 $scope.selectedTask = null;
 
+                $scope.remainingTasks = 0;
+                $scope.completedTasks = 0;
 
                 // count remaining and completed tasks
                 $scope.$watch("tasks", function () {
@@ -47,6 +46,7 @@
 
                     $scope.selectedTask = angular.copy(task);
                     $scope.selectedTask.index = taskIndex;
+                    $scope.selectedTask.duration = $filter("durationFormat")(task.duration);
                 };
 
 
@@ -91,16 +91,31 @@
 
                 $scope.saveTask = function () {
                     var taskCouldBeSaved,
-                        taskToSaveIndex;
+                        taskToSaveIndex,
+                        duration,
+                        hours,
+                        minutes,
+                        durationInMinutes;
 
                     taskCouldBeSaved = false;
 
                     if ($scope.selectedTask) {
                         taskToSaveIndex = $scope.selectedTask.index;
 
+                        // determine duration
+                        if ($scope.selectedTask.duration) {
+                            duration = $scope.selectedTask.duration.toString();
+
+                            hours = duration.match(/([0-9]+)h/);
+                            minutes = duration.match(/([0-9]+)m/);
+
+                            durationInMinutes = (hours && hours[1]) ? parseInt(hours[1], 10) * 60 : 0;
+                            durationInMinutes += (minutes && minutes[1]) ? parseInt(minutes[1], 10) : 0;
+                        }
+
                         $scope.tasks[taskToSaveIndex].title = $scope.selectedTask.title;
                         $scope.tasks[taskToSaveIndex].description = $scope.selectedTask.description;
-                        $scope.tasks[taskToSaveIndex].duration = $scope.selectedTask.duration;
+                        $scope.tasks[taskToSaveIndex].duration = durationInMinutes || 0;
 
                         $scope.selectedTask = null;
                         storage.saveTasks($scope.tasks);
