@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Tagesplaner</a>
+    </div>
+</nav>
+
+<div ng-controller="taskListController">
+    <div class="row">
+        <form id="add-new-task-form"
+              name="addNewTaskForm"
+              ng-submit="addNewTask()"
+              novalidate>
+
+            <p class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                <button type="submit"><span class="icon icon-plus"></span></button>
+            </p>
+
+            <p class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                <input type="text"
+                       ng-model="newTaskTitle"
+                       placeholder="Aufgabe hinzuf&uuml;gen">
+            </p>
+        </form>
+    </div>
+
+    <div class="row">
+        <ul id="task-list">
+            <li ng-repeat="task in tasks">
+                <task></task>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <p id="status">
+                <span class="icon-circle-blank"></span> <span>{{ remainingTasks }}</span>
+                <span class="icon-ok-sign"></span> <span>{{ completedTasks }}</span>
+            </p>
+        </div>
+    </div>
+</div>

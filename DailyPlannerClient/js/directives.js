@@ -5,64 +5,62 @@
 (function (angular) {
     "use strict";
 
-    angular.module("directives", []).
+    angular.module("directives", [])
 
-        directive("taskWrapper", [
-            function () {
+        .constant("PARTIAL_PATH", "pages/partials/")
+
+        .directive("task", [
+            "PARTIAL_PATH",
+
+            function (PARTIAL_PATH) {
                 return {
                     restrict: "E",
-                    templateUrl: "partials/task-wrapper.html"
-                };
-            }
-        ]).
-
-        directive("taskView", [
-            function () {
-                return {
-                    restrict: "E",
-                    templateUrl: "partials/task-view.html"
-                };
-            }
-        ]).
-
-        directive("taskEditView", [
-            function () {
-                return {
-                    restrict: "E",
-                    templateUrl: "partials/task-edit-view.html",
+                    templateUrl: PARTIAL_PATH + "task.html",
+                    replace: true,
                     link: function (scope, element) {
-                        element.animate({ "opacity": "1" }, 200);
+                        var animationDuration;
+
+                        animationDuration = 200;
+
+                        scope.$watch("selectedTask", function () {
+                            if (scope.selectedTask && scope.selectedTask.index === scope.$index) {
+                                element.animate({ "height": "240px" }, animationDuration);
+
+                            } else {
+                                element.animate({ "height": "80px" }, animationDuration);
+                            }
+                        });
                     }
                 };
             }
-        ]).
+        ])
 
-        directive("taskDeleteView", [
-            function () {
+        .directive("taskDeleteView", [
+            "PARTIAL_PATH",
+
+            function (PARTIAL_PATH) {
                 return {
                     restrict: "E",
-                    templateUrl: "partials/task-delete-view.html",
+                    templateUrl: PARTIAL_PATH + "task-delete-view.html",
+                    replace: true,
                     link: function (scope, element) {
-                        var slideIn, slideOut, animationDuration, defaultAnimationDuration;
+                        var slideIn, slideOut, animationDuration;
 
-                        // default animation duration
-                        defaultAnimationDuration = 200;
+                        animationDuration = 200;
 
                         slideIn = function () {
-                            element.animate({ "left": "0" }, animationDuration);
+                            element.animate({ "left": "50%" }, animationDuration);
                         };
 
                         slideOut = function () {
                             element.animate({ "left": "100%" }, animationDuration);
                         };
 
-                        scope.$on("showTaskDeleteView", function (event, duration) {
-                            animationDuration = duration || defaultAnimationDuration;
+                        scope.$on("showTaskDeleteView", function () {
                             slideIn();
                         });
 
-                        scope.$on("hideTaskDeleteView", function (event, duration) {
-                            animationDuration = duration || defaultAnimationDuration;
+                        scope.$on("hideTaskDeleteView", function () {
                             slideOut();
                         });
                     }
