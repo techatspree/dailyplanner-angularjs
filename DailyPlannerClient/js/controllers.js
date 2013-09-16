@@ -79,9 +79,12 @@
                 };
 
                 $scope.saveTask = function () {
-                    if ($scope.selectedTask) {
-                        var taskToSaveIndex;
+                    var taskCouldBeSaved,
+                        taskToSaveIndex;
 
+                    taskCouldBeSaved = false;
+
+                    if ($scope.selectedTask) {
                         taskToSaveIndex = $scope.selectedTask.index;
 
                         $scope.tasks[taskToSaveIndex].title = $scope.selectedTask.title;
@@ -91,12 +94,14 @@
                         $scope.selectedTask = null;
                         storage.saveTasks($scope.tasks);
 
-                        $log.info("saved task", $scope.tasks[taskToSaveIndex]);
-                        return true;
+                        taskCouldBeSaved = true;
+
+                        $log.info("saved task: ", $scope.tasks[taskToSaveIndex]);
                     } else {
                         $log.error("task could not be saved");
-                        return false;
                     }
+
+                    return taskCouldBeSaved;
                 };
             }
         ]);
