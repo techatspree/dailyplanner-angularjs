@@ -39,7 +39,6 @@
 
                     $scope.selectedTask = angular.copy(task);
                     $scope.selectedTask.index = taskIndex;
-                    $scope.selectedTask.valid = true;
                 };
 
 
@@ -83,7 +82,7 @@
                 };
 
                 $scope.saveTask = function () {
-                    if ($scope.selectedTask && $scope.selectedTask.valid) {
+                    if ($scope.selectedTask) {
                         var taskToSaveIndex;
 
                         taskToSaveIndex = $scope.selectedTask.index;
