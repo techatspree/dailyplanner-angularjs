@@ -68,7 +68,7 @@
             }
         ])
 
-        .directive("formValidationState", [
+        .directive("formValidState", [
             function () {
                 return {
                     restrict: "A",
@@ -76,7 +76,7 @@
                         var formName = attrs.name;
 
                         scope.$watch(formName + ".$valid", function () {
-                            scope.$emit(formName + "StateChanged", { "valid" : scope[formName].$valid });
+                            scope.$emit(formName + "ValidStateChanged", { "valid" : scope[formName].$valid });
                         });
                     }
                 };
