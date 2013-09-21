@@ -9,7 +9,7 @@ function taskListController($scope) {
             done: false
         },
         {
-            title: "Sushi",
+            title: "Sushi essen",
             description: "Nigiri, Maguro, Tamagoyaki",
             duration: 30,
             done: false
