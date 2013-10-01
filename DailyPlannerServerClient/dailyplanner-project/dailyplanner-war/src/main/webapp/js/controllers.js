@@ -9,7 +9,7 @@
 
         .controller("taskListController", [
             "$scope",
-            "localTaskStorage",
+            "serverTaskStorage",
             "$filter",
             "$log",
 

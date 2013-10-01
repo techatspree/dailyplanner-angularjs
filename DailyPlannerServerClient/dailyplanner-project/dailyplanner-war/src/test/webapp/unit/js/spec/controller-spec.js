@@ -34,7 +34,7 @@
 
                 controller = $controller("taskListController", {
                     $scope: scope,
-                    localTaskStorage: taskStorageMock
+                    serverTaskStorage: taskStorageMock
                 });
             }));
 
