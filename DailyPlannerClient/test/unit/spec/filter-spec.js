@@ -13,7 +13,7 @@
 
         beforeEach(module("filters"));
 
-        describe("durationFormat filter", function () {
+        describe("formatDuration filter", function () {
             it("should format 150 minutes to '02h 30m'", inject(function ($filter) {
                 var input, formattedInput;
                 input = 150;
