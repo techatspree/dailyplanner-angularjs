@@ -1,7 +1,14 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" ng-controller="authenticationController">
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Tagesplaner</a>
     </div>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a>{{authenticatedUser.login}} (<span ng-repeat="role in authenticatedUser.roles">{{role}}<span ng-show="!$last">, </span></span>)</a>
+        </li>
+        <li><a href="" ng-click="logout()">Abmelden</a></li>
+    </ul>
 </nav>
 
 <div ng-controller="taskListController">

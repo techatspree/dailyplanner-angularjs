@@ -138,5 +138,26 @@
                     return taskCouldBeSaved;
                 };
             }
+        ])
+
+        .controller("authenticationController", [
+            "$scope",
+            "authentication",
+            "$log",
+            "$window",
+
+            function ($scope, authentication, $log, $window) {
+                $scope.authenticatedUser = authentication.getAuthenticatedUser();
+
+                $scope.logout = function () {
+                    authentication.logout(function () {
+                        $log.log("Session successfully deleted");
+                        $window.location.reload(true);
+                    }, function () {
+                        $log.error("Could not logout.");
+                    });
+
+                };
+            }
         ]);
 }(angular));

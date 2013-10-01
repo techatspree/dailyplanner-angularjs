@@ -4,11 +4,13 @@ import de.akquinet.dailyplanner.logic.dao.DailyPlanDao;
 import de.akquinet.dailyplanner.logic.dao.TaskDto;
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 
 @Path("/")
+@RolesAllowed({"admin","user"})
 @RequestScoped
 public class DailyPlannerRest {
 
@@ -17,21 +19,28 @@ public class DailyPlannerRest {
     @Inject
     private DailyPlanDao dailyPlanDao;
 
+    @Inject
+    private AuthenticationRest authenticationRest;
+
 
     @GET
     @Path("/plan")
     @Produces({"application/json"})
     public TaskDto[] getDailyPlan() {
-        return dailyPlanDao.findTasksOfDailyPlan();
+        final String userId = authenticationRest.getAuthenticatedUserId().getLogin();
+
+        return dailyPlanDao.findTasksOfDailyPlanForUser(userId);
     }
 
     @POST
     @Path("/plan")
     @Consumes({"application/json"})
     public void saveDailyPlan(TaskDto[] taskDtos) {
-        LOG.debugf("saveDailyPlan", taskDtos);
+        final String userId = authenticationRest.getAuthenticatedUserId().getLogin();
 
-        dailyPlanDao.saveDailyPlan(taskDtos);
+        LOG.debugf("saveDailyPlan(%s) for %s", taskDtos, userId);
+
+        dailyPlanDao.saveDailyPlan(userId, taskDtos);
     }
 
 }

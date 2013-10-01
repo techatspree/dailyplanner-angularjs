@@ -1,24 +1,28 @@
 package de.akquinet.dailyplanner.dbmodel;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
+import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@NamedQuery(name = DailyPlan.FIND_DAILY_PLAN,
-        query = "select dp from DailyPlan dp")
+@NamedQuery(name = DailyPlan.FIND_DAILY_PLAN_BY_USER_ID,
+        query = "select dp from DailyPlan dp where dp.user.login = :userId")
 public class DailyPlan extends AbstractEntity {
 
-    public static final String FIND_DAILY_PLAN = "findDailyPlan";
-
+    public static final String FIND_DAILY_PLAN_BY_USER_ID = "findDailyPlanByUserId";
+    @SuppressWarnings({"FieldCanBeLocal", "UnusedDeclaration"})
+    @ManyToOne
+    private User user;
 
     @OneToMany()
     @OrderColumn(name = "INDEX")
     private List<Task> tasks = new ArrayList<Task>();
 
+
     public DailyPlan() {
+    }
+
+    public DailyPlan(User user) {
+        this.user = user;
     }
 
     public List<Task> getTasks() {

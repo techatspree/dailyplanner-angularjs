@@ -4,6 +4,7 @@ import de.akquinet.dailyplanner.dbmodel.DailyPlan;
 import de.akquinet.dailyplanner.dbmodel.Task;
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Stateless
+@RolesAllowed({"admin","user"})
 public class DailyPlanDao {
 
     final static Logger LOG = Logger.getLogger(DailyPlanDao.class);
@@ -20,9 +22,10 @@ public class DailyPlanDao {
     private EntityManager em;
 
 
-    public DailyPlan findDailyPlan() {
+    public DailyPlan findDailyPlan(String userId) {
         return DailyPlan.class.cast(em.
-                createNamedQuery(DailyPlan.FIND_DAILY_PLAN).
+                createNamedQuery(DailyPlan.FIND_DAILY_PLAN_BY_USER_ID).
+                setParameter("userId", userId).
                 getSingleResult());
     }
 
@@ -47,8 +50,8 @@ public class DailyPlanDao {
         return task;
     }
 
-    public void saveDailyPlan(TaskDto[] taskDtos) {
-        final DailyPlan dailyPlan = findDailyPlan();
+    public void saveDailyPlan(String userId, TaskDto[] taskDtos) {
+        final DailyPlan dailyPlan = findDailyPlan(userId);
 
         List<Task> newTaskList = new ArrayList<Task>(taskDtos.length);
         for (final TaskDto taskDto : taskDtos) {
@@ -73,8 +76,11 @@ public class DailyPlanDao {
         }
     }
 
-    public TaskDto[] findTasksOfDailyPlan() {
-        DailyPlan dailyPlan = findDailyPlan();
+    public TaskDto[] findTasksOfDailyPlanForUser(String userId) {
+        LOG.debugf("getDailyPlan() called for %s", userId);
+
+        DailyPlan dailyPlan = findDailyPlan(userId);
+
         return convertTaskListToDtoArray(dailyPlan);
     }
 
