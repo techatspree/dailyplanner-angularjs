@@ -1,0 +1,379 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    basic
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: #143042;
+}
+
+.navbar {
+    background: #34495e;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    margin-left: -15px;
+    margin-right: -15px;
+    border: none;
+    color: white;
+    border-bottom: 1px solid #283849;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav li a {
+    color: white;
+}
+
+.navbar-default .navbar-nav li a:hover {
+    color: #6995c0;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: white;
+}
+
+p {
+    margin: 0;
+}
+
+.vertical-center-wrapper {
+    width: 100%;
+    display: table;
+    table-layout:fixed;
+}
+
+.vertical-center-content {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    task-list
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+ul#task-list {
+    margin: 0;
+    padding: 0;
+}
+
+ul#task-list li {
+    list-style: none;
+    padding: 0;
+}
+
+.task {
+    background: #34495e;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    border-bottom: 1px solid #283849;
+}
+
+.task:hover {
+    background: #6995c0;
+}
+
+.task.task-done {
+    background: #2c3e50;
+}
+
+.task.task-done:hover {
+    background: #6995c0;
+}
+
+.task.task-done .task-title,
+.task.task-done .task-description,
+.task.task-done .task-duration {
+    color: #7f8c8d;
+    text-decoration: line-through;
+}
+
+.task.task-done:hover .task-title,
+.task.task-done:hover .task-description,
+.task.task-done:hover .task-duration {
+    color: white;
+}
+
+.task.selected-task {
+    /*height: 240px;*/
+    background: #6995c0;
+}
+
+.switch-wrapper,
+.switch-content,
+.switch-content div {
+    height: 100%;
+}
+
+.task-title,
+.task-description,
+.task-duration {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 98%;
+}
+
+.task-title {
+    font-size: 20px;
+}
+.task-description {}
+.task-duration {
+    text-align: right;
+}
+
+.task-delete-view {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #d31814;
+    font-size: 24px;
+    height: 100%;
+    width: 50%;
+    color: white;
+    padding: 20px;
+}
+
+.task-delete-view p {
+    margin-bottom: 25px;
+}
+
+.task-delete-view button {
+    text-align: left;
+}
+
+#status {
+    margin-left: -15px;
+    margin-right: -15px;
+    background: #34495e;
+    padding: 5px 15px;
+    color: white;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    forms
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+form {
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: white;
+    font-size: 20px;
+    line-height: 1.618;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    box-shadow: none
+}
+
+button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+button:hover {
+    color: #283849;
+}
+
+
+button:disabled {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.task.task-done button {
+    color: #7f8c8d;
+}
+
+.task.task-done:hover button {
+    color: white;
+}
+
+.task.task-done.selected-task button {
+    color: white;
+}
+
+.task.task-done.selected-task button:hover {
+    color: #283849;
+}
+
+.btn-small-font-size {
+    font-size: 17px;
+}
+
+#add-new-task-form {
+    background: #283849;
+    height: 80px;
+}
+
+#add-new-task-form p {
+    height: 100%;
+}
+
+#edit-task-form button {
+    text-align: right;
+}
+
+#edit-task-form input[type="text"] {
+    color: #283849;
+    border-bottom: 1px solid white;
+}
+
+#edit-task-form input[type="text"]:focus {
+    background: white;
+    color: #283849;
+}
+
+#edit-task-form input[type="text"].ng-invalid {
+    background: #d31814;
+    color: white;
+}
+
+label {
+    position: relative;
+    width: 100%;
+    color: #283849;
+    font-weight: normal;
+}
+
+.form-error {
+    position: absolute;
+    color: white;
+    top: -28px;
+    right: 10px;
+    font-size: 18px;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(255, 255, 255, 1.0) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(255, 255, 255, 1.0) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(255, 255, 255, 1.0) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: rgba(255, 255, 255, 1.0) !important;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    login view
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.login {
+    width: 360px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin-left: -180px;
+    margin-top: -100px;
+    position: absolute;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.login .btn-default {
+    color: white;
+    background: #34495e;
+}
+
+.login .btn-default:hover {
+    color: #283849;
+    background: #6995c0;
+}
+
+.login .btn {
+    margin-top: 20px;
+    border-radius: 0;
+    border: none;
+}
+
+.form-group {
+    position: relative;
+}
+
+.login label {
+    font-size: 18px;
+    position: absolute;
+    top: 2px;
+    left: 340px;
+    color: white;
+}
+
+.login-error {
+    width: 700px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: -50px;
+    position: absolute;
+}
+
+.login-error a {
+    color: #283849;
+}
+
+.login-error a:hover {
+    color: #6995c0;
+}
+
+.login-error .alert-danger {
+    background: white;
+    border: 1px solid white;
+    border-radius: 0;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    media queries
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+@media (max-width: 768px) {}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 728px
+    }
+}
+
+@media (min-width: 1200px) {}

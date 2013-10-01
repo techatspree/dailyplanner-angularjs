@@ -1,0 +1,118 @@
+<div class="task"
+     ng-class="{ 'selected-task': $index == selectedTask.index, 'task-done': task.done }">
+
+    <div class="switch-wrapper" ng-switch="$index == selectedTask.index">
+
+        <!-- default task view -->
+        <div ng-switch-default
+             class="switch-content" ng-click="selectTask(task, $index)">
+
+            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                <button ng-click="toggleTaskStatus(task, $event)">
+                    <span class="icon-circle-blank" ng-show="!task.done"></span>
+                    <span class="icon-ok-sign" ng-show="task.done"></span>
+                </button>
+            </div>
+
+            <div class="col-xs-5 col-sm-7 col-md-7 col-lg-7">
+                <div class="vertical-center-wrapper">
+                    <div class="vertical-center-content">
+                        <p class="task-title" ng-show="task.title">
+                            {{ task.title }}
+                        </p>
+
+                        <p class="task-description" ng-show="task.description">
+                            {{ task.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="vertical-center-wrapper">
+                    <div class="vertical-center-content text-center">
+                        <p class="task-duration" ng-show="task.duration">
+                            <span class="icon-time"></span>
+                            <span ng-show="task.duration">{{ task.duration | formatDuration }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1"></div>
+        </div>
+        <!-- end default task view -->
+
+        <!-- selected task view -->
+        <div ng-switch-when="true"
+             class="switch-content">
+
+            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                <button ng-click="toggleTaskStatus(task, $event)">
+                    <span class="icon-circle-blank" ng-show="!task.done"></span>
+                    <span class="icon-ok-sign" ng-show="task.done"></span>
+                </button>
+            </div>
+
+            <div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+                <div class="vertical-center-wrapper">
+                    <div class="vertical-center-content">
+                        <form id="edit-task-form" name="editTaskForm" ng-submit="saveTask()" novalidate form-valid-state>
+                            <p>
+                                <input type="text"
+                                       id="task-title-input"
+                                       name="title"
+                                       ng-model="selectedTask.title"
+                                       ng-required="true">
+
+                                <label for="task-title-input" class="clearfix">
+                                    Titel
+                                    <span ng-show="editTaskForm.title.$error.required" class="form-error">
+                                        Bitte einen Titel angeben!
+                                    </span>
+                                </label>
+                            </p>
+
+                            <p>
+                                <input type="text"
+                                       id="task-description-input"
+                                       name="description"
+                                       ng-model="selectedTask.description">
+
+                                <label for="task-description-input">Beschreibung</label>
+                            </p>
+
+                            <p>
+                                <input type="text"
+                                       id="task-duration-input"
+                                       name="duration"
+                                       ng-model="selectedTask.duration" ng-pattern="/^$|^0$|(^([0-9]+h)?(\s*[0-9]+m)?$)/">
+
+                                <label for="task-duration-input" class="clearfix">
+                                    Dauer (z.B. 1h 30m)
+                                    <span ng-show="editTaskForm.duration.$error.pattern" class="form-error">
+                                        Format beachten!
+                                    </span>
+                                </label>
+                            </p>
+
+                            <p>
+                                <button type="submit" ng-disabled="editTaskForm.$invalid"><span class="icon-ok"></span> <span class="btn-small-font-size">Aufgabe speichern</span></button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                <button ng-click="showTaskDeleteView($index)">
+                    <span class="icon-trash"></span>
+                </button>
+            </div>
+
+            <task-delete-view></task-delete-view>
+        </div>
+        <!-- end selected task view -->
+
+    </div>
+</div>

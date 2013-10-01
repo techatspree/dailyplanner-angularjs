@@ -26,12 +26,12 @@
 
                 <configuration>
                     <jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
-                    <jsTestSrcDir>${project.basedir}/src/test/webapp/js/spec</jsTestSrcDir>
+                    <jsTestSrcDir>${project.basedir}/src/test/webapp/unit/js/spec</jsTestSrcDir>
 
                     <preloadSources>
-                        <source>${project.basedir}/src/test/webapp/js/lib/jquery-1.10.2.min.js</source>
-                        <source>${project.basedir}/src/test/webapp/js/lib/angular.js</source>
-                        <source>${project.basedir}/src/test/webapp/js/lib/angular-mocks.js</source>
+                        <source>${project.basedir}/src/test/webapp/unit/js/lib/jquery-1.10.2.min.js</source>
+                        <source>${project.basedir}/src/test/webapp/unit/js/lib/angularjs/angular.min.js</source>
+                        <source>${project.basedir}/src/test/webapp/unit/js/lib/angularjs/angular-mocks.js</source>
                     </preloadSources>
                 </configuration>
             </plugin>

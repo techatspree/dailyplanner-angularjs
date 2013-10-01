@@ -5,105 +5,137 @@
 (function (angular) {
     "use strict";
 
-    angular.module("controllers", []).
+    angular.module("controllers", [])
 
-        controller("taskListController", [
+        .controller("taskListController", [
             "$scope",
             "localTaskStorage",
             "$filter",
-            "$timeout",
+            "$log",
 
-            function ($scope, storage, $filter, $timeout) {
-                var animationDuration;
-
-                animationDuration = 200;
-
-                $scope.tasks = storage;
-                storage.fetchTasks();
-
-                $scope.taskToEdit = null;
+            function ($scope, storage, $filter, $log) {
+                $scope.tasks = storage.getTasks();
 
                 $scope.remainingTasks = 0;
                 $scope.completedTasks = 0;
+
+                $scope.newTaskTitle = null;
+                $scope.selectedTask = null;
+
+
+                // count remaining and completed tasks
                 $scope.$watch("tasks", function () {
-                    $scope.remainingTasks = $filter("filter")($scope.tasks.data, {done: false}).length || 0;
-                    $scope.completedTasks = $filter("filter")($scope.tasks.data, {done: true}).length || 0;
+                    $scope.remainingTasks = $filter("filter")($scope.tasks, { done: false }).length || 0;
+                    $scope.completedTasks = $filter("filter")($scope.tasks, { done: true }).length || 0;
                 }, true);
 
 
-                $scope.addNewTask = function (newTaskTitle) {
+                $scope.showTaskDeleteView = function () {
+                    $scope.$broadcast("showTaskDeleteView");
+                };
+
+                $scope.hideTaskDeleteView = function () {
+                    $scope.$broadcast("hideTaskDeleteView");
+                };
+
+                $scope.$on("editTaskFormValidStateChanged", function (event, args) {
+                    if ($scope.selectedTask) {
+                        $scope.selectedTask.valid = args.valid;
+                    }
+                });
+
+
+                $scope.selectTask = function (task, taskIndex) {
+                    // if there is already a task selected, try to save this task
+                    if ($scope.selectedTask) {
+                        if (!$scope.saveTask()) { return; }
+                    }
+
+                    $scope.selectedTask = angular.copy(task);
+                    $scope.selectedTask.index = taskIndex;
+                    $scope.selectedTask.duration = $filter("formatDuration")(task.duration);
+                    $scope.selectedTask.valid = true;
+                };
+
+
+                $scope.addNewTask = function () {
                     var newTask;
 
-                    if (!newTaskTitle) { return; }
+                    if (!$scope.newTaskTitle) { return; }
 
                     newTask = {
-                        title: newTaskTitle,
+                        title: $scope.newTaskTitle,
                         description: "",
                         duration: 0,
                         done: false
                     };
 
+                    $scope.selectedTask = null;
                     $scope.newTaskTitle = null;
-                    storage.addNewTask(newTask);
-                    storage.synchronize();
+                    $scope.tasks.unshift(newTask);
+                    storage.saveTasks($scope.tasks);
                 };
 
                 $scope.deleteTask = function (taskIndex) {
-                    $scope.viewState.taskInDeleteMode = null;
-                    $scope.viewState.taskInEditMode = null;
-                    storage.deleteTask(taskIndex);
-                    storage.synchronize();
+                    $scope.selectedTask = null;
+
+                    $scope.tasks.splice(taskIndex, 1);
+                    storage.saveTasks($scope.tasks);
                 };
 
-                $scope.toggleTaskStatus = function (task) {
+                $scope.toggleTaskStatus = function (task, event) {
+                    if (event) { event.stopPropagation(); }
+
+                    $scope.selectedTask = null;
+
                     task.done = !task.done;
-                    storage.synchronize();
+
+                    $scope.tasks.sort(function (a, b) {
+                        return a.done - b.done;
+                    });
+
+                    storage.saveTasks($scope.tasks);
                 };
 
-                $scope.saveEditedTask = function (taskIndex) {
-                    var regex, matchedInput, duration;
+                $scope.saveTask = function () {
+                    var taskCouldBeSaved,
+                        taskToSaveIndex,
+                        duration,
+                        hours,
+                        minutes,
+                        durationInMinutes;
 
-                    if (!$scope.taskToEdit) { return; }
+                    taskCouldBeSaved = false;
 
-                    regex = /^([0-9]+h)?(\s*[0-9]+m)?$/;
-                    matchedInput = ($scope.taskToEdit.duration) ? $scope.taskToEdit.duration.toString().match(regex) : null;
+                    if ($scope.selectedTask && $scope.selectedTask.valid) {
+                        taskToSaveIndex = $scope.selectedTask.index;
 
-                    duration = (matchedInput && matchedInput[1]) ? parseInt(matchedInput[1].replace(/\s|h/, ""), 10) * 60 : 0;
-                    duration += (matchedInput && matchedInput[2]) ? parseInt(matchedInput[2].replace(/\s|m/, ""), 10) : 0;
+                        // determine duration
+                        if ($scope.selectedTask.duration) {
+                            duration = $scope.selectedTask.duration.toString();
 
-                    $scope.taskToEdit.duration = duration;
+                            hours = duration.match(/([0-9]+)h/);
+                            minutes = duration.match(/([0-9]+)m/);
 
-                    storage.data[taskIndex] = angular.copy($scope.taskToEdit);
-                    $scope.taskToEdit = null;
-                    $scope.viewState.taskInEditMode = null;
-                    storage.synchronize();
-                };
+                            durationInMinutes = (hours && hours[1]) ? parseInt(hours[1], 10) * 60 : 0;
+                            durationInMinutes += (minutes && minutes[1]) ? parseInt(minutes[1], 10) : 0;
+                        }
 
+                        $scope.tasks[taskToSaveIndex].title = $scope.selectedTask.title;
+                        $scope.tasks[taskToSaveIndex].description = $scope.selectedTask.description;
+                        $scope.tasks[taskToSaveIndex].duration = durationInMinutes || 0;
 
-                $scope.viewState = {};
-                $scope.viewState.taskInEditMode = null;
-                $scope.showTaskEditView = function (taskIndex) {
-                    $scope.taskToEdit = angular.copy($scope.tasks.data[taskIndex]);
+                        $scope.selectedTask = null;
+                        storage.saveTasks($scope.tasks);
 
-                    $scope.taskToEdit.duration = $filter("durationFormat")($scope.taskToEdit.duration);
+                        taskCouldBeSaved = true;
 
-                    $scope.viewState.taskInEditMode = taskIndex;
-                    $scope.viewState.taskInDeleteMode = null;
-                };
+                        $log.info("saved task: ", $scope.tasks[taskToSaveIndex]);
+                    } else {
+                        $log.error("task could not be saved");
+                    }
 
-                $scope.viewState.taskInDeleteMode = null;
-                $scope.showTaskDeleteView = function (taskIndex) {
-                    $scope.viewState.taskInDeleteMode = taskIndex;
-                    $scope.viewState.taskInEditMode = ($scope.viewState.taskInEditMode === taskIndex) ? taskIndex : null;
-                    $timeout(function () {
-                        $scope.$broadcast("showTaskDeleteView", animationDuration);
-                    }, 0);
-                };
-                $scope.hideTaskDeleteView = function () {
-                    $scope.$broadcast("hideTaskDeleteView", animationDuration);
-                    $timeout(function () {
-                        $scope.viewState.taskInDeleteMode = null;
-                    }, animationDuration);
+                    return taskCouldBeSaved;
                 };
             }
         ]);
