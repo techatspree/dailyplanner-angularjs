@@ -7,7 +7,7 @@
 
     angular.module("filters", [])
 
-        .filter("durationFormat", [
+        .filter("formatDuration", [
             function () {
                 return function (input) {
                     var output, hours, minutes;

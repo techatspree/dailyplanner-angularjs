@@ -46,7 +46,7 @@
 
                     $scope.selectedTask = angular.copy(task);
                     $scope.selectedTask.index = taskIndex;
-                    $scope.selectedTask.duration = $filter("durationFormat")(task.duration);
+                    $scope.selectedTask.duration = $filter("formatDuration")(task.duration);
                 };
 
 
