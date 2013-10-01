@@ -25,11 +25,6 @@
                 </executions>
 
                 <configuration>
-                    <webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
-                    <!--<webDriverCapabilities>-->
-                    <!--<phantomjs.binary.path>/usr/local/bin/phantomjs</phantomjs.binary.path>-->
-                    <!--</webDriverCapabilities>-->
-
                     <jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
                     <jsTestSrcDir>${project.basedir}/src/test/webapp/js/spec</jsTestSrcDir>
 
