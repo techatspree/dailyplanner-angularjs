@@ -22,7 +22,6 @@
                 taskStorageMock = (function () {
                     var storage = [];
                     return {
-
                         saveTasks: function (tasks) {
                             storage = tasks;
                         },
