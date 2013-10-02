@@ -10,9 +10,8 @@
         .controller("taskListController", [
             "$scope",
             "localTaskStorage",
-            "$log",
 
-            function ($scope, storage, $log) {
+            function ($scope, storage) {
                 $scope.tasks = storage.getTasks();
 
                 $scope.newTaskTitle = null;
@@ -29,12 +28,11 @@
 
 
                 $scope.selectTask = function (task, taskIndex) {
-                    // if there is already a task selected, try to save this task
                     if ($scope.selectedTask) {
-                        if (!$scope.saveTask()) { return; }
+                        $scope.saveTask();
                     }
 
-                    $scope.selectedTask = angular.copy(task);
+                    $scope.selectedTask = {};
                     $scope.selectedTask.index = taskIndex;
                 };
 
@@ -79,29 +77,8 @@
                 };
 
                 $scope.saveTask = function () {
-                    var taskCouldBeSaved,
-                        taskToSaveIndex;
-
-                    taskCouldBeSaved = false;
-
-                    if ($scope.selectedTask) {
-                        taskToSaveIndex = $scope.selectedTask.index;
-
-                        $scope.tasks[taskToSaveIndex].title = $scope.selectedTask.title;
-                        $scope.tasks[taskToSaveIndex].description = $scope.selectedTask.description;
-                        $scope.tasks[taskToSaveIndex].duration = $scope.selectedTask.duration;
-
-                        $scope.selectedTask = null;
-                        storage.saveTasks($scope.tasks);
-
-                        taskCouldBeSaved = true;
-
-                        $log.info("saved task: ", $scope.tasks[taskToSaveIndex]);
-                    } else {
-                        $log.error("task could not be saved");
-                    }
-
-                    return taskCouldBeSaved;
+                    $scope.selectedTask = null;
+                    storage.saveTasks($scope.tasks);
                 };
             }
         ]);
