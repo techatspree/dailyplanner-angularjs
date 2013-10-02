@@ -54,7 +54,7 @@
 
                 expect(scope.tasks[0].done).toEqual(false);
 
-                scope.toggleTaskStatus(testData.task, null);
+                scope.toggleTaskStatus(testData.task);
                 expect(scope.tasks[0].done).toEqual(true);
             });
         });
