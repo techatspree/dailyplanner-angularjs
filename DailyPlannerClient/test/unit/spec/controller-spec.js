@@ -22,12 +22,11 @@
                 taskStorageMock = (function () {
                     var storage = [];
                     return {
-
                         saveTasks: function (tasks) {
                             storage = tasks;
                         },
                         getTasks: function () {
-                            return storage;
+                            return angular.copy(storage);
                         }
                     };
                 }());
@@ -58,29 +57,21 @@
             });
 
             it("should remove a task", function () {
-                var taskToDeleteIndex;
-
                 scope.tasks.push(testData.task);
-                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+                expect(scope.tasks.indexOf(testData.task)).toEqual(0);
 
-                taskToDeleteIndex = scope.tasks.indexOf(testData.task);
-
-                scope.deleteTask(taskToDeleteIndex);
+                scope.deleteTask(0);
                 expect(scope.tasks.indexOf(testData.task)).toEqual(-1);
             });
 
             it("should set a task done", function () {
-                var taskIndex;
-
                 scope.tasks.push(testData.task);
-                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+                expect(scope.tasks.indexOf(testData.task)).toEqual(0);
 
-                taskIndex = scope.tasks.indexOf(testData.task);
+                expect(scope.tasks[0].done).toEqual(false);
 
-                expect(scope.tasks[taskIndex].done).toEqual(false);
-
-                scope.toggleTaskStatus(testData.task, null);
-                expect(scope.tasks[taskIndex].done).toEqual(true);
+                scope.toggleTaskStatus(testData.task);
+                expect(scope.tasks[0].done).toEqual(true);
             });
         });
 
