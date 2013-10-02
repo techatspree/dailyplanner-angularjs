@@ -27,7 +27,7 @@
                 };
 
 
-                $scope.selectTask = function (task, taskIndex) {
+                $scope.selectTask = function (taskIndex) {
                     if ($scope.selectedTask) {
                         $scope.saveTask();
                     }
