@@ -22,12 +22,11 @@
                 taskStorageMock = (function () {
                     var storage = [];
                     return {
-
                         saveTasks: function (tasks) {
                             storage = tasks;
                         },
                         getTasks: function () {
-                            return storage;
+                            return angular.copy(storage)
                         }
                     };
                 }());
@@ -58,51 +57,42 @@
             });
 
             it("should remove a task", function () {
-                var taskToDeleteIndex;
-
                 scope.tasks.push(testData.task);
-                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+                expect(scope.tasks.indexOf(testData.task)).toEqual(0);
 
-                taskToDeleteIndex = scope.tasks.indexOf(testData.task);
-
-                scope.deleteTask(taskToDeleteIndex);
+                scope.deleteTask(0);
                 expect(scope.tasks.indexOf(testData.task)).toEqual(-1);
             });
 
             it("should set a task done", function () {
-                var taskIndex;
-
                 scope.tasks.push(testData.task);
-                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+                expect(scope.tasks.indexOf(testData.task)).toEqual(0);
 
-                taskIndex = scope.tasks.indexOf(testData.task);
-
-                expect(scope.tasks[taskIndex].done).toEqual(false);
+                expect(scope.tasks[0].done).toEqual(false);
 
                 scope.toggleTaskStatus(testData.task, null);
-                expect(scope.tasks[taskIndex].done).toEqual(true);
+                expect(scope.tasks[0].done).toEqual(true);
             });
 
             it("should save an edited task", function () {
-                var taskIndex;
-
                 scope.tasks.push(testData.task);
-                expect(scope.tasks.indexOf(testData.task)).not.toEqual(-1);
+                expect(scope.tasks.indexOf(testData.task)).toEqual(0);
+                expect(taskStorageMock.getTasks().length).toEqual(0);
 
-                taskIndex = scope.tasks.indexOf(testData.task);
-
-                scope.selectedTask = angular.copy(scope.tasks[taskIndex]);
-                scope.selectedTask.index = taskIndex;
+                scope.selectedTask = angular.copy(scope.tasks[0]);
+                scope.selectedTask.index = 0;
                 scope.selectedTask.valid = true;
                 scope.selectedTask.title = "edited title";
                 scope.selectedTask.description = "edited description";
                 scope.selectedTask.duration = "30m";
 
                 scope.saveTask();
+                expect(taskStorageMock.getTasks().length).toEqual(1);
 
-                expect(scope.tasks[taskIndex].title).toBe("edited title");
-                expect(scope.tasks[taskIndex].description).toBe("edited description");
-                expect(scope.tasks[taskIndex].duration).toBe(30);
+                scope.tasks = taskStorageMock.getTasks();
+                expect(scope.tasks[0].title).toEqual("edited title");
+                expect(scope.tasks[0].description).toEqual("edited description");
+                expect(scope.tasks[0].duration).toEqual(30);
             });
         });
 
