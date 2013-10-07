@@ -5,7 +5,6 @@
 
     <artifactId>dailyplanner-war</artifactId>
     <packaging>war</packaging>
-    <name>dailyplanner-war</name>
 
     <parent>
         <artifactId>dailyplanner-project</artifactId>
