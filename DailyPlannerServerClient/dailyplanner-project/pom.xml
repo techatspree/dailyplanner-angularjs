@@ -10,16 +10,16 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <modules>
         <module>dailyplanner-model</module>
         <module>dailyplanner-logic</module>
         <module>dailyplanner-war</module>
         <module>dailyplanner-ear</module>
     </modules>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
