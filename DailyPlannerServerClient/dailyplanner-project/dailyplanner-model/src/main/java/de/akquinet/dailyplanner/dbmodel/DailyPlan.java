@@ -13,10 +13,10 @@ public class DailyPlan extends AbstractEntity {
 
     public static final String FIND_DAILY_PLAN = "findDailyPlan";
 
-
     @OneToMany()
     @OrderColumn(name = "INDEX")
     private List<Task> tasks = new ArrayList<Task>();
+    
 
     public DailyPlan() {
     }
