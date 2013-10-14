@@ -20,6 +20,15 @@
         <module>dailyplanner-ear</module>
     </modules>
 
+    <profiles>
+        <profile>
+            <id>e2e-tests</id>
+            <modules>
+                <module>dailyplanner-e2e</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
