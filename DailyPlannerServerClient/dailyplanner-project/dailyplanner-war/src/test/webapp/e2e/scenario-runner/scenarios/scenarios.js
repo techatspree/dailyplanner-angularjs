@@ -15,6 +15,8 @@
                     input("newTaskTitle").enter("new task");
                     element("#add-new-task-form button:submit", "add new task").click();
 
+                    browser().reload();
+
                     expect(repeater("#task-list li", "").count()).toBe(numberOfTasks + 1);
                     done();
                 });
