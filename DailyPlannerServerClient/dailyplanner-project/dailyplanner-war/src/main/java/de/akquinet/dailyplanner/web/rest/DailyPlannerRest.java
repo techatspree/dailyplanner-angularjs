@@ -40,7 +40,7 @@ public class DailyPlannerRest {
 
         LOG.debugf("saveDailyPlan(%s) for %s", taskDtos, userId);
 
-        dailyPlanDao.saveDailyPlan(userId, taskDtos);
+        dailyPlanDao.saveDailyPlanForUser(userId, taskDtos);
     }
 
 }
