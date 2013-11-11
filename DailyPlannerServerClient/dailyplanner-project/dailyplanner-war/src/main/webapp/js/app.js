@@ -27,7 +27,7 @@
                             responseHeader = response.headers();
 
                             if (response.data && responseHeader["content-type"].indexOf("text/html") !== -1) {
-                                if (response.data.indexOf('<meta name="authorized" content="false">') !== -1) {
+                                if (response.data.indexOf('<meta name="unauthorized" content="true">') !== -1) {
                                     $log.error("unauthorized");
                                     $window.location.reload();
                                     return $q.reject(response);
