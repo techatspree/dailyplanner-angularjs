@@ -7,7 +7,7 @@
     <title>Anmeldung</title>
 
     <!-- don't remove!!! -->
-    <meta name="authorized" content="false">
+    <meta name="unauthorized" content="false">
 
     <!-- CSS -->
     <c:url var="urlNormalize" value="/css/normalize.css"/>
