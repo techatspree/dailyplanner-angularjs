@@ -9,7 +9,7 @@ import java.util.*;
 public class DailyPlan extends AbstractEntity {
 
     public static final String FIND_DAILY_PLAN_BY_USER_ID = "findDailyPlanByUserId";
-    @SuppressWarnings({"FieldCanBeLocal", "UnusedDeclaration"})
+
     @ManyToOne
     private User user;
 
