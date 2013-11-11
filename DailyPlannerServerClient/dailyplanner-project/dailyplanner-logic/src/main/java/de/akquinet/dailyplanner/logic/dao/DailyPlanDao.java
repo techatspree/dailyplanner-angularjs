@@ -20,30 +20,35 @@ public class DailyPlanDao {
     private EntityManager em;
 
 
-    public DailyPlan findDailyPlan() {
+    private DailyPlan findDailyPlan() {
         return DailyPlan.class.cast(em.
                 createNamedQuery(DailyPlan.FIND_DAILY_PLAN).
                 getSingleResult());
     }
 
-    public Task createNewTask(String title, String description, String duration, Boolean done) {
-        LOG.debugf("createTask(%s, %s, %s, %s", title, description, duration, done);
-        final Task task = new Task(title, description, duration, done);
+    private Task createNewTask(TaskDto taskDto) {
+        LOG.debugf("createTask(%s)", taskDto.toString());
+        final Task task = new Task(
+            taskDto.getTitle(),
+            taskDto.getDescription(),
+            taskDto.getDuration(),
+            taskDto.getDone()
+        );
         em.persist(task);
         return task;
     }
 
-    public Task updateTask(Long id, String title, String description, String duration, Boolean done) {
-        LOG.debugf("updateTask(%d, %s, %s, %s, %s", id, title, description, duration, done);
+    private Task updateTask(TaskDto taskDto) {
+        LOG.debugf("updateTask(%d, %s", taskDto.getId(), taskDto.toString());
 
-        final Task task = em.find(Task.class, id);
+        final Task task = em.find(Task.class, taskDto.getId());
         if (task == null)
-            throw new RuntimeException("There is no task with the id "+id);
+            throw new RuntimeException("There is no task with the id " + taskDto.getId());
 
-        task.setTitle(title);
-        task.setDescription(description);
-        task.setDuration(duration);
-        task.setDone(done);
+        task.setTitle(taskDto.getTitle());
+        task.setDescription(taskDto.getDescription());
+        task.setDuration(taskDto.getDuration());
+        task.setDone(taskDto.getDone());
         return task;
     }
 
@@ -54,11 +59,9 @@ public class DailyPlanDao {
         for (final TaskDto taskDto : taskDtos) {
             final Task task;
             if (taskDto.getId() == null) {
-                task = createNewTask(taskDto.getTitle(), taskDto.getDescription(),
-                        taskDto.getDuration(), taskDto.getDone());
+                task = createNewTask(taskDto);
             } else {
-                task = updateTask(taskDto.getId(), taskDto.getTitle(), taskDto.getDescription(),
-                        taskDto.getDuration(), taskDto.getDone());
+                task = updateTask(taskDto);
             }
             newTaskList.add(task);
         }
