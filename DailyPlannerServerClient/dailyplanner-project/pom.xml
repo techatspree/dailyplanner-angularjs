@@ -22,9 +22,9 @@
 
     <profiles>
         <profile>
-            <id>e2e-tests</id>
+            <id>end-to-end-test</id>
             <modules>
-                <module>dailyplanner-e2e</module>
+                <module>dailyplanner-end-to-end-test</module>
             </modules>
         </profile>
     </profiles>

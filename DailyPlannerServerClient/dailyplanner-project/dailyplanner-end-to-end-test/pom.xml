@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dailyplanner-e2e</artifactId>
+    <artifactId>dailyplanner-end-to-end-test</artifactId>
 
     <parent>
         <artifactId>dailyplanner-project</artifactId>

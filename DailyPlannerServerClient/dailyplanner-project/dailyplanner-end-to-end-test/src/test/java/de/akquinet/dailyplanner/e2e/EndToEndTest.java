@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 
 @RunWith(Arquillian.class)
-public class E2ETest {
+public class EndToEndTest {
 
     @Deployment(testable = false)
     public static EnterpriseArchive accessDeployment() {
