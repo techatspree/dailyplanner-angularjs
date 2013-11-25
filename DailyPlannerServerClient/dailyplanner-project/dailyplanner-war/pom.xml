@@ -14,7 +14,7 @@
 
     <profiles>
         <profile>
-            <id>e2e-tests</id>
+            <id>end-to-end-test</id>
             <build>
                 <plugins>
                     <plugin>
@@ -23,7 +23,7 @@
                         <configuration>
                             <webResources>
                                 <resource>
-                                    <directory>src/test/webapp/e2e</directory>
+                                    <directory>src/test/webapp/end-to-end</directory>
                                 </resource>
                             </webResources>
                         </configuration>
