@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    describe("E2E Tests", function () {
+    describe("End to end tests", function () {
 
         describe("add new task", function () {
             it('should add a new task to the task-list', function () {
