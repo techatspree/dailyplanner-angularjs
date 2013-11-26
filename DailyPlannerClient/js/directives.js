@@ -22,8 +22,8 @@
 
                         animationDuration = 200;
 
-                        scope.$watch("selectedTask", function () {
-                            if (scope.selectedTask && scope.selectedTask.index === scope.$index) {
+                        scope.$watch("selectedTaskIndex", function () {
+                            if (scope.selectedTaskIndex === scope.$index) {
                                 element.animate({ "height": "240px" }, animationDuration);
 
                             } else {

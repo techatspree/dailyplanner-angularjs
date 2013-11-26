@@ -81,8 +81,8 @@
                 expect(scope.tasks.indexOf(testData.task)).toEqual(0);
                 expect(taskStorageMock.getTasks().length).toEqual(0);
 
-                scope.selectedTask = {};
-                scope.selectedTask.index = 0;
+                scope.selectedTaskIndex = {};
+                scope.selectedTaskIndex.index = 0;
                 scope.tasks[0].title = "edited title";
                 scope.tasks[0].description = "edited description";
                 scope.tasks[0].duration = 30;

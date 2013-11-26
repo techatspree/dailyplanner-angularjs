@@ -1,7 +1,7 @@
 <div class="task"
-     ng-class="{ 'selected-task': $index == selectedTask.index, 'task-done': task.done }">
+     ng-class="{ 'selected-task': $index == selectedTaskIndex, 'task-done': task.done }">
 
-    <div class="switch-wrapper" ng-switch="$index == selectedTask.index">
+    <div class="switch-wrapper" ng-switch="$index == selectedTaskIndex">
 
         <!-- default task view -->
         <div ng-switch-default

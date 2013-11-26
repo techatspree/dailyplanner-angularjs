@@ -15,7 +15,7 @@
                 $scope.tasks = storage.getTasks();
 
                 $scope.newTaskTitle = null;
-                $scope.selectedTask = null;
+                $scope.selectedTaskIndex = null;
 
 
                 $scope.showTaskDeleteView = function () {
@@ -28,12 +28,11 @@
 
 
                 $scope.selectTask = function (taskIndex) {
-                    if ($scope.selectedTask) {
+                    if ($scope.selectedTaskIndex) {
                         $scope.saveTask();
                     }
 
-                    $scope.selectedTask = {};
-                    $scope.selectedTask.index = taskIndex;
+                    $scope.selectedTaskIndex = taskIndex;
                 };
 
 
@@ -49,14 +48,14 @@
                         done: false
                     };
 
-                    $scope.selectedTask = null;
+                    $scope.selectedTaskIndex = null;
                     $scope.newTaskTitle = null;
                     $scope.tasks.unshift(newTask);
                     storage.saveTasks($scope.tasks);
                 };
 
                 $scope.deleteTask = function (taskIndex) {
-                    $scope.selectedTask = null;
+                    $scope.selectedTaskIndex = null;
 
                     $scope.tasks.splice(taskIndex, 1);
                     storage.saveTasks($scope.tasks);
@@ -65,7 +64,7 @@
                 $scope.toggleTaskStatus = function (task, event) {
                     if (event) { event.stopPropagation(); }
 
-                    $scope.selectedTask = null;
+                    $scope.selectedTaskIndex = null;
 
                     task.done = !task.done;
 
@@ -77,7 +76,7 @@
                 };
 
                 $scope.saveTask = function () {
-                    $scope.selectedTask = null;
+                    $scope.selectedTaskIndex = null;
                     storage.saveTasks($scope.tasks);
                 };
             }
