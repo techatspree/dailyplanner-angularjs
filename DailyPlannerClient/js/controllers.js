@@ -90,7 +90,7 @@
                     task.done = !task.done;
 
                     $scope.tasks.sort(function (a, b) {
-                        return a.done - b.done;
+                        return (a.done ? 1 : 0) - (b.done ? 1 : 0);
                     });
 
                     storage.saveTasks($scope.tasks);
