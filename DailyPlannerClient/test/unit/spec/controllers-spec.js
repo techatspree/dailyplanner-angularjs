@@ -35,6 +35,7 @@
 
                 scope.newTaskTitle = testData.newTaskTitle;
                 scope.addNewTask();
+                expect(scope.newTaskTitle).toEqual(null);
                 expect(scope.tasks.length).toEqual(1);
             });
 
