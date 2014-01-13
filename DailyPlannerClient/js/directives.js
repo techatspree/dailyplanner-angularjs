@@ -7,7 +7,7 @@
 
     angular.module("directives", [])
 
-        .constant("PARTIAL_PATH", "pages/partials/")
+        .constant("PARTIAL_PATH", "partials/")
 
         .directive("task", [
             "PARTIAL_PATH",
