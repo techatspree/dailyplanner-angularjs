@@ -91,7 +91,7 @@
                                 <label for="task-duration-input" class="clearfix">
                                     Dauer (z.B. 1h 30m)
                                     <span ng-show="editTaskForm.duration.$error.pattern" class="form-error">
-                                        Format beachten!
+                                        Bitte die Dauer im Format &quot;1h 30m&quot; angeben!
                                     </span>
                                 </label>
                             </p>
@@ -110,7 +110,7 @@
                 </button>
             </div>
 
-            <task-delete-view></task-delete-view>
+            <task-delete-view />
         </div>
         <!-- end selected task view -->
 
