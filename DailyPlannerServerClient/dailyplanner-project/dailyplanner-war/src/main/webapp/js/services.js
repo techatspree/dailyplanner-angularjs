@@ -52,23 +52,5 @@
                     }
                 };
             }
-        ])
-
-        .factory("authentication", [
-            "resourceBuilder",
-
-            function (resourceBuilder) {
-                return {
-                    getAuthenticatedUser: function () {
-                        var authenticatedUserResource = resourceBuilder.buildResource("currentuserid", {});
-                        return authenticatedUserResource.get();
-                    },
-
-                    logout: function (success, failure) {
-                        var sessionsResource = resourceBuilder.buildResource("session", {});
-                        sessionsResource.delete(success, failure);
-                    }
-                };
-            }
         ]);
 }(angular));
