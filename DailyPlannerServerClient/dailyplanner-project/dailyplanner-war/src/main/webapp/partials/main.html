@@ -28,16 +28,17 @@
     <div class="row">
         <ul id="task-list">
             <li ng-repeat="task in tasks">
-                <task></task>
+                <task />
             </li>
         </ul>
     </div>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <p id="status">
+            <p id="status" class="clearfix">
                 <span class="icon-circle-blank"></span> <span>{{ remainingTasks }}</span>
                 <span class="icon-ok-sign"></span> <span>{{ completedTasks }}</span>
+                <span class="pull-right">Branch: steps/step-08</span>
             </p>
         </div>
     </div>
