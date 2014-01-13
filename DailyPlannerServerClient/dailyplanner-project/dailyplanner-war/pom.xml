@@ -66,23 +66,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-
-                <configuration>
-                    <webResources combine.children="append">
-                        <resource>
-                            <directory>src/main/webapp</directory>
-                        </resource>
-                    </webResources>
-                </configuration>
-
-                <goals>
-                    <goal>war</goal>
-                </goals>
-            </plugin>
-
-            <plugin>
                 <groupId>com.github.searls</groupId>
                 <artifactId>jasmine-maven-plugin</artifactId>
 
