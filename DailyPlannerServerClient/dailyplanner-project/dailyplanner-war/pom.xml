@@ -16,19 +16,19 @@
         <dependency>
             <groupId>dailyplanner</groupId>
             <artifactId>dailyplanner-logic</artifactId>
-            <scope>provided</scope>
             <type>ejb</type>
-        </dependency>
-
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
             <scope>provided</scope>
         </dependency>
 
