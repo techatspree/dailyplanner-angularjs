@@ -5,23 +5,22 @@ import de.akquinet.dailyplanner.logic.dao.TaskDto;
 import org.jboss.logging.Logger;
 
 import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ws.rs.*;
 
 @Path("/")
 @RolesAllowed({"admin","user"})
-@RequestScoped
+@Stateless
 public class DailyPlannerRest {
 
     private static final Logger LOG = Logger.getLogger(DailyPlannerRest.class);
 
-    @Inject
+    @EJB
     private DailyPlanDao dailyPlanDao;
 
-    @Inject
+    @EJB
     private AuthenticationRest authenticationRest;
-
 
     @GET
     @Path("/plan")

@@ -3,7 +3,7 @@ package de.akquinet.dailyplanner.web.rest;
 import org.jboss.logging.Logger;
 
 import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,15 +15,13 @@ import java.util.LinkedList;
 
 @Path("/")
 @RolesAllowed({"admin", "user"})
-@RequestScoped
+@Stateless
 public class AuthenticationRest {
 
     private final static Logger LOG = Logger.getLogger(AuthenticationRest.class);
 
-    // HACK: Currently @Context does not work in SLSB, hence this POJO that breaks the architecture :-(
     @Context
     private HttpServletRequest httpRequest;
-
 
     @GET
     @Path("/currentuserid")

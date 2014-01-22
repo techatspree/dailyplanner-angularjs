@@ -32,10 +32,10 @@ public class DailyPlanDao {
     private Task createNewTask(TaskDto taskDto) {
         LOG.debugf("createTask(%s)", taskDto.toString());
         final Task task = new Task(
-            taskDto.getTitle(),
-            taskDto.getDescription(),
-            taskDto.getDuration(),
-            taskDto.getDone()
+                taskDto.getTitle(),
+                taskDto.getDescription(),
+                taskDto.getDuration(),
+                taskDto.getDone()
         );
         em.persist(task);
         return task;
