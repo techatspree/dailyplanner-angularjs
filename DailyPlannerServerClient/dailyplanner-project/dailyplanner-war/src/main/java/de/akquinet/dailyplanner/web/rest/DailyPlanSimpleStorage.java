@@ -1,8 +1,8 @@
 package de.akquinet.dailyplanner.web.rest;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Singleton;
 
-@ApplicationScoped
+@Singleton
 public class DailyPlanSimpleStorage {
 
     private String dailyPlan = "";

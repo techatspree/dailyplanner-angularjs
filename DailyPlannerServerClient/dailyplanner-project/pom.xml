@@ -20,6 +20,15 @@
         <module>dailyplanner-ear</module>
     </modules>
 
+    <profiles>
+        <profile>
+            <id>end-to-end-test</id>
+            <modules>
+                <module>dailyplanner-end-to-end-test</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -50,6 +59,12 @@
             </dependency>
 
             <dependency>
+                <groupId>dailyplanner</groupId>
+                <artifactId>dailyplanner-e2e</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.11</version>
@@ -59,14 +74,14 @@
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-support</artifactId>
-                <version>2.31.0</version>
+                <version>2.37.1</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-firefox-driver</artifactId>
-                <version>2.33.0</version>
+                <version>2.37.1</version>
                 <scope>test</scope>
             </dependency>
 
@@ -114,9 +129,9 @@
             </dependency>
 
             <dependency>
-                <groupId>jstl</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
+                <groupId>org.jboss.spec.javax.ejb</groupId>
+                <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+                <version>1.0.2.Final</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
@@ -139,7 +154,13 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.1</version>
+                    <version>3.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.9</version>
                 </plugin>
 
                 <plugin>
@@ -157,7 +178,7 @@
                 <plugin>
                     <groupId>com.github.searls</groupId>
                     <artifactId>jasmine-maven-plugin</artifactId>
-                    <version>1.3.1.2</version>
+                    <version>1.3.1.4</version>
                 </plugin>
 
                 <plugin>
