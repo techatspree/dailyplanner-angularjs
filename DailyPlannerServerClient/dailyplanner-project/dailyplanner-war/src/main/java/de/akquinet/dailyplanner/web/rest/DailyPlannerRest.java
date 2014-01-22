@@ -4,17 +4,17 @@ import de.akquinet.dailyplanner.logic.dao.DailyPlanDao;
 import de.akquinet.dailyplanner.logic.dao.TaskDto;
 import org.jboss.logging.Logger;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ws.rs.*;
 
 @Path("/")
-@RequestScoped
+@Stateless
 public class DailyPlannerRest {
 
     private static final Logger LOG = Logger.getLogger(DailyPlannerRest.class);
 
-    @Inject
+    @EJB
     private DailyPlanDao dailyPlanDao;
 
 
