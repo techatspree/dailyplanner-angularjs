@@ -28,6 +28,7 @@
         <dependency>
             <groupId>dailyplanner</groupId>
             <artifactId>dailyplanner-logic</artifactId>
+            <type>ejb</type>
         </dependency>
     </dependencies>
 
