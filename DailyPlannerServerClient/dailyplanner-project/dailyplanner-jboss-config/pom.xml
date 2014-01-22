@@ -7,8 +7,8 @@
     <artifactId>dailyplanner-jboss-config</artifactId>
 
     <parent>
-        <groupId>dailyplanner</groupId>
         <artifactId>dailyplanner-project</artifactId>
+        <groupId>dailyplanner</groupId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 </project>

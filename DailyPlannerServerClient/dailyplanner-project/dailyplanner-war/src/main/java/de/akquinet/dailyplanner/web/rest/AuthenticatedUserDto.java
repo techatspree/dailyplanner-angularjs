@@ -6,7 +6,6 @@ public class AuthenticatedUserDto {
     private String login;
     private String[] roles;
 
-
     public AuthenticatedUserDto(String login, String[] roles) {
         this.login = login;
         this.roles = roles;
