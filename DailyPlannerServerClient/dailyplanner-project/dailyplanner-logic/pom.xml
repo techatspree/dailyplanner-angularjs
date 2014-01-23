@@ -8,8 +8,8 @@
     <packaging>ejb</packaging>
 
     <parent>
-        <artifactId>dailyplanner-project</artifactId>
         <groupId>dailyplanner</groupId>
+        <artifactId>dailyplanner-project</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
