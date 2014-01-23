@@ -184,6 +184,7 @@
     <repositories>
         <repository>
             <id>maven-repository-redhat</id>
+            <name>Redhat Maven Repository</name>
             <url>http://maven.repository.redhat.com/techpreview/eap6/6.1.0.Alpha1/maven-repository/</url>
             <layout>default</layout>
             <releases>
@@ -209,11 +210,6 @@
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
-        </repository>
-
-        <repository>
-            <id>codehaus</id>
-            <url>http://repository.codehaus.org/org/codehaus</url>
         </repository>
     </repositories>
 </project>
