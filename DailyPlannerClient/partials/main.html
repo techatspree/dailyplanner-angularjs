@@ -12,7 +12,7 @@
               novalidate>
 
             <p class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
-                <button type="submit"><span class="icon icon-plus"></span></button>
+                <button type="submit"><span class="fa fa-plus"></span></button>
             </p>
 
             <p class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
@@ -32,8 +32,8 @@
                         <div class="switch-content">
                             <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
                                 <button ng-click="toggleTaskStatus(task)">
-                                    <span class="icon-circle-blank" ng-show="!task.done"></span>
-                                    <span class="icon-ok-sign" ng-show="task.done"></span>
+                                    <span class="fa fa-circle-o" ng-show="!task.done"></span>
+                                    <span class="fa fa-check-circle" ng-show="task.done"></span>
                                 </button>
                             </div>
 
@@ -55,7 +55,7 @@
                                 <div class="vertical-center-wrapper">
                                     <div class="vertical-center-content text-center">
                                         <p class="task-duration" ng-show="task.duration">
-                                            <span class="icon-time"></span>
+                                            <span class="fa fa-clock-o"></span>
                                             <span ng-show="task.duration">{{ task.duration }}</span>
                                         </p>
                                     </div>
@@ -64,7 +64,7 @@
 
                             <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
                                 <button ng-click="deleteTask($index)">
-                                    <span class="icon-trash"></span>
+                                    <span class="fa fa-trash-o"></span>
                                 </button>
                             </div>
                         </div>
