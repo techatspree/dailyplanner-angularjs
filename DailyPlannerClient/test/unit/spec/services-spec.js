@@ -35,12 +35,12 @@
 
             it("should call localStorage.setItem()", function () {
                 service.saveTasks([]);
-                expect(windowMock.localStorage.setItem.callCount).toEqual(1);
+                expect(windowMock.localStorage.setItem.calls.count()).toEqual(1);
             });
 
             it("should call localStorage.getItem()", function () {
                 service.getTasks();
-                expect(windowMock.localStorage.getItem.callCount).toEqual(1);
+                expect(windowMock.localStorage.getItem.calls.count()).toEqual(1);
             });
         });
 
