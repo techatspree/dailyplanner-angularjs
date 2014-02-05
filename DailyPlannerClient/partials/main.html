@@ -13,8 +13,8 @@
                         <div class="switch-content">
                             <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
                                 <button>
-                                    <span class="icon-circle-blank" ng-show="!task.done"></span>
-                                    <span class="icon-ok-sign" ng-show="task.done"></span>
+                                    <span class="fa fa-circle-o" ng-show="!task.done"></span>
+                                    <span class="fa fa-check-circle" ng-show="task.done"></span>
                                 </button>
                             </div>
 
@@ -36,7 +36,7 @@
                                 <div class="vertical-center-wrapper">
                                     <div class="vertical-center-content text-center">
                                         <p class="task-duration" ng-show="task.duration">
-                                            <span class="icon-time"></span>
+                                            <span class="fa fa-clock-o"></span>
                                             <span ng-show="task.duration">{{ task.duration }}</span>
                                         </p>
                                     </div>
