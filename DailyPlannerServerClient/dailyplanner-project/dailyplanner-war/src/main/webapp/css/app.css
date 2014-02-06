@@ -37,6 +37,24 @@ body {
     color: white;
 }
 
+.navbar button.navbar-toggle {
+    border: none !important;
+}
+
+.navbar button.navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.navbar button.navbar-toggle:focus .icon-bar,
+.navbar button.navbar-toggle:hover .icon-bar {
+    background-color: #6995c0;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
 p {
     margin: 0;
 }
@@ -152,7 +170,7 @@ ul#task-list li {
 }
 
 .task-delete-view button {
-    text-align: left;
+    text-align: left !important;
 }
 
 #status {
@@ -189,7 +207,8 @@ input[type="password"] {
     box-shadow: none
 }
 
-button {
+#main button,
+.task-delete-view button {
     border: none;
     background: none;
     font-size: 24px;
@@ -202,28 +221,28 @@ button {
     outline: none;
 }
 
-button:hover {
+#main button:hover {
     color: #283849;
 }
 
-
-button:disabled {
-    color: rgba(255, 255, 255, 0.5);
+#main button:disabled,
+#main button:disabled:hover {
+    color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.task.task-done button {
+#main .task.task-done button {
     color: #7f8c8d;
 }
 
-.task.task-done:hover button {
+#main .task.task-done:hover button {
     color: white;
 }
 
-.task.task-done.selected-task button {
+#main .task.task-done.selected-task button {
     color: white;
 }
 
-.task.task-done.selected-task button:hover {
+#main .task.task-done.selected-task button:hover {
     color: #283849;
 }
 
@@ -238,6 +257,10 @@ button:disabled {
 
 #add-new-task-form p {
     height: 100%;
+}
+
+#add-new-task-form button:hover {
+    color: #6995c0;
 }
 
 #edit-task-form button {
@@ -315,7 +338,7 @@ label {
 }
 
 .login .btn-default:hover {
-    color: #283849;
+    color: white;
     background: #6995c0;
 }
 
