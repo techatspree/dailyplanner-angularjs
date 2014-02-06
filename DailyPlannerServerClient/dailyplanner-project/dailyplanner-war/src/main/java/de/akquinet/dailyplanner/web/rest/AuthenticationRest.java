@@ -13,7 +13,7 @@ import javax.ws.rs.core.Context;
 import java.security.Principal;
 import java.util.LinkedList;
 
-@Path("/")
+@Path("/v1")
 @RolesAllowed({"admin", "user"})
 @Stateless
 public class AuthenticationRest {

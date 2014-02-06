@@ -9,7 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 
-@Path("/")
+@Path("/v1")
 @RolesAllowed({"admin","user"})
 @Stateless
 public class DailyPlannerRest {
