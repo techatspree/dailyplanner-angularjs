@@ -15,7 +15,7 @@
                 var protocoll = $location.protocol(),
                     host = $location.host(),
                     port = $location.port(),
-                    basePath = "/dailyplanner/rest/";
+                    basePath = "/dailyplanner/rest/v1/";
 
                 return {
                     buildResource: function (resourcePath, resourceSpec) {
