@@ -22,16 +22,16 @@
 
             }));
 
-            it("should send GET request to '/dailyplanner/rest/plan'", function () {
-                resourceMock.when('GET', 'http://server:80/dailyplanner/rest/plan').respond();
+            it("should send GET request to '/dailyplanner/rest/v1/plan'", function () {
+                resourceMock.when('GET', 'http://server:80/dailyplanner/rest/v1/plan').respond();
                 service.getTasks();
                 resourceMock.flush();
                 resourceMock.verifyNoOutstandingExpectation();
                 resourceMock.verifyNoOutstandingRequest();
             });
 
-            it("should send POST request to '/dailyplanner/rest/plan'", function () {
-                resourceMock.when('POST', 'http://server:80/dailyplanner/rest/plan').respond();
+            it("should send POST request to '/dailyplanner/rest/v1/plan'", function () {
+                resourceMock.when('POST', 'http://server:80/dailyplanner/rest/v1/plan').respond();
                 service.saveTasks([]);
                 resourceMock.flush();
                 resourceMock.verifyNoOutstandingExpectation();
