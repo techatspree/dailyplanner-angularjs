@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 
-@Path("/")
+@Path("/v1")
 @Stateless
 public class DailyPlannerRest {
 
