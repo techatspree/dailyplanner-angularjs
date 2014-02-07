@@ -78,13 +78,13 @@ public class DailyPlanDao {
 
     public TaskDto[] findTasksOfDailyPlan() {
         DailyPlan dailyPlan = findDailyPlan();
-        return convertTaskListToDtoArray(dailyPlan);
+        return convertTaskListToDtoArray(dailyPlan.getTasks());
     }
 
-    private TaskDto[] convertTaskListToDtoArray(DailyPlan dailyPlan) {
-        TaskDto[] taskDtos = new TaskDto[dailyPlan.getTasks().size()];
+    private TaskDto[] convertTaskListToDtoArray(List<Task> tasks) {
+        TaskDto[] taskDtos = new TaskDto[tasks.size()];
         for (int i = 0; i < taskDtos.length; i++) {
-            final Task task = dailyPlan.getTasks().get(i);
+            final Task task = tasks.get(i);
             final TaskDto taskDto =
                     new TaskDto(task.getId(), task.getTitle(), task.getDescription(), task.getDuration(), task.getDone());
             taskDtos[i] = (taskDto);
