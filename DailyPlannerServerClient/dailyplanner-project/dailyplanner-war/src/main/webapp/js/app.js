@@ -20,23 +20,16 @@
             function ($q, $window, $log) {
                 return {
                     "response": function (response) {
-                        // do something on success
-                        var responseHeader;
-                        responseHeader = response.headers();
-
-                        if (response.data && responseHeader["content-type"].indexOf("text/html") !== -1) {
-                            if (response.data.indexOf('<meta name="unauthorized" content="true">') !== -1) {
+                        var responseHeaders;
+                        responseHeaders = response.headers();
+                        if (   responseHeaders["content-type"].indexOf("text/html") !== -1
+                            && response.data
+                            && response.data.indexOf('<meta name="unauthorized" content="true">') !== -1) {
                                 $log.error("unauthorized");
                                 $window.location.reload();
                                 return $q.reject(response);
-                            }
                         }
-                        return response || $q.when(response);
-                    },
-
-                    "responseError": function (rejection) {
-                        // do something on error
-                        return $q.reject(rejection);
+                        return response;
                     }
                 };
             }
