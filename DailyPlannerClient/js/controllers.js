@@ -5,7 +5,9 @@
 (function (angular) {
     "use strict";
 
-    angular.module("controllers", [])
+    angular.module("controllers", [
+        "services"
+    ])
 
         .controller("taskListController", [
             "$scope",
