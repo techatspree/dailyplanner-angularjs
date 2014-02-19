@@ -5,7 +5,9 @@
 (function (angular) {
     "use strict";
 
-    angular.module("controllers", [])
+    angular.module("controllers", [
+        "services"
+    ])
 
         .controller("taskListController", [
             "$scope",
@@ -24,8 +26,8 @@
 
                 // count remaining and completed tasks
                 $scope.$watch("tasks", function () {
-                    $scope.remainingTasks = $filter("filter")($scope.tasks, { done: false }).length || 0;
-                    $scope.completedTasks = $filter("filter")($scope.tasks, { done: true }).length || 0;
+                    $scope.remainingTasks = $filter("filter")($scope.tasks, { done: false }).length;
+                    $scope.completedTasks = $filter("filter")($scope.tasks, { done: true }).length;
                 }, true);
 
 
@@ -45,7 +47,6 @@
 
 
                 $scope.selectTask = function (task, taskIndex) {
-                    // if there is already a task selected, try to save this task
                     if ($scope.selectedTask) {
                         if (!$scope.saveTask()) { return; }
                     }
