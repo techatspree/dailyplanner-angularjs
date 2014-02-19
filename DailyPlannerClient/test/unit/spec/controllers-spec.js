@@ -87,6 +87,7 @@
                 scope.selectedTask.duration = "30m";
 
                 scope.saveTask();
+                expect(scope.selectedTask).toEqual(null);
                 expect(taskStorageMock.getTasks().length).toEqual(1);
 
                 scope.tasks = taskStorageMock.getTasks();
