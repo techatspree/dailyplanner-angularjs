@@ -7,7 +7,6 @@
 
     angular.module("dailyPlanner", [
         "controllers",
-        "services",
         "directives",
         "filters"
     ])
