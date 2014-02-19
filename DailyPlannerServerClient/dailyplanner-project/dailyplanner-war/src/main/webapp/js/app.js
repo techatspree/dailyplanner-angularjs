@@ -21,7 +21,6 @@
                     "response": function (response) {
                         var responseHeaders;
                         responseHeaders = response.headers();
-                        console.log(responseHeaders);
                         if (   responseHeaders["content-type"]
                             && responseHeaders["content-type"].indexOf("text/html") !== -1
                             && response.data
