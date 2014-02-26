@@ -12,16 +12,16 @@
             "$location",
 
             function ($resource, $location) {
-                var protocoll = $location.protocol(),
+                var protocol = $location.protocol(),
                     host = $location.host(),
                     port = $location.port(),
                     basePath = "/dailyplanner/rest/v1/";
 
                 return {
-                    buildResource: function (resourcePath, resourceSpec) {
-                        var resourceUrl = protocoll + "://" + host + "\\:" + port + basePath + resourcePath;
+                    buildResource: function (resourcePath) {
+                        var resourceUrl = protocol + "://" + host + "\\:" + port + basePath + resourcePath;
 
-                        return $resource(resourceUrl, {}, resourceSpec);
+                        return $resource(resourceUrl);
                     }
                 };
             }
@@ -32,9 +32,7 @@
             "$log",
 
             function (resourceBuilder, $log) {
-                var dailyPlanResource = resourceBuilder.buildResource("plan", {
-                    save: { method: 'POST', isArray: true }
-                });
+                var dailyPlanResource = resourceBuilder.buildResource("plan");
 
                 return {
                     saveTasks: function (tasks) {
@@ -60,12 +58,12 @@
             function (resourceBuilder) {
                 return {
                     getAuthenticatedUser: function () {
-                        var authenticatedUserResource = resourceBuilder.buildResource("currentuserid", {});
+                        var authenticatedUserResource = resourceBuilder.buildResource("currentuserid");
                         return authenticatedUserResource.get();
                     },
 
                     logout: function (success, failure) {
-                        var sessionsResource = resourceBuilder.buildResource("session", {});
+                        var sessionsResource = resourceBuilder.buildResource("session");
                         sessionsResource.delete(success, failure);
                     }
                 };
