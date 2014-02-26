@@ -58,12 +58,12 @@
             function (resourceBuilder) {
                 return {
                     getAuthenticatedUser: function () {
-                        var authenticatedUserResource = resourceBuilder.buildResource("currentuserid", {});
+                        var authenticatedUserResource = resourceBuilder.buildResource("currentuserid");
                         return authenticatedUserResource.get();
                     },
 
                     logout: function (success, failure) {
-                        var sessionsResource = resourceBuilder.buildResource("session", {});
+                        var sessionsResource = resourceBuilder.buildResource("session");
                         sessionsResource.delete(success, failure);
                     }
                 };
