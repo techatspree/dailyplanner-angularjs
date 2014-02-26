@@ -27,6 +27,7 @@ public class DailyPlannerRest {
     @Path("/plan")
     @Consumes({"application/json"})
     public void saveDailyPlan(String dailyPlan) {
+        LOG.debug(dailyPlan);
         storage.saveDailyPlan(dailyPlan);
     }
 }
