@@ -58,6 +58,16 @@ public class TestDataImporter {
                 User user = User.createUser("admin" + i, "secret", "Adam_" + (NR_TEST_ADMIN - i), "Administrator_" + i);
                 user.addRole(adminRole);
                 user.addRole(userRole);
+
+                DailyPlan dailyPlan = new DailyPlan(user);
+                em.persist(dailyPlan);
+
+                for (int j=0;j<5;j++) {
+                    final Task task = new Task("Tasktitle " + j, "Description " + j, "10", Boolean.FALSE);
+                    dailyPlan.appendTask(task);
+                    em.persist(task);
+                }
+
                 em.persist(user);
             }
             LOGGER.info("Created " + (NR_TEST_USER + NR_TEST_ADMIN) + " test users.");
