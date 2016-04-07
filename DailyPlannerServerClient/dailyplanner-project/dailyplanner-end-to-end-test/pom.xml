@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dailyplanner-end-to-end-test</artifactId>
+
+    <parent>
+        <groupId>dailyplanner</groupId>
+        <artifactId>dailyplanner-project</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-arquillian-container-managed</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-jboss</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jboss.as</groupId>
+                                    <artifactId>jboss-as-dist</artifactId>
+                                    <version>7.2.0.Alpha1-redhat-4</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>target</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>jboss-lifecycle</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>start</goal>
+                            <goal>execute-commands</goal>
+                            <goal>shutdown</goal>
+                        </goals>
+                        <configuration>
+                            <jbossHome>${project.build.directory}/jboss-eap-6.1</jbossHome>
+                            <jvmArgs>-Djboss.socket.binding.port-offset=100</jvmArgs>
+                            <port>10099</port>
+                            <startupTimeout>120</startupTimeout>
+                            <executeCommands>
+                                <scripts>
+                                    <script>src/test/resources/configureJBoss.cli</script>
+                                </scripts>
+                            </executeCommands>
+                            <execute-commands/>
+                            <reload>false</reload>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

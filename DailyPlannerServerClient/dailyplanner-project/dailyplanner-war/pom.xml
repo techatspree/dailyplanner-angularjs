@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dailyplanner-war</artifactId>
+    <packaging>war</packaging>
+
+    <parent>
+        <groupId>dailyplanner</groupId>
+        <artifactId>dailyplanner-project</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <profiles>
+        <profile>
+            <id>end-to-end-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>src/test/webapp/end-to-end</directory>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>dailyplanner</groupId>
+            <artifactId>dailyplanner-logic</artifactId>
+            <type>ejb</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+
+                <configuration>
+                    <webResources combine.children="append">
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+
+                <goals>
+                    <goal>war</goal>
+                </goals>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
+                    <jsTestSrcDir>${project.basedir}/src/test/webapp/unit/js/spec</jsTestSrcDir>
+
+                    <preloadSources>
+                        <source>${project.basedir}/src/main/webapp/js/lib/jquery-1.11.0.min.js</source>
+                        <source>${project.basedir}/src/main/webapp/js/lib/angularjs/angular.min.js</source>
+                        <source>${project.basedir}/src/test/webapp/unit/js/lib/angular-mocks.js</source>
+                    </preloadSources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

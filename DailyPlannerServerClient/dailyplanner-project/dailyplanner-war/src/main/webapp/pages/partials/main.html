@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default" role="navigation" ng-controller="authenticationController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Tagesplaner</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a>{{authenticatedUser.login}} (<span ng-repeat="role in authenticatedUser.roles">{{role}}<span ng-show="!$last">, </span></span>)</a>
+                </li>
+                <li><a href="" ng-click="logout()">Abmelden</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="main" ng-controller="taskListController">
+    <div class="row">
+        <form id="add-new-task-form"
+              name="addNewTaskForm"
+              ng-submit="addNewTask()"
+              novalidate>
+
+            <p class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                <button type="submit"
+                        ng-disabled="addNewTaskForm.$invalid"><span class="fa fa-plus"></span></button>
+            </p>
+
+            <p class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                <input type="text"
+                       ng-model="newTaskTitle"
+                       placeholder="Aufgabe hinzuf&uuml;gen"
+                       ng-required="true">
+            </p>
+        </form>
+    </div>
+
+    <div class="row">
+        <ul id="task-list">
+            <li ng-repeat="task in tasks">
+                <task />
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <p id="status" class="clearfix">
+                <span class="fa fa-circle-o"></span> <span>{{ remainingTasks }}</span>
+                <span class="fa fa-check-circle"></span> <span>{{ completedTasks }}</span>
+                <span class="pull-right">Branch: steps/step-15</span>
+            </p>
+        </div>
+    </div>
+</div>
