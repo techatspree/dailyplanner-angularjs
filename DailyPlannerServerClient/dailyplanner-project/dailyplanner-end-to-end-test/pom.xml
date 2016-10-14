@@ -87,7 +87,7 @@
                 <version>1.1.0.Alpha11</version>
 
                 <configuration>
-                    <version>10.1.0.Final</version>
+                    <version>${wildfly.version}</version>
                     <port>${wildfly.management.port}</port>
                     <server-args>
                         -Djboss.socket.binding.port-offset=${port.offset}

@@ -11,6 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <wildfly.version>10.1.0.Final</wildfly.version>
     </properties>
 
     <modules>
@@ -31,6 +32,15 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-javaee7-with-tools</artifactId>
+                <version>${wildfly.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>dailyplanner</groupId>
                 <artifactId>dailyplanner-model</artifactId>
@@ -72,40 +82,18 @@
             </dependency>
 
             <dependency>
-                <groupId>org.jboss.logging</groupId>
-                <artifactId>jboss-logging</artifactId>
-                <version>3.1.2.GA</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.spec</groupId>
-                <artifactId>jboss-javaee-6.0</artifactId>
-                <version>3.0.0.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.hibernate.javax.persistence</groupId>
                 <artifactId>hibernate-jpa-2.0-api</artifactId>
-                <version>1.0.1.Final</version>
                 <scope>provided</scope>
             </dependency>
 
             <dependency>
-                <groupId>org.jboss.spec.javax.servlet</groupId>
-                <artifactId>jboss-servlet-api_3.0_spec</artifactId>
-                <version>1.0.2.Final</version>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>7.0</version>
                 <scope>provided</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.jboss.spec.javax.ejb</groupId>
-                <artifactId>jboss-ejb-api_3.1_spec</artifactId>
-                <version>1.0.2.Final</version>
-                <scope>provided</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
