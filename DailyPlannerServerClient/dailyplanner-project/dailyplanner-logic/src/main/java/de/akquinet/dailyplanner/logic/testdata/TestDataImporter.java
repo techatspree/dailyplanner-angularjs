@@ -4,7 +4,8 @@ import de.akquinet.dailyplanner.dbmodel.DailyPlan;
 import de.akquinet.dailyplanner.dbmodel.Role;
 import de.akquinet.dailyplanner.dbmodel.Task;
 import de.akquinet.dailyplanner.dbmodel.User;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.security.RunAs;
@@ -20,7 +21,7 @@ import java.util.List;
 @RunAs("admin") // set the current role to admin to enable the execution of protected methods, does not work an AS7 :-(
 public class TestDataImporter {
 
-    private static final Logger LOGGER = Logger.getLogger(TestDataImporter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestDataImporter.class);
     private static final int NR_TEST_USER = 6;
     private static final int NR_TEST_ADMIN = 4;
 
@@ -46,7 +47,7 @@ public class TestDataImporter {
                 DailyPlan dailyPlan = new DailyPlan(user);
                 em.persist(dailyPlan);
 
-                for (int j=0;j<5;j++) {
+                for (int j = 0; j < 5; j++) {
                     final Task task = new Task("Tasktitle " + j, "Description " + j, "10", Boolean.FALSE);
                     dailyPlan.appendTask(task);
                     em.persist(task);
@@ -62,7 +63,7 @@ public class TestDataImporter {
                 DailyPlan dailyPlan = new DailyPlan(user);
                 em.persist(dailyPlan);
 
-                for (int j=0;j<5;j++) {
+                for (int j = 0; j < 5; j++) {
                     final Task task = new Task("Tasktitle " + j, "Description " + j, "10", Boolean.FALSE);
                     dailyPlan.appendTask(task);
                     em.persist(task);

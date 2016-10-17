@@ -38,7 +38,6 @@
             <groupId>dailyplanner</groupId>
             <artifactId>dailyplanner-logic</artifactId>
             <type>ejb</type>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -48,9 +47,28 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <scope>provided</scope>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>cdi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>ejb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>logging</artifactId>
         </dependency>
     </dependencies>
 
@@ -96,6 +114,26 @@
                     </preloadSources>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>wildfly-swarm-plugin</artifactId>
+                <version>${version.wildfly.swarm}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <!--<bundleDependencies>false</bundleDependencies>-->
+                            <mainClass>de.akquinet.dailyplanner.web.rest.Main</mainClass>
+                            <!--<fractionDetectMode>force</fractionDetectMode>-->
+                            <bundleDependencies>true</bundleDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>

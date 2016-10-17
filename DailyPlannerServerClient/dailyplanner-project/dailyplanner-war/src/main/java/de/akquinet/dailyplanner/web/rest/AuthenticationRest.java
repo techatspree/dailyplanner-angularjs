@@ -1,6 +1,8 @@
 package de.akquinet.dailyplanner.web.rest;
 
-import org.jboss.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -18,29 +20,26 @@ import java.util.LinkedList;
 @Stateless
 public class AuthenticationRest {
 
-    private final static Logger LOG = Logger.getLogger(AuthenticationRest.class);
-
-    @Context
-    private HttpServletRequest httpRequest;
+    private final static Logger LOG = LoggerFactory.getLogger(AuthenticationRest.class);
 
     @GET
     @Path("/currentuserid")
     @Produces({"application/json"})
-    public AuthenticatedUserDto getAuthenticatedUserId() {
+    public AuthenticatedUserDto getAuthenticatedUserId(@Context HttpServletRequest httpRequest) {
         final Principal userPrincipal = httpRequest.getUserPrincipal();
         if (userPrincipal == null) {
             return new AuthenticatedUserDto("Gast", new String[]{});
         } else {
             final LinkedList<String> roles = new LinkedList<String>();
-            checkAndAddRole("admin", roles);
-            checkAndAddRole("user", roles);
+            checkAndAddRole("admin", roles, httpRequest);
+            checkAndAddRole("user", roles, httpRequest);
             final String[] rolesArray = roles.toArray(new String[roles.size()]);
 
             return new AuthenticatedUserDto(userPrincipal.getName(), rolesArray);
         }
     }
 
-    private void checkAndAddRole(String role, LinkedList<String> roles) {
+    private void checkAndAddRole(String role, LinkedList<String> roles, HttpServletRequest httpRequest) {
         if (httpRequest.isUserInRole(role)) {
             roles.add(role);
         }
@@ -48,7 +47,7 @@ public class AuthenticationRest {
 
     @DELETE
     @Path("/session")
-    public void logout() {
+    public void logout(@Context HttpServletRequest httpRequest) {
         LOG.debug("logout the current user");
         httpRequest.getSession().invalidate();
     }

@@ -2,7 +2,8 @@ package de.akquinet.dailyplanner.logic.dao;
 
 import de.akquinet.dailyplanner.dbmodel.DailyPlan;
 import de.akquinet.dailyplanner.dbmodel.Task;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -13,10 +14,10 @@ import java.util.List;
 import java.util.Set;
 
 @Stateless
-@RolesAllowed({"admin","user"})
+@RolesAllowed({"admin", "user"})
 public class DailyPlanDao {
 
-    final static Logger LOG = Logger.getLogger(DailyPlanDao.class);
+    final static Logger LOG = LoggerFactory.getLogger(DailyPlanDao.class);
 
     @PersistenceContext
     private EntityManager em;
@@ -30,7 +31,7 @@ public class DailyPlanDao {
     }
 
     private Task createNewTask(TaskDto taskDto) {
-        LOG.debugf("createTask(%s)", taskDto.toString());
+        LOG.debug("createTask({})", taskDto);
         final Task task = new Task(
                 taskDto.getTitle(),
                 taskDto.getDescription(),
@@ -42,11 +43,12 @@ public class DailyPlanDao {
     }
 
     private Task updateTask(TaskDto taskDto) {
-        LOG.debugf("updateTask(%d, %s", taskDto.getId(), taskDto.toString());
+        LOG.debug("updateTask({}, {})", taskDto.getId(), taskDto);
 
         final Task task = em.find(Task.class, taskDto.getId());
-        if (task == null)
+        if (task == null) {
             throw new RuntimeException("There is no task with the id " + taskDto.getId());
+        }
 
         task.setTitle(taskDto.getTitle());
         task.setDescription(taskDto.getDescription());
@@ -80,7 +82,7 @@ public class DailyPlanDao {
     }
 
     public TaskDto[] findTasksOfDailyPlanForUser(String userId) {
-        LOG.debugf("getDailyPlan() called for %s", userId);
+        LOG.debug("getDailyPlan() called for {}", userId);
 
         DailyPlan dailyPlan = findDailyPlan(userId);
 

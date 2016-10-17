@@ -2,19 +2,26 @@ package de.akquinet.dailyplanner.web.rest;
 
 import de.akquinet.dailyplanner.logic.dao.DailyPlanDao;
 import de.akquinet.dailyplanner.logic.dao.TaskDto;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 
 @Path("/v1")
-@RolesAllowed({"admin","user"})
+@RolesAllowed({"admin", "user"})
 @Stateless
 public class DailyPlannerRest {
 
-    private static final Logger LOG = Logger.getLogger(DailyPlannerRest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DailyPlannerRest.class);
 
     @EJB
     private DailyPlanDao dailyPlanDao;
@@ -25,8 +32,8 @@ public class DailyPlannerRest {
     @GET
     @Path("/plan")
     @Produces({"application/json"})
-    public TaskDto[] getDailyPlan() {
-        final String userId = authenticationRest.getAuthenticatedUserId().getLogin();
+    public TaskDto[] getDailyPlan(@Context HttpServletRequest httpRequest) {
+        final String userId = authenticationRest.getAuthenticatedUserId(httpRequest).getLogin();
 
         return dailyPlanDao.findTasksOfDailyPlanForUser(userId);
     }
@@ -34,10 +41,10 @@ public class DailyPlannerRest {
     @POST
     @Path("/plan")
     @Consumes({"application/json"})
-    public void saveDailyPlan(TaskDto[] taskDtos) {
-        final String userId = authenticationRest.getAuthenticatedUserId().getLogin();
+    public void saveDailyPlan(TaskDto[] taskDtos, @Context HttpServletRequest httpRequest) {
+        final String userId = authenticationRest.getAuthenticatedUserId(httpRequest).getLogin();
 
-        LOG.debugf("saveDailyPlan(%s) for %s", taskDtos, userId);
+        LOG.debug("saveDailyPlan({}) for {}", taskDtos, userId);
 
         dailyPlanDao.saveDailyPlanForUser(userId, taskDtos);
     }

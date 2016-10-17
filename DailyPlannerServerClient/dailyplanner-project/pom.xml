@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <wildfly.version>10.1.0.Final</wildfly.version>
+        <version.wildfly.swarm>2016.9</version.wildfly.swarm>
     </properties>
 
     <modules>
@@ -34,11 +35,11 @@
         <dependencies>
 
             <dependency>
-                <groupId>org.wildfly.bom</groupId>
-                <artifactId>wildfly-javaee7-with-tools</artifactId>
-                <version>${wildfly.version}</version>
-                <type>pom</type>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>bom</artifactId>
+                <version>${version.wildfly.swarm}</version>
                 <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <dependency>
@@ -63,6 +64,13 @@
 
             <dependency>
                 <groupId>dailyplanner</groupId>
+                <artifactId>dailyplanner-war</artifactId>
+                <version>${project.version}</version>
+                <classifier>classes</classifier>
+            </dependency>
+
+            <dependency>
+                <groupId>dailyplanner</groupId>
                 <artifactId>dailyplanner-ear</artifactId>
                 <version>${project.version}</version>
                 <type>ear</type>
@@ -82,9 +90,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.0-api</artifactId>
-                <scope>provided</scope>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.21</version>
             </dependency>
 
             <dependency>
@@ -151,35 +159,5 @@
         </pluginManagement>
     </build>
 
-    <repositories>
-        <repository>
-            <id>maven-repository-redhat</id>
-            <name>Redhat Maven Repository</name>
-            <url>http://maven.repository.redhat.com/techpreview/eap6/6.1.0.Alpha1/maven-repository/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
 
-        <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
