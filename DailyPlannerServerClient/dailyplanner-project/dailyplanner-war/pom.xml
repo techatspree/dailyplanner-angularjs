@@ -66,10 +66,6 @@
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>ejb</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>logging</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -84,6 +80,7 @@
                             <directory>src/main/webapp</directory>
                         </resource>
                     </webResources>
+                    <attachClasses>true</attachClasses>
                 </configuration>
 
                 <goals>
@@ -125,7 +122,6 @@
                             <goal>package</goal>
                         </goals>
                         <configuration>
-                            <!--<bundleDependencies>false</bundleDependencies>-->
                             <mainClass>de.akquinet.dailyplanner.web.rest.Main</mainClass>
                             <!--<fractionDetectMode>force</fractionDetectMode>-->
                             <bundleDependencies>true</bundleDependencies>

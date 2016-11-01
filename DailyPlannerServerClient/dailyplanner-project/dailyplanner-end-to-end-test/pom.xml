@@ -7,7 +7,7 @@
     <artifactId>dailyplanner-end-to-end-test</artifactId>
 
     <properties>
-        <port.offset>100</port.offset>
+        <port.offset>0</port.offset>
         <wildfly.management.port>10090</wildfly.management.port>
     </properties>
 
@@ -25,8 +25,11 @@
 
         <dependency>
             <groupId>dailyplanner</groupId>
-            <artifactId>dailyplanner-ear</artifactId>
-            <type>ear</type>
+            <artifactId>dailyplanner-war</artifactId>
+            <type>jar</type>
+            <classifier>classes</classifier>
+            <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -38,7 +41,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>1.4.8</version>
+            <version>1.4.10</version>
         </dependency>
 
         <dependency>
@@ -58,6 +61,16 @@
             <artifactId>fluentlenium-assertj</artifactId>
             <version>0.13.2</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            <version>2.2.4</version>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -75,76 +88,16 @@
                         <configuration>
                             <systemProperties>
                                 <port.offset>${port.offset}</port.offset>
+                                <wdm.targetPath>~/.m2/repository/webdriver</wdm.targetPath>
+                                <wdm.forceCache>false</wdm.forceCache>
+                                <wdm.override>false</wdm.override>
+                                <wdm.timeout>30</wdm.timeout>
+                                <wdm.seekErrorRetries>3</wdm.seekErrorRetries>
+                                <wdm.chromeDriverUrl>http://chromedriver.storage.googleapis.com/</wdm.chromeDriverUrl>
+                                <wdm.chromeDriverExport>webdriver.chrome.driver</wdm.chromeDriverExport>
+                                <wdm.chromeDriverVersion>LATEST</wdm.chromeDriverVersion>
                             </systemProperties>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.1.0.Alpha11</version>
-
-                <configuration>
-                    <version>${wildfly.version}</version>
-                    <port>${wildfly.management.port}</port>
-                    <server-args>
-                        -Djboss.socket.binding.port-offset=${port.offset}
-                    </server-args>
-                </configuration>
-
-                <executions>
-
-                    <execution>
-                        <id>prepare</id>
-                        <phase>pre-integration-test</phase>
-
-                        <goals>
-                            <goal>start</goal>
-                            <goal>execute-commands</goal>
-                            <goal>shutdown</goal>
-                        </goals>
-
-                        <configuration>
-                            <reload>true</reload>
-                            <commands>
-                                <!--<command>/subsystem=logging/logger=org.jboss.security:add(level=TRACE)</command>-->
-                                <command>/subsystem=logging/console-handler=CONSOLE:write-attribute(name=level,value=DEBUG)</command>
-                                <command>/subsystem=security/security-domain=DailyPlanner/:add</command>
-                                <command>/subsystem=security/security-domain=DailyPlanner/authentication=classic:add</command>
-                                <command>
-                                    /subsystem=security/security-domain=DailyPlanner/authentication=classic/login-module=DailyPlannerDBLogin:add(code="Database",
-                                    flag="required",
-                                    module-options=[("dsJndiName"=>"java:jboss\/datasources\/ExampleDS"),("principalsQuery"=>"SELECT
-                                    PASSWORD FROM CM_USER WHERE LOGIN = ?"), ("rolesQuery"=>"SELECT R.NAME, 'Roles' FROM
-                                    CM_ROLE_CM_USER RU INNER JOIN CM_ROLE R ON R.ID = RU.ROLES_ID INNER JOIN CM_USER U
-                                    ON U.ID = RU.USERS_ID WHERE U.LOGIN = ?")])
-                                </command>
-                            </commands>
-                        </configuration>
-
-                    </execution>
-
-                    <execution>
-                        <id>deploy</id>
-                        <phase>pre-integration-test</phase>
-
-                        <goals>
-                            <goal>deploy-artifact</goal>
-                        </goals>
-
-                        <configuration>
-                            <groupId>dailyplanner</groupId>
-                            <artifactId>dailyplanner-ear</artifactId>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>shutdown</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>

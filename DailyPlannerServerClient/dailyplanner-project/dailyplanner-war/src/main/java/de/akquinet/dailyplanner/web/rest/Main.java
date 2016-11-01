@@ -1,5 +1,6 @@
 package de.akquinet.dailyplanner.web.rest;
 
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.config.security.Flag;
 import org.wildfly.swarm.config.security.SecurityDomain;
@@ -19,7 +20,7 @@ public class Main {
     }
 
 
-    public void startAndDeploy() throws Exception {
+    public void start() throws Exception {
         this.swarmContainer = new Swarm(args);
         final LoginModule databaseLoginModule = new LoginModule("Database").code("Database")
                 .flag(Flag.REQUIRED).moduleOptions(new HashMap<Object, Object>() {{
@@ -28,13 +29,21 @@ public class Main {
                     put("rolesQuery", "SELECT R.NAME, 'Roles' FROM CM_ROLE_CM_USER RU INNER JOIN CM_ROLE R ON R.ID = RU.ROLES_ID INNER JOIN CM_USER U ON U.ID = RU.USERS_ID WHERE U.LOGIN = ?");
                 }});
 
-        swarmContainer.fraction(SecurityFraction.defaultSecurityFraction().securityDomain(new SecurityDomain("DailyPlanner").classicAuthentication(new ClassicAuthentication().loginModule(databaseLoginModule))));
+        final SecurityDomain dailyPlannerSecurityDomain = new SecurityDomain("DailyPlanner").classicAuthentication(new ClassicAuthentication().loginModule(databaseLoginModule));
+        swarmContainer.fraction(SecurityFraction.defaultSecurityFraction().securityDomain(dailyPlannerSecurityDomain));
 
         swarmContainer.start();
+    }
 
+    public void deploy(WebArchive webArchive) throws Exception {
+        swarmContainer.deploy(webArchive);
+    }
+
+    public void deploySelf() throws Exception {
         // deploys this war
         swarmContainer.deploy();
     }
+
 
     public void stop() throws Exception {
         swarmContainer.stop();
@@ -42,7 +51,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        new Main(args).startAndDeploy();
+        final Main main = new Main(args);
+        main.start();
+        main.deploySelf();
+
 
         // deploys this war
 //        swarm.deploy();
