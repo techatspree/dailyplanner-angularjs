@@ -27,9 +27,8 @@
             <groupId>dailyplanner</groupId>
             <artifactId>dailyplanner-war</artifactId>
             <type>jar</type>
-            <classifier>classes</classifier>
+            <classifier>swarm</classifier>
             <version>${project.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -41,34 +40,13 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>1.4.10</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-remote-driver</artifactId>
-            <version>2.53.1</version>
+            <version>1.4.8</version>
         </dependency>
 
         <dependency>
             <groupId>org.fluentlenium</groupId>
             <artifactId>fluentlenium-assertj</artifactId>
             <version>0.13.2</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <version>2.2.4</version>
-            <scope>test</scope>
-            <type>pom</type>
         </dependency>
 
     </dependencies>
@@ -85,22 +63,56 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-fat-jar</id>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
                         <configuration>
-                            <systemProperties>
-                                <port.offset>${port.offset}</port.offset>
-                                <wdm.targetPath>~/.m2/repository/webdriver</wdm.targetPath>
-                                <wdm.forceCache>false</wdm.forceCache>
-                                <wdm.override>false</wdm.override>
-                                <wdm.timeout>30</wdm.timeout>
-                                <wdm.seekErrorRetries>3</wdm.seekErrorRetries>
-                                <wdm.chromeDriverUrl>http://chromedriver.storage.googleapis.com/</wdm.chromeDriverUrl>
-                                <wdm.chromeDriverExport>webdriver.chrome.driver</wdm.chromeDriverExport>
-                                <wdm.chromeDriverVersion>LATEST</wdm.chromeDriverVersion>
-                            </systemProperties>
+                            <includeArtifactIds>dailyplanner-war</includeArtifactIds>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>com.bazaarvoice.maven.plugins</groupId>
+                <artifactId>process-exec-maven-plugin</artifactId>
+                <version>0.8</version>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <healthcheckUrl>http://localhost:8080/dailyplanner/</healthcheckUrl>
+                            <arguments>
+                                <argument>java</argument>
+                                <argument>-jar</argument>
+                                <argument>${basedir}/target/dependency/dailyplanner-war-${project.version}-swarm.jar
+                                </argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-all</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop-all</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>
