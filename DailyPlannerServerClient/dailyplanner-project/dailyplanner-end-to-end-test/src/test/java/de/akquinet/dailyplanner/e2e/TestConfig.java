@@ -2,6 +2,7 @@ package de.akquinet.dailyplanner.e2e;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.PhantomJsDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -17,12 +18,16 @@ public class TestConfig {
     }
 
     public static final WebDriver webDriver() {
-        if (Boolean.getBoolean("use.chrome")) {
-            ChromeDriverManager.getInstance().setup();
-            return new ChromeDriver();
-        } else {
+        final WebDriver driver;
+        if (Boolean.getBoolean("use.phantomjs")) {
             PhantomJsDriverManager.getInstance().setup();
-            return new PhantomJSDriver();
+            driver = new PhantomJSDriver();
+        } else {
+            ChromeDriverManager.getInstance().setup();
+            driver = new ChromeDriver();
         }
+
+        driver.manage().window().setSize(new Dimension(1024, 800));
+        return driver;
     }
 }

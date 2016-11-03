@@ -26,10 +26,10 @@ public class BasicIT extends FluentTest {
     private TasksPage tasksPage;
 
     @Test
-    public void canLogin() throws Exception {
-        goTo(loginPage);
-        loginPage.login("admin0", "secret");
-        tasksPage.isAt();
+    public void canLoginAndLogout() throws Exception {
+        login();
+        tasksPage.logout();
+        loginPage.isAt();
     }
 
     @Test
@@ -43,19 +43,36 @@ public class BasicIT extends FluentTest {
     public void canAddAndDeleteTask() {
         String description = "newTask-" + System.currentTimeMillis();
 
-        goTo(loginPage);
-        loginPage.login("admin0", "secret");
-        tasksPage.isAt();
+        login();
 
         assertThat(tasksPage.listTasks()).doesNotContain(description);
+        tasksPage.addTask(description);
+        assertThat(tasksPage.listTasks()).contains(description);
+
+        tasksPage.deleteTask(tasksPage.listTasks().indexOf(description));
+        assertThat(tasksPage.listTasks()).doesNotContain(description);
+    }
+
+    @Test
+    public void tasksArePersisted() {
+        String description = "newTask-" + System.currentTimeMillis();
+
+        login();
 
         tasksPage.addTask(description);
 
-        assertThat(tasksPage.listTasks()).contains(description);
+        tasksPage.logout();
+        login();
 
         tasksPage.deleteTask(tasksPage.listTasks().indexOf(description));
 
         assertThat(tasksPage.listTasks()).doesNotContain(description);
+    }
+
+    private void login() {
+        goTo(loginPage);
+        loginPage.login("admin0", "secret");
+        tasksPage.isAt();
     }
 
 

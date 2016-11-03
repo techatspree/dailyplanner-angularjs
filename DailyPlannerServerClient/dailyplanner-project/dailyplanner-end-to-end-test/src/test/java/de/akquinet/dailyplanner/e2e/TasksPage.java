@@ -1,7 +1,9 @@
 package de.akquinet.dailyplanner.e2e;
 
 import org.fluentlenium.core.FluentPage;
+import org.fluentlenium.core.annotation.Page;
 import org.fluentlenium.core.wait.FluentWait;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -9,6 +11,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TasksPage extends FluentPage {
+
+    @Page
+    private LoginPage loginPage;
 
     private static final String OPEN_DELETE_VIEW = "#task-list button[ng-click='showTaskDeleteView($index)']";
     private static final String CONFIRM_DELETE_BUTTON = "#task-list .task-delete-view button[ng-click='deleteTask($index)']";
@@ -40,7 +45,18 @@ public class TasksPage extends FluentPage {
     public void selectTask(int index) {
         $("#task-list div[ng-click='selectTask(task, $index)']").get(index).click();
         await().until($("#edit-task-form")).isDisplayed();
+    }
 
+    public void logout(){
+        final By abmelden = By.linkText("Abmelden");
+
+        await().until(abmelden).isClickable();
+        find(abmelden).click();
+
+        await().until(() -> {
+            loginPage.isAt();
+            return true;
+        });
     }
 
     @Override
