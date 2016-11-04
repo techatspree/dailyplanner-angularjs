@@ -112,7 +112,48 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>useHollow</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.bazaarvoice.maven.plugins</groupId>
+                        <artifactId>process-exec-maven-plugin</artifactId>
+                        <version>0.8</version>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <configuration>
+                                    <healthcheckUrl>http://localhost:8080/dailyplanner/</healthcheckUrl>
+                                    <arguments>
+                                        <argument>java</argument>
+                                        <argument>-jar</argument>
+                                        <argument>${basedir}/../dailyplanner-swarm-server/target/dailyplanner-swarm-server-${project.version}-hollow-swarm.jar</argument>
+                                        <argument>-c</argument>
+                                        <argument>${basedir}/../dailyplanner-swarm-server/standalone.xml</argument>
+                                        <argument>${basedir}/../dailyplanner-war/target/dailyplanner-war-${project.version}.war</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-all</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop-all</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

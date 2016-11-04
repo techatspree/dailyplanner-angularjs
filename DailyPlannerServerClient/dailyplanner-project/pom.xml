@@ -19,6 +19,7 @@
         <module>dailyplanner-logic</module>
         <module>dailyplanner-war</module>
         <module>dailyplanner-ear</module>
+        <module>dailyplanner-swarm-server</module>
     </modules>
 
     <profiles>
